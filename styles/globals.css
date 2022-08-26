@@ -5,6 +5,16 @@
 @tailwind utilities;
 
 @layer base{
+    html{
+        font-size:13px
+    }
+
+    @media screen and (min-width: 640px){
+        html{
+            font-size:16px
+        }
+    }
+
     h1{
         font-size: @apply text-display_lg;
         font-weight:700;

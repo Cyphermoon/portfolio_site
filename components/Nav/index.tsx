@@ -2,7 +2,7 @@ import Image from "next/image"
 import NavItem from "../NatItem"
 
 const Nav = () => (
-    <nav className="flex justify-between">
+    <nav className="flex justify-between items-center">
         <div className="flex justify-between items-center">
             <Image src="/asset/cypher_moon_logo.png" alt="Portfolio logo" width={35} height={35} />
             <p className=" text-base">Cypher Moon</p>
