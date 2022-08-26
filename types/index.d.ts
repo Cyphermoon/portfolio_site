@@ -5,3 +5,9 @@ export type headType = {
 export type containerType = {
     children :React.ReactNode
 }
+
+export type navItemType = {
+    title: string,
+    href: string,
+    active?: boolean,
+}
