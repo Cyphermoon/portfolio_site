@@ -11,3 +11,8 @@ export type navItemType = {
     href: string,
     active?: boolean,
 }
+
+export type hamburgerType = {
+    hamburgerClicked: function,
+    navState: boolean
+}

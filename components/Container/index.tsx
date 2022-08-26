@@ -1,8 +1,8 @@
 import { containerType } from "../../types"
 
-const Container = ({children} :containerType) => {
+const Container = ({ children }: containerType) => {
     return (
-        <div className="container">
+        <div className="container px-4 sm:px-0">
             {children}
         </div>
     )

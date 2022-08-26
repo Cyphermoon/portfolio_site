@@ -11,6 +11,31 @@ module.exports = {
     },
 
     extend: {
+      keyframes: {
+        moveIn: {
+          "0%": {
+            transform: "scale(0, 1)"
+          },
+
+          "100%": {
+            transform: "scale(1, 1)"
+          }
+        },
+
+        moveOut: {
+          "0%": {
+            transform: "scale(1, 1)"
+          },
+
+          "100%": {
+            transform: "scale(0, 1)"
+          }
+        },
+      },
+      animation: {
+        moveIn: "moveIn 450ms ease-in-out 1",
+        moveOut: "moveOut 450ms ease-in-out 1 forwards"
+      },
       fontFamily: {
         sans: ["Roboto", "sans-serif"]
       },
