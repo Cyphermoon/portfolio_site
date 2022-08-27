@@ -1,3 +1,5 @@
+import React from "react"
+
 export type headType = {
     title: string,
 }
@@ -15,4 +17,8 @@ export type navItemType = {
 export type hamburgerType = {
     hamburgerClicked: function,
     navState: boolean
+}
+
+export type headerType = {
+    children: React.ReactNode
 }

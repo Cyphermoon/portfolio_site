@@ -15,25 +15,6 @@
         }
     }
 
-    h1{
-        font-size: @apply text-display_lg;
-        font-weight:700;
-    }
-
-    h2{
-        font-size: @apply text-headline_md;
-        font-weight:500;
-    }
-
-    h3{
-        font-size: @apply text-headline_sm;
-        font-weight:500;
-    }
-
-    p{
-        font-size: @apply text-base
-    }
-
     @font-face{
         font-family: "Roboto";
         font-weight:400;
@@ -50,6 +31,28 @@
         font-family: "Roboto";
         font-weight:700;
         src: url("/fonts/roboto/Roboto-Bold.ttf");
+    }
+
+}
+
+@layer base{
+    h1{
+        @apply text-display_lg;
+        font-weight:700;
+    }
+
+    h2{
+        @apply text-headline_md;
+        font-weight:500;
+    }
+
+    h3{
+        @apply text-headline_sm;
+        font-weight:500;
+    }
+
+    p{
+        @apply text-base
     }
 
 }
