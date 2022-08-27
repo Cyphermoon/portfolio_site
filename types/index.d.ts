@@ -40,3 +40,8 @@ export type inputType = {
     inputType: string
     placeholder?: string
 }
+
+export type socialCardType = {
+    title: string,
+    imageURL: string,
+}

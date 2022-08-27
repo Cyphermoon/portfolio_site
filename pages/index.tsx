@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <Container>
         <Header >
           <div className="w-full md:w-9/12 text-center space-y-9 flex flex-col">
-            <h1 className="text-5xl  lg:text-display_lg font-bold text-center">My name is kelvin, i am a<span className="text-blue-500"> frontend developer</span></h1>
+            <h1 className="text-[2.5rem] md:text-5xl  lg:text-display_lg font-bold text-center">My name is kelvin, i am a<span className="text-blue-500"> frontend developer</span></h1>
 
             <p className="text-title_sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ullam enim non consequuntur! Unde nulla totam in </p>
 
