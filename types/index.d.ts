@@ -28,3 +28,9 @@ export type projectCardType={
     description: string,
     imageURL: string
 }
+
+export type skillCardType={
+    title: string,
+    imageURL: string,
+    altContent: string
+}

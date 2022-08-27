@@ -4,6 +4,7 @@ import Container from '../components/Container'
 import Header from '../components/Header'
 import PageHead from '../components/PageHead'
 import ProjectDisplaySection from '../components/ProjectDisplaySection'
+import SkillDisplaySection from '../components/SkillDisplaySection'
 
 const Home: NextPage = () => {
   return (
@@ -28,6 +29,7 @@ const Home: NextPage = () => {
         <AboutSection />
 
         <ProjectDisplaySection />
+        <SkillDisplaySection />
       </Container>
     </div>
   )
