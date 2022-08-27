@@ -1,14 +1,18 @@
 import Image from "next/image"
+import Link from "next/link"
 import { useReducer, useState } from "react"
 import { hamburgerType } from "../../types"
 import NavItem from "../NatItem"
 
 
 const Logo = () => (
-    <div className="flex justify-between items-center ">
-        <Image src="/asset/cypher_moon_logo.png" alt="Portfolio logo" width={32} height={32} />
-        <p className="ml-1 text-base">Cypher Moon</p>
-    </div>
+    <Link href="/">
+        <a className="flex justify-between items-center">
+            <Image src="/asset/cypher_moon_logo.png" alt="Portfolio logo" width={32} height={32} />
+            <p className="ml-1 text-base">Cypher Moon</p>
+        </a>
+
+    </Link>
 )
 
 const Hamburger = ({ hamburgerClicked, navState }: hamburgerType) => (
@@ -31,7 +35,7 @@ const Nav = () => {
                 className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between
                 items-center bg-red-300 md:bg-transparent inset-0 md:inset-auto absolute md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
                 <li>
-                    <NavItem title="project" href="#" />
+                    <NavItem title="project" href="/project" />
                 </li>
                 <li>
                     <NavItem title="contact me" href="#" />
