@@ -22,3 +22,9 @@ export type hamburgerType = {
 export type headerType = {
     children: React.ReactNode
 }
+
+export type projectCardType={
+    title: string,
+    description: string,
+    imageURL: string
+}
