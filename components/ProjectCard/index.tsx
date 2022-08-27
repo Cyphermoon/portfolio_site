@@ -4,7 +4,7 @@ import { projectCardType } from '../../types'
 
 const ProjectCard = ({ title, description, imageURL }: projectCardType) => {
     return (
-        <div className='min-h-[512px] w-full md:w-96 bg-slate-300 relative before:w-full
+        <div className='min-h-[490px] w-full sm:w-72 sm:min-h-[384px] md:min-h-[512px] md:w-96 bg-slate-300 relative before:w-full
         before-h-full before:transition-opacity duration-100ms
         before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-60
         before:hover:opacity-80 '>

@@ -6,8 +6,8 @@ const ContactSection = () => {
     return (
         <section className='space-y-8'>
             <h2>Contact me</h2>
-            <div className='flex flex-col md:flex-row'>
-                <form className='w-full mb-12 md:mb-auto max-w-md lg:mr-32 bg-slate-100 rounded-2xl p-4 drop-shadow-lg space-y-8'>
+            <div className='w-full lg:max-w-5xl flex flex-col md:flex-row justify-between'>
+                <form className='w-full md:w-9/12 mb-12 md:mb-auto lg:max-w-md bg-slate-100 rounded-2xl p-4 drop-shadow-lg space-y-8'>
                     <Input inputType='text' labelText='Name' />
                     <Input inputType='email' labelText='Email' />
 

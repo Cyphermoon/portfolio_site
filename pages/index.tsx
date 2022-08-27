@@ -9,7 +9,7 @@ import SkillDisplaySection from '../components/SkillDisplaySection'
 
 const Home: NextPage = () => {
   return (
-    <div className=' bg-slate-100 text-gray-800'>
+    <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
       <PageHead title='Portfolio' />
       <Container>
         <Header >

@@ -2,7 +2,7 @@ import { containerType } from "../../types"
 
 const Container = ({ children }: containerType) => {
     return (
-        <div className="space-y-28 container px-4 sm:px-0">
+        <div className="space-y-28 container px-4 md:px-2 lg:px-0">
             {children}
         </div>
     )
