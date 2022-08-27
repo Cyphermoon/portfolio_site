@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import AboutSection from '../components/AboutSection'
+import ContactSection from '../components/ContactSection'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import PageHead from '../components/PageHead'
@@ -27,9 +28,9 @@ const Home: NextPage = () => {
         </Header>
 
         <AboutSection />
-
         <ProjectDisplaySection />
         <SkillDisplaySection />
+        <ContactSection />
       </Container>
     </div>
   )

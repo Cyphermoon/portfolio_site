@@ -34,3 +34,9 @@ export type skillCardType={
     imageURL: string,
     altContent: string
 }
+
+export type inputType = {
+    labelText: string
+    inputType: string
+    placeholder?: string
+}
