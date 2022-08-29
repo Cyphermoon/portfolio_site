@@ -1,9 +1,21 @@
 import React from 'react'
+import Carousel from '../components/Carousel'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import PageHead from '../components/PageHead'
 
 const Project = () => {
+    const carouselItems: {
+        imageURL: string
+    }[] = [
+            {
+                imageURL: "/images/discord-clone.png"
+            },
+            {
+                imageURL: "/images/netflix-clone.png"
+            }
+        ]
+
     return (
         <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
             <PageHead title='Portfolio' />
@@ -19,8 +31,8 @@ const Project = () => {
 
                             <button className="shadow-lg shadow-blue-400 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white">view site</button>
                         </div>
-                        <figure className='w-full max-w-4xl h-[700px] min-h-min bg-slate-200 round-md'>
-
+                        <figure className='w-96 lg:w-full max-w-6xl h-[648px] min-h-min bg-slate-200 round-md'>
+                            <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>
 

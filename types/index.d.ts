@@ -45,3 +45,7 @@ export type socialCardType = {
     title: string,
     imageURL: string,
 }
+
+export type carouselType = {
+    carouselItems:{imageURL:string}[]
+}
