@@ -36,8 +36,10 @@ export type skillCardType={
 }
 
 export type inputType = {
-    labelText: string
-    inputType: string
+    labelText: string,
+    inputType: string,
+    inputValue: string,
+    setInputValue: function,
     placeholder?: string
 }
 
