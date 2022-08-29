@@ -49,3 +49,13 @@ export type socialCardType = {
 export type carouselType = {
     carouselItems:{imageURL:string}[]
 }
+
+export type featureContentType = {
+    children: React.ReactNode,
+    reversed: boolean
+}
+
+export type featureContentImageType = {
+    altContent: string,
+    imageURL: string,
+}

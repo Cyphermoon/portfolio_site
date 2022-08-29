@@ -18,11 +18,11 @@ const Carousel = ({ carouselItems }: carouselType) => {
             <Swiper
                 spaceBetween={60}
                 effect="fade"
-                // centeredSlides={true}
-                // autoplay={{
-                //     delay: 2500,
-                //     disableOnInteraction: false,
-                // }}
+                centeredSlides={true}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
                 pagination={{
                     clickable: true,
                 }}
