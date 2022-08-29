@@ -61,3 +61,7 @@ export type featureContentImageType = {
     altContent: string,
     imageURL: string,
 }
+
+export type successModalType = {
+    onClose: function
+}

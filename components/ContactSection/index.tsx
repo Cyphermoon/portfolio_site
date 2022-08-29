@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react'
-import Input from '../Input'
 import SocialMediaDisplay from '../SocialMediaDisplay'
-import emailjs from "@emailjs/browser"
 import ContactForm from '../ContactForm'
 
 const ContactSection = () => {
@@ -11,6 +9,7 @@ const ContactSection = () => {
             <div className='w-full lg:max-w-5xl flex flex-col md:flex-row justify-between'>
                 <ContactForm />
                 <SocialMediaDisplay />
+
             </div>
         </section>
     )
