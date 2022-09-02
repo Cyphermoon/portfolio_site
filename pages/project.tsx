@@ -4,6 +4,7 @@ import Carousel from '../components/Carousel'
 import Container from '../components/Container'
 import FeatureContent, { FeatureContentImage } from '../components/FeatureContent'
 import Header from '../components/Header'
+import OtherProjectDisplay from '../components/OtherProjectDisplay'
 import PageHead from '../components/PageHead'
 import TechStackDisplay from '../components/TechStackDisplay'
 
@@ -24,11 +25,11 @@ const Project = () => {
             <PageHead title='Portfolio' />
             <Container>
                 <Header >
-                    <div className='flex flex-col items-center justify-center space-y-16'>
+                    <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="w-full md:w-9/12 items-center text-center space-y-6 flex flex-col">
                             <h1 className="text-[2.5rem] lg:text-display_lg font-bold text-center">Studdy buddy</h1>
 
-                            <p className="text-title_sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ullam enim non consequuntur! Unde nulla totam in </p>
+                            <p className="text-title_sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ullam enim non consequuntur! Unde nulla totam in eaque  </p>
 
 
 
@@ -40,10 +41,12 @@ const Project = () => {
                     </div>
 
                 </Header>
+
                 <TechStackDisplay />
+
                 <FeatureContent reversed={false} >
                     <div className='space-y-2 lg:w-2/5'>
-                        <h3>Chat Functionality</h3>
+                        <h2>Chat Functionality</h2>
                         <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
                         </p>
@@ -51,16 +54,21 @@ const Project = () => {
 
                     <FeatureContentImage imageURL="/images/chat-dapp.png" altContent="project image" />
                 </FeatureContent>
+
                 <FeatureContent reversed={true} >
                     <div className='space-y-2 lg:w-2/5'>
-                        <h3>Chat Functionality</h3>
+                        <h2>Chat Functionality</h2>
                         <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
+
+
                         </p>
                     </div>
 
                     <FeatureContentImage imageURL="/images/netflix-clone.png" altContent="project image" />
                 </FeatureContent>
+
+                <OtherProjectDisplay />
             </Container>
 
         </div>

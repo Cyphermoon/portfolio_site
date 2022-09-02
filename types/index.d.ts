@@ -32,7 +32,9 @@ export type projectCardType={
 export type skillCardType={
     title: string,
     imageURL: string,
-    altContent: string
+    altContent: string,
+    width?:string,
+    height?:string
 }
 
 export type inputType = {
@@ -60,6 +62,12 @@ export type featureContentType = {
 export type featureContentImageType = {
     altContent: string,
     imageURL: string,
+}
+export type OtherProjectType = {
+    altContent: string,
+    imageURL: string,
+    projectName: string,
+    description: string
 }
 
 export type successModalType = {
