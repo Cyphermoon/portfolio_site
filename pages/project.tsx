@@ -23,7 +23,7 @@ const Project = () => {
     return (
         <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
             <PageHead title='Portfolio' />
-            <Container>
+            <div className="space-y-32 container px-4 md:px-2 lg:px-0">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="w-full md:w-9/12 items-center text-center space-y-6 flex flex-col">
@@ -35,7 +35,7 @@ const Project = () => {
 
                             <button className="shadow-lg shadow-blue-400 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white">view site</button>
                         </div>
-                        <figure className='w-96 md:w-[400px] lg:w-full max-w-6xl h-80 md:h-400px lg:h-[648px] min-h-min bg-slate-200 round-md'>
+                        <figure className='min-w-full w-72 md:w-[400px] lg:w-full max-w-7xl h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>
@@ -44,32 +44,35 @@ const Project = () => {
 
                 <TechStackDisplay />
 
-                <FeatureContent reversed={false} >
-                    <div className='space-y-2 lg:w-2/5'>
-                        <h2>Chat Functionality</h2>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
-                        </p>
-                    </div>
 
-                    <FeatureContentImage imageURL="/images/chat-dapp.png" altContent="project image" />
-                </FeatureContent>
+                <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
+                    <FeatureContent reversed={false} >
+                        <div className='space-y-2 lg:w-2/5'>
+                            <h2>Chat Functionality</h2>
+                            <p>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
+                            </p>
+                        </div>
 
-                <FeatureContent reversed={true} >
-                    <div className='space-y-2 lg:w-2/5'>
-                        <h2>Chat Functionality</h2>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
+                        <FeatureContentImage imageURL="/images/chat-dapp.png" altContent="project image" />
+                    </FeatureContent>
+
+                    <FeatureContent reversed={true} >
+                        <div className='space-y-2 lg:w-2/5'>
+                            <h2>Chat Functionality</h2>
+                            <p>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
 
 
-                        </p>
-                    </div>
+                            </p>
+                        </div>
 
-                    <FeatureContentImage imageURL="/images/netflix-clone.png" altContent="project image" />
-                </FeatureContent>
+                        <FeatureContentImage imageURL="/images/netflix-clone.png" altContent="project image" />
+                    </FeatureContent>
 
-                <OtherProjectDisplay />
-            </Container>
+                    <OtherProjectDisplay />
+                </div>
+            </div>
 
         </div>
     )

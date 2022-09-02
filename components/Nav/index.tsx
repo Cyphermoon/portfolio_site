@@ -38,7 +38,7 @@ const Nav = () => {
                     <NavItem title="project" href="/project" />
                 </li>
                 <li>
-                    <NavItem title="contact me" href="#" />
+                    <NavItem title="contact me" href="/#contact_section" />
                 </li>
                 <li>
                     <NavItem title="project" href="#" />

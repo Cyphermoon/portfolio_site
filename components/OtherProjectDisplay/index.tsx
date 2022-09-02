@@ -5,7 +5,7 @@ import { OtherProjectType } from '../../types'
 const OtherProject = ({ imageURL, altContent, projectName, description }: OtherProjectType) => {
   return (
     <div className='min-w-full sm:w-72 md:w-80 space-y-4'>
-      <figure className='relative w-full h-40'>
+      <figure className='relative w-full h-52 md:h-40'>
         <Image src={imageURL} alt={altContent} layout="fill" objectFit='cover' />
       </figure>
       <div className='space-y-1'>
@@ -21,7 +21,7 @@ const OtherProjectDisplay = () => {
   return (
     <section className='space-y-8'>
       <h2>Other Projects</h2>
-      <div className='w-full md:w-max grid grid-cols-1 justify-start sm:grid-cols-2 lg:grid-cols-3 justify-items-start md:justify-items-start gap-y-14 sm:gap-14'>
+      <div className='w-full md:w-max grid grid-cols-1 justify-start sm:grid-cols-2 lg:grid-cols-3 justify-items-start md:justify-items-start gap-y-16 sm:gap-14'>
         <OtherProject
           imageURL="/images/netflix-clone.png"
           altContent='netflix clone image'

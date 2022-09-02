@@ -49,7 +49,7 @@ const Carousel = ({ carouselItems }: carouselType) => {
                                 layout="fill"
                                 src={item.imageURL}
                                 alt={`image slide 1`}
-                                objectFit="fill"
+                                objectFit="cover"
                             />
 
                         </figure>
