@@ -15,7 +15,7 @@ const Logo = () => (
     </Link>
 )
 
-const Hamburger = ({ hamburgerClicked, navState }: hamburgerType) => (
+const Hamburger = ({ hamburgerClicked }: hamburgerType) => (
     <figure className="mr-4 inline-block md:hidden relative z-50" onClick={hamburgerClicked} >
         <Image src="/icons/hamburger__icon.svg" alt="Portfolio logo" width={32} height={32} />
     </figure>
@@ -25,8 +25,6 @@ const Hamburger = ({ hamburgerClicked, navState }: hamburgerType) => (
 const Nav = () => {
     const [navOpened, toggleNavState] = useReducer((initialState) => !initialState, false);
 
-
-
     return (
         <nav className="flex justify-between items-center">
             <Logo />
@@ -35,7 +33,7 @@ const Nav = () => {
                 className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between
                 items-center bg-red-300 md:bg-transparent inset-0 md:inset-auto absolute md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
                 <li>
-                    <NavItem title="project" href="/project" />
+                    <NavItem title="project" href="#" />
                 </li>
                 <li>
                     <NavItem title="contact me" href="/#contact_section" />

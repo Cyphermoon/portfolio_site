@@ -16,7 +16,7 @@ export type navItemType = {
 
 export type hamburgerType = {
     hamburgerClicked: function,
-    navState: boolean
+    navState?: boolean
 }
 
 export type headerType = {
@@ -26,7 +26,8 @@ export type headerType = {
 export type projectCardType={
     title: string,
     description: string,
-    imageURL: string
+    imageURL: string,
+    projectId: number
 }
 
 export type skillCardType={

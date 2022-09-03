@@ -55,6 +55,11 @@
         font-weight:500;
     }
 
+    h4{
+        @apply text-headline_xs;
+        font-weight:500;
+    }
+
     p{
         @apply text-base
     }

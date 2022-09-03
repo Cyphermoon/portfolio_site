@@ -1,20 +1,23 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { projectCardType } from '../../types'
 
-const ProjectCard = ({ title, description, imageURL }: projectCardType) => {
+const ProjectCard = ({ title, description, imageURL, projectId }: projectCardType) => {
     return (
-        <div className='min-h-[490px] w-full sm:w-72 sm:min-h-[384px] md:min-h-[512px] md:w-[365px] lg:w-96 bg-slate-300 relative before:w-full
-        before-h-full before:transition-opacity duration-100ms
-        before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-60
-        before:hover:opacity-80 '>
-            <Image src={imageURL} alt="project image 1" layout='fill' objectFit='cover' />
+        <Link href={"/project/[id]"} as={`/project/${projectId}`}>
+            <div className='min-h-[490px] w-full sm:w-72 sm:min-h-[384px] md:min-h-[512px] md:w-[365px] lg:w-96 bg-slate-300 relative before:w-full cursor-pointer
+            before-h-full before:transition-opacity duration-100ms
+            before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-60
+            before:hover:opacity-80' >
+                <Image src={imageURL} alt="project image 1" layout='fill' objectFit='cover' />
 
-            <div className="absolute top-3 left-3 z-10 text-gray-100">
-                <h3>{title}</h3>
-                <p className='text-label_md'>{description}</p>
+                <div className="absolute top-3 left-3 z-10 text-gray-100">
+                    <h3>{title}</h3>
+                    <p className='text-label_md'>{description}</p>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

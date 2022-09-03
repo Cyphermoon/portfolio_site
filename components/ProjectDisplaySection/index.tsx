@@ -9,27 +9,32 @@ const ProjectDisplaySection = () => {
                 <ProjectCard
                     title='Chat dapp'
                     description='lorem ipsum dolor sit amet cool'
-                    imageURL='/images/chat-dapp.png' />
+                    imageURL='/images/chat-dapp.png'
+                    projectId={1} />
 
                 <ProjectCard
                     title='Discord clone'
                     description='lorem ipsum dolor sit amet cool'
-                    imageURL='/images/discord-clone.png' />
+                    imageURL='/images/discord-clone.png'
+                    projectId={2} />
 
                 <ProjectCard
                     title='Netflix clone'
                     description='lorem ipsum dolor sit amet cool'
-                    imageURL='/images/netflix-clone.png' />
+                    imageURL='/images/netflix-clone.png'
+                    projectId={3} />
 
                 <ProjectCard
                     title='Chat dapp'
                     description='lorem ipsum dolor sit amet cool'
-                    imageURL='/images/chat-dapp.png' />
+                    imageURL='/images/chat-dapp.png'
+                    projectId={4} />
 
                 <ProjectCard
                     title='Chat dapp'
                     description='lorem ipsum dolor sit amet cool'
-                    imageURL='/images/chat-dapp.png' />
+                    imageURL='/images/chat-dapp.png'
+                    projectId={5} />
             </div>
         </section>
     )

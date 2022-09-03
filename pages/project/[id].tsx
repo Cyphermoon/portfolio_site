@@ -1,12 +1,9 @@
-import Image from 'next/image'
-import React from 'react'
-import Carousel from '../components/Carousel'
-import Container from '../components/Container'
-import FeatureContent, { FeatureContentImage } from '../components/FeatureContent'
-import Header from '../components/Header'
-import OtherProjectDisplay from '../components/OtherProjectDisplay'
-import PageHead from '../components/PageHead'
-import TechStackDisplay from '../components/TechStackDisplay'
+import Carousel from '../../components/Carousel'
+import FeatureContent, { FeatureContentImage } from '../../components/FeatureContent'
+import Header from '../../components/Header'
+import OtherProjectDisplay from '../../components/OtherProjectDisplay'
+import PageHead from '../../components/PageHead'
+import TechStackDisplay from '../../components/TechStackDisplay'
 
 const Project = () => {
     const carouselItems: {
@@ -23,7 +20,7 @@ const Project = () => {
     return (
         <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
             <PageHead title='Portfolio' />
-            <div className="space-y-32 container px-4 md:px-2 lg:px-0">
+            <div className="space-y-32 container px-2 md:px-2 lg:px-0">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="w-full md:w-9/12 items-center text-center space-y-6 flex flex-col">
@@ -35,7 +32,7 @@ const Project = () => {
 
                             <button className="shadow-lg shadow-blue-400 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white">view site</button>
                         </div>
-                        <figure className='min-w-full w-72 md:w-[400px] lg:w-full max-w-7xl h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
+                        <figure className='min-w-full shadow-2xl shadow-gray-600 w-72 md:w-[400px] lg:w-full max-w-7xl h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>

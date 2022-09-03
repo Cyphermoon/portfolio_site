@@ -3,7 +3,7 @@ import React from 'react'
 import { socialCardType } from '../../types'
 
 const SocialCard = ({ title, imageURL }: socialCardType) => (
-    <div className='w-20 h-20 lg:w-32 lg:h-32 space-y-2 md:p-2 rounded-lg bg-slate-100 lg:drop-shadow-lg'>
+    <a href='#' className='w-20 block h-20 lg:w-32 lg:h-32 space-y-2 md:p-2 rounded-lg bg-slate-100 lg:drop-shadow-lg'>
         <figure className='w-fill h-3/5 lg:3/4 relative'>
             <Image
                 style={{ filter: "brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(3937%) hue-rotate(180deg) brightness(97%) contrast(83%)" }}
@@ -12,7 +12,7 @@ const SocialCard = ({ title, imageURL }: socialCardType) => (
                 alt={`${title} logo`} />
         </figure>
         <p className='text-label_md text-center'>{title}</p>
-    </div>
+    </a>
 )
 
 const SocialMediaDisplay = () => {
