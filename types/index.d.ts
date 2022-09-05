@@ -94,3 +94,9 @@ export type skillDisplaySectionType = {
 export type projectDisplaySectionType = {
     projects:any[]
 }
+export type techStackDisplayType = {
+    tech_stacks:{
+        backend:any[]
+        frontend:any[]
+    }
+}

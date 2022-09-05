@@ -1,3 +1,5 @@
+import { GetStaticPropsContext } from 'next'
+import { sanityClient } from '..'
 import Carousel from '../../components/Carousel'
 import FeatureContent, { FeatureContentImage } from '../../components/FeatureContent'
 import Header from '../../components/Header'
@@ -5,17 +7,14 @@ import OtherProjectDisplay from '../../components/OtherProjectDisplay'
 import PageHead from '../../components/PageHead'
 import TechStackDisplay from '../../components/TechStackDisplay'
 
-const Project = () => {
+const Project = ({ project }: any) => {
+
     const carouselItems: {
         imageURL: string
-    }[] = [
-            {
-                imageURL: "/images/discord-clone.png"
-            },
-            {
-                imageURL: "/images/netflix-clone.png"
-            }
-        ]
+    }[] = project.slideshow_images
+
+    console.dir(project.functionality)
+
 
     return (
         <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
@@ -24,11 +23,11 @@ const Project = () => {
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="w-full md:w-9/12 items-center text-center space-y-6 flex flex-col">
-                            <h1 className="text-[2.5rem] lg:text-display_lg font-bold text-center">Studdy buddy</h1>
+                            <h1 className="text-[2.5rem] lg:text-display_lg font-bold text-center">
+                                {project.title}
+                            </h1>
 
-                            <p className="text-title_sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit ullam enim non consequuntur! Unde nulla totam in eaque  </p>
-
-
+                            <p className="text-title_sm">{project.description}</p>
 
                             <button className="shadow-lg shadow-blue-400 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white">view site</button>
                         </div>
@@ -39,33 +38,22 @@ const Project = () => {
 
                 </Header>
 
-                <TechStackDisplay />
+                <TechStackDisplay tech_stacks={project.tech_stack} />
 
 
                 <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
-                    <FeatureContent reversed={false} >
-                        <div className='space-y-2 lg:w-2/5'>
-                            <h2>Chat Functionality</h2>
-                            <p>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
-                            </p>
-                        </div>
+                    {project.functionality.map((data, idx) => {
+                        return <FeatureContent key={idx} reversed={idx / 2 !== 0} >
+                            <div className='space-y-4 lg:w-2/5'>
+                                <h2>{data.header}</h2>
+                                <p>
+                                    {data.description}
+                                </p>
+                            </div>
 
-                        <FeatureContentImage imageURL="/images/chat-dapp.png" altContent="project image" />
-                    </FeatureContent>
-
-                    <FeatureContent reversed={true} >
-                        <div className='space-y-2 lg:w-2/5'>
-                            <h2>Chat Functionality</h2>
-                            <p>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora voluptas ut corrupti, delectus quos asperiores aliquam sequi vel rerum voluptate aperiam doloribus nihil voluptatibus eaque temporibus, tempore praesentium expedita eos!
-
-
-                            </p>
-                        </div>
-
-                        <FeatureContentImage imageURL="/images/netflix-clone.png" altContent="project image" />
-                    </FeatureContent>
+                            <FeatureContentImage imageURL={data.image_url} altContent={data.altText} />
+                        </FeatureContent>
+                    })}
 
                     <OtherProjectDisplay />
                 </div>
@@ -73,6 +61,40 @@ const Project = () => {
 
         </div>
     )
+}
+
+export async function getStaticProps({ params }: GetStaticPropsContext) {
+    const project = await sanityClient.fetch(`
+    *[_type=='project' && _id=='243f37cf-25ba-4570-be67-441b2bd9862f']
+    {description,  title,
+     "slideshow_images":slideshow_images[]->{"imageURL":image.asset->url}, 
+     "tech_stack":{
+       "backend":tech_stack.backend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
+        "frontend":tech_stack.frontend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
+        } ,
+     "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
+     }`)
+
+    return {
+        props: {
+            project: project[0]
+        }
+    }
+}
+
+
+export async function getStaticPaths() {
+    // Call an external API endpoint to get projects
+    const res: { _id: string }[] = await sanityClient.fetch("*[_type=='project']{_id}")
+
+    // Get the paths we want to pre-render based on posts
+    const paths = res.map((project) => ({
+        params: { id: project._id },
+    }))
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false }
 }
 
 export default Project

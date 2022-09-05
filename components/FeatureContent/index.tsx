@@ -11,7 +11,7 @@ export const FeatureContentImage = ({ imageURL, altContent }: featureContentImag
 const FeatureContent = ({ children, reversed }: featureContentType) => {
   return (
     <div className={`flex relative ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} 
-     flex-col justify-between space-y-8 md:space-y-0  items-center`}>
+     flex-col justify-between space-y-8 md:space-y-4  items-center`}>
       {children}
     </div>
   )

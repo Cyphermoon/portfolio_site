@@ -49,7 +49,7 @@ const Home: NextPage = (
 }
 
 
-const client = createClient({
+export const sanityClient = createClient({
   projectId: process.env['NEXT_PUBLIC_SANITY_PROJECT_KEY'] ?? "",
   dataset: "production",
   useCdn: false,
@@ -59,11 +59,11 @@ const client = createClient({
 export async function getStaticProps() {
 
   try {
-    var landing_section = (await client.fetch(query.landing_page_query))[0];
-    var about_data = (await client.fetch(query.about_me_query))[0]
-    var social_medias = await client.fetch(query.social_contact_query)
-    var skill_list = await client.fetch(query.programming_language_query)
-    var projects = await client.fetch(query.project_query)
+    var landing_section = (await sanityClient.fetch(query.landing_page_query))[0];
+    var about_data = (await sanityClient.fetch(query.about_me_query))[0]
+    var social_medias = await sanityClient.fetch(query.social_contact_query)
+    var skill_list = await sanityClient.fetch(query.programming_language_query)
+    var projects = await sanityClient.fetch(query.project_query)
   }
   catch (err) {
     if (err instanceof Error)
