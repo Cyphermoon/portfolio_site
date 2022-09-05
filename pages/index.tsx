@@ -58,11 +58,18 @@ const client = createClient({
 
 export async function getStaticProps() {
 
-  let landing_section = (await client.fetch(query.landing_page_query))[0];
-  let about_data = (await client.fetch(query.about_me_query))[0]
-  let social_medias = await client.fetch(query.social_contact_query)
-  let skill_list = await client.fetch(query.programming_language_query)
-  let projects: [] = []
+  try {
+    var landing_section = (await client.fetch(query.landing_page_query))[0];
+    var about_data = (await client.fetch(query.about_me_query))[0]
+    var social_medias = await client.fetch(query.social_contact_query)
+    var skill_list = await client.fetch(query.programming_language_query)
+    var projects = await client.fetch(query.project_query)
+  }
+  catch (err) {
+    if (err instanceof Error)
+      console.error(err.message)
+  }
+
 
   return {
     props: {
