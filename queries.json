@@ -1,0 +1,7 @@
+{
+    "landing_page_query":"*[_type=='landing_page' && _id=='ec5a94fb-569d-45b0-b630-9068e80453ff']",
+    "about_me_query":"*[_type=='about_me']",
+    "project_query":"*[_type=='project']{_id, title, description}",
+    "social_contact_query":"*[_type=='social_media']{link, logo->}",
+    "programming_language_query":"*[_type=='programming_language']{icon->, name}"
+}

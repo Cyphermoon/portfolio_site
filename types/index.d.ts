@@ -74,3 +74,7 @@ export type OtherProjectType = {
 export type successModalType = {
     onClose: function
 }
+
+export type aboutSectionType = {
+    about_data:any
+}
