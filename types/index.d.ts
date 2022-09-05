@@ -87,3 +87,10 @@ export type socialMediaDisplayType = {
 export type contactSectionType = {
     social_medias:any[]
 }
+
+export type skillDisplaySectionType = {
+    skill_list:any[]
+}
+export type projectDisplaySectionType = {
+    projects:any[]
+}

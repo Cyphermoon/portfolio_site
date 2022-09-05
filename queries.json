@@ -3,5 +3,5 @@
     "about_me_query":"*[_type=='about_me']",
     "project_query":"*[_type=='project']{_id, title, description}",
     "social_contact_query":"*[_type=='social_media']{'displayText':link.display_text, 'url':link.href, 'altText':logo->alt_text, 'social_media_logo':logo->image.asset->url}",
-    "programming_language_query":"*[_type=='programming_language']{icon->, name}"
+    "programming_language_query":"*[_type=='programming_language']{'altText':icon->alt_text ,'name':name, 'url':icon->image.asset->url}"
 }

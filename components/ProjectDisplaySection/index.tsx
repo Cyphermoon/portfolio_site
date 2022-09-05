@@ -1,7 +1,8 @@
 import React from 'react'
+import { projectDisplaySectionType } from '../../types'
 import ProjectCard from '../ProjectCard'
 
-const ProjectDisplaySection = () => {
+const ProjectDisplaySection = ({ projects }: projectDisplaySectionType) => {
     return (
         <section className='space-y-8'>
             <h2>Projects</h2>
