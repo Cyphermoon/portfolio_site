@@ -10,7 +10,7 @@ import { createClient } from "next-sanity"
 import query from "../queries.json"
 import Link from 'next/link'
 
-const Home: NextPage = ({ landing_section, about_data }: any) => {
+const Home: NextPage = ({ landing_section, about_data, social_medias }: any) => {
 
   return (
     <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
@@ -40,7 +40,7 @@ const Home: NextPage = ({ landing_section, about_data }: any) => {
         <AboutSection about_data={about_data} />
         <ProjectDisplaySection />
         <SkillDisplaySection />
-        <ContactSection />
+        <ContactSection social_medias={social_medias} />
       </Container>
     </div>
   )
@@ -58,11 +58,13 @@ export async function getStaticProps() {
 
   let landing_section = (await client.fetch(query.landing_page_query))[0];
   let about_data = (await client.fetch(query.about_me_query))[0]
+  let social_medias = await client.fetch(query.social_contact_query)
 
   return {
     props: {
       landing_section,
       about_data,
+      social_medias
     }
   }
 }

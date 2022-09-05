@@ -49,6 +49,7 @@ export type inputType = {
 export type socialCardType = {
     title: string,
     imageURL: string,
+    href:string
 }
 
 export type carouselType = {
@@ -77,4 +78,12 @@ export type successModalType = {
 
 export type aboutSectionType = {
     about_data:any
+}
+
+export type socialMediaDisplayType = {
+    social_medias:any[]
+}
+
+export type contactSectionType = {
+    social_medias:any[]
 }

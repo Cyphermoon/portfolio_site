@@ -7,8 +7,6 @@ const AboutSection = ({ about_data }: aboutSectionType) => {
         return data.children[0].text
     })
 
-    console.log(texts)
-
     return (
         <section className='p-4 mx-auto rounded-2xl text-center bg-slate-200 space-y-4 w-full max-w-screen-lg'>
             <h2>About</h2>
