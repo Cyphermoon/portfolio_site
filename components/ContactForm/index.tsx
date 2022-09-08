@@ -55,7 +55,11 @@ const ContactForm = () => {
                 <button className='w-full px-2 py-4 bg-blue-500 rounded-2xl text-gray-100' type="submit">Send</button>
             </form>
 
-            {promptModalDisplayed && <SuccessModal onClose={closeModal} />}
+            {promptModalDisplayed &&
+                <SuccessModal
+                    message='Thanks for reaching out'
+                    icon_url='/icons/done.svg'
+                    onClose={closeModal} />}
         </>
 
     )

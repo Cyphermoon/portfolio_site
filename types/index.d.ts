@@ -1,3 +1,4 @@
+import { StaticImageData } from "next/image"
 import React from "react"
 
 export type headType = {
@@ -73,30 +74,60 @@ export type OtherProjectType = {
 }
 
 export type successModalType = {
-    onClose: function
+    onClose: function,
+    message: string,
+    icon_url: string | StaticImageData,
 }
 
 export type aboutSectionType = {
     about_data:any
 }
 
+
+type socialMedia = {
+    displayText: string,
+    social_media_logo: string,
+    url: string
+    altText:string
+}[]
+
 export type socialMediaDisplayType = {
-    social_medias:any[]
+    social_medias:socialMedia
 }
 
 export type contactSectionType = {
-    social_medias:any[]
+    social_medias: socialMedia
 }
 
 export type skillDisplaySectionType = {
-    skill_list:any[]
+    skill_list:{
+        url: string,
+        name: string,
+        altText: string
+    }[]
 }
+
 export type projectDisplaySectionType = {
-    projects:any[]
+    projects:{
+        title: string,
+        description: string,
+        cover_image: string,
+        _id: number,
+        altText: string
+    }[]
 }
+
 export type techStackDisplayType = {
     tech_stacks:{
-        backend:any[]
-        frontend:any[]
+        backend:{
+            icon_url: string,
+            name: string, 
+            altText: string
+        }[],
+        frontend:{
+            icon_url: string,
+            name: string, 
+            altText: string
+        }[]
     }
 }

@@ -3,7 +3,7 @@ import { aboutSectionType } from '../../types'
 
 const AboutSection = ({ about_data }: aboutSectionType) => {
 
-    let texts: string[] = about_data?.content?.map((data) => {
+    let texts: string[] = about_data?.content?.map((data: { children: { text: any }[] }) => {
         return data.children[0].text
     })
 

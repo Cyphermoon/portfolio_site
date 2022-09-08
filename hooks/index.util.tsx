@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export const usePromptModal = () => {
-    const [promptModalDisplayed, setPromptModal] = useState(false)
+    const [promptModalDisplayed, setPromptModal] = useState(true)
 
     const closeModal = () => {
         setPromptModal(false)
