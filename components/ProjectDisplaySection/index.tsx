@@ -2,7 +2,7 @@ import React from 'react'
 import { projectDisplaySectionType } from '../../types'
 import ProjectCard from '../ProjectCard'
 
-const truncate = (text: string, end: number) => {
+export const truncate = (text: string, end: number) => {
     return text.length > end ? text.substring(0, end) + "......" : text
 }
 

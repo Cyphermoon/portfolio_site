@@ -4,8 +4,6 @@ import SkillCard from '../SkillCard'
 
 const SkillDisplaySection = ({ skill_list }: skillDisplaySectionType) => {
 
-  console.log(skill_list)
-
   return (
     <section className='space-y-8'>
       <h2>Skills</h2>

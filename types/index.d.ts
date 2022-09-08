@@ -67,6 +67,7 @@ export type featureContentImageType = {
     imageURL: string,
 }
 export type OtherProjectType = {
+    id: string,
     altContent: string,
     imageURL: string,
     projectName: string,
@@ -117,8 +118,7 @@ export type projectDisplaySectionType = {
     }[]
 }
 
-export type techStackDisplayType = {
-    tech_stacks:{
+type techStack = {
         backend:{
             icon_url: string,
             name: string, 
@@ -129,5 +129,32 @@ export type techStackDisplayType = {
             name: string, 
             altText: string
         }[]
-    }
+    
+}
+
+export type techStackDisplayType = {
+    tech_stacks:techStack
+}
+
+export type projectPageType = {
+    project: {
+        slideshow_images:{imageURL: string}[],
+        tech_stack:techStack,
+
+        functionality:{
+            header: string,
+            description: string,
+            image_url: string,
+            altText: string
+        }[],
+
+        title:string,
+        description: string
+    },
+
+    otherProjects: any
+}
+
+export type otherProjectDisplayType = {
+    other_projects: any[]
 }

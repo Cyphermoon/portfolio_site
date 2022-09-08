@@ -6,14 +6,13 @@ import Header from '../../components/Header'
 import OtherProjectDisplay from '../../components/OtherProjectDisplay'
 import PageHead from '../../components/PageHead'
 import TechStackDisplay from '../../components/TechStackDisplay'
+import { projectPageType } from '../../types'
 
-const Project = ({ project }: any) => {
+const Project = ({ project, otherProjects }: projectPageType) => {
 
     const carouselItems: {
         imageURL: string
     }[] = project.slideshow_images
-
-    console.dir(project.functionality)
 
 
     return (
@@ -55,7 +54,7 @@ const Project = ({ project }: any) => {
                         </FeatureContent>
                     })}
 
-                    <OtherProjectDisplay />
+                    <OtherProjectDisplay other_projects={otherProjects} />
                 </div>
             </div>
 
@@ -65,7 +64,7 @@ const Project = ({ project }: any) => {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
     const project = await sanityClient.fetch(`
-    *[_type=='project' && _id=='243f37cf-25ba-4570-be67-441b2bd9862f']
+    *[_type=='project' && _id=='${params?.id}']
     {description,  title,
      "slideshow_images":slideshow_images[]->{"imageURL":image.asset->url}, 
      "tech_stack":{
@@ -75,9 +74,13 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
      "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
      }`)
 
+    const otherProjects = await sanityClient.fetch(`*[_type=='project' && (_id !='${params?.id}')]{_id, title, description, 'altText':cover_image->alt_text, 'cover_image':cover_image->image.asset->url}
+    `)
+
     return {
         props: {
-            project: project[0]
+            project: project[0],
+            otherProjects: otherProjects
         }
     }
 }

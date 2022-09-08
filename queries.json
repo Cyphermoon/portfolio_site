@@ -9,5 +9,5 @@
 
     "programming_language_query":"*[_type=='programming_language']{'altText':icon->alt_text ,'name':name, 'url':icon->image.asset->url}",
 
-    "project_instance_query":""
+    "other_projects_query":"`*[_type=='project' && (!_id==${})]`"
 }
