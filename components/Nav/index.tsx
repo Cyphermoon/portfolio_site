@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useReducer, useState } from "react"
 import { hamburgerType } from "../../types"
 import NavItem from "../NatItem"
+import ThemeToggle from "../ThemeToggle"
 
 
 const Logo = () => (
@@ -44,7 +45,7 @@ const Nav = () => {
             </ul>
             <div>
                 <Hamburger navState={navOpened} hamburgerClicked={toggleNavState} />
-                <Image src={"/asset/theme_toggle.svg"} alt="Theme toggle icon" width={30} height={30} />
+                <ThemeToggle />
             </div>
         </nav>
     )

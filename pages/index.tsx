@@ -9,18 +9,28 @@ import SkillDisplaySection from '../components/SkillDisplaySection'
 import { createClient } from "next-sanity"
 import query from "../queries.json"
 import Link from 'next/link'
+import { useTheme } from '../context/ThemeProvider'
+import { useEffect } from 'react'
 
 const Home: NextPage = (
   { landing_section, about_data, social_medias, skill_list, projects }: any
 ) => {
 
+  const { theme, setPreferredTheme } = useTheme();
+
+
+  useEffect(() => {
+    setPreferredTheme(localStorage.getItem("theme") ?? "")
+  }, [])
+
+
   return (
-    <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
+    <div className={`${theme === "dark" && "dark"} w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10`}>
       <PageHead title='Portfolio' />
       <Container>
         <Header >
           <div className="w-full md:w-9/12 text-center space-y-9 flex flex-col">
-            <h1 className="text-[2.75rem] md:text-5xl  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="text-blue-500"> {landing_section.role}</span></h1>
+            <h1 className="text-[2.75rem] md:text-5xl  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="text-blue-500 dark:text-red-900"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
 
