@@ -14,8 +14,8 @@ const OtherProject = ({ imageURL, altContent, projectName, description, id }: Ot
             before:hover:opacity-30'>
           <Image src={imageURL} alt={altContent} layout="fill" objectFit='cover' />
         </figure>
-        <div className='space-y-1'>
-          <h3>{projectName}</h3>
+        <div className='space-y-1 dark:text-slate-400'>
+          <h3 className='dark:text-slate-300'>{projectName}</h3>
           <p>{description}</p>
         </div>
       </div>
@@ -30,7 +30,7 @@ const OtherProjectDisplay = ({ other_projects }: otherProjectDisplayType) => {
 
   return (
     <section className='space-y-8'>
-      <h2>Other Project</h2>
+      <h2 className='dark:text-slate-300'>Other Project</h2>
       <div className='w-full md:w-max grid grid-cols-1 justify-start sm:grid-cols-2 lg:grid-cols-3 justify-items-start md:justify-items-start gap-y-16 sm:gap-14'>
 
         {other_projects.map((project, idx) => {

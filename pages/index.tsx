@@ -11,6 +11,8 @@ import query from "../queries.json"
 import Link from 'next/link'
 import { useTheme } from '../context/ThemeProvider'
 import { useEffect } from 'react'
+import Background from '../components/Background'
+
 
 const Home: NextPage = (
   { landing_section, about_data, social_medias, skill_list, projects }: any
@@ -18,30 +20,29 @@ const Home: NextPage = (
 
   const { theme, setPreferredTheme } = useTheme();
 
-
   useEffect(() => {
     setPreferredTheme(localStorage.getItem("theme") ?? "")
   }, [])
 
 
   return (
-    <div className={`${theme === "dark" && "dark"} w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10`}>
+    <Background>
       <PageHead title='Portfolio' />
       <Container>
         <Header >
           <div className="w-full md:w-9/12 text-center space-y-9 flex flex-col">
-            <h1 className="text-[2.75rem] md:text-5xl  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="text-blue-500 dark:text-red-900"> {landing_section.role}</span></h1>
+            <h1 className="text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="text-blue-500"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
 
 
             <div className="w-full self-center lg:w-6/12 flex flex-row sm:flex-row justify-between space-x-4">
               <Link href={landing_section?.contact_btn?.href} passHref >
-                <a className="block shadow-lg shadow-blue-400 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white sm:mr-7">{landing_section.contact_btn.display_text}</a>
+                <a className="block shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200 sm:mr-7">{landing_section.contact_btn.display_text}</a>
               </Link>
 
               <Link href={landing_section?.get_resume_btn?.href} passHref>
-                <a className="shadow-lg shadow-blue-400 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white">
+                <a className="shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
                   {landing_section.get_resume_btn.display_text}
                 </a>
               </Link>
@@ -54,7 +55,7 @@ const Home: NextPage = (
         <SkillDisplaySection skill_list={skill_list} />
         <ContactSection social_medias={social_medias} />
       </Container>
-    </div>
+    </Background>
   )
 }
 

@@ -8,7 +8,7 @@ const SkillCard = ({ title, imageURL, altContent, width, height }: skillCardType
             <figure className='w-fill h-3/4 relative'>
                 <Image layout='fill' src={imageURL} alt={altContent} />
             </figure>
-            <p className='text-label_md text-center'>{title}</p>
+            <p className='text-label_md text-center dark:text-slate-400'>{title}</p>
         </div>
     )
 }

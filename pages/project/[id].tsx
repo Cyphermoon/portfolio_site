@@ -1,5 +1,6 @@
 import { GetStaticPropsContext } from 'next'
 import { sanityClient } from '..'
+import Background from '../../components/Background'
 import Carousel from '../../components/Carousel'
 import FeatureContent, { FeatureContentImage } from '../../components/FeatureContent'
 import Header from '../../components/Header'
@@ -16,21 +17,21 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
 
     return (
-        <div className='w-screen overflow-hidden bg-slate-100 text-gray-800 pb-10'>
+        <Background>
             <PageHead title='Portfolio' />
             <div className="space-y-32 container px-2 md:px-2 lg:px-0">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="w-full md:w-9/12 items-center text-center space-y-6 flex flex-col">
-                            <h1 className="text-[2.5rem] lg:text-display_lg font-bold text-center">
+                            <h1 className="text-[2.5rem] lg:text-display_lg font-bold text-center dark:text-slate-300">
                                 {project.title}
                             </h1>
 
-                            <p className="text-title_sm">{project.description}</p>
+                            <p className="text-title_sm dark:text-slate-400">{project.description}</p>
 
-                            <button className="shadow-lg shadow-blue-400 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white">view site</button>
+                            <button className="shadow-lg shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">view site</button>
                         </div>
-                        <figure className='min-w-full shadow-2xl shadow-gray-600 w-72 md:w-[400px] lg:w-full max-w-7xl h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
+                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[400px] lg:w-full max-w-7xl h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>
@@ -44,8 +45,8 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                     {project.functionality.map((data, idx) => {
                         return <FeatureContent key={idx} reversed={idx / 2 !== 0} >
                             <div className='space-y-4 lg:w-2/5'>
-                                <h2>{data.header}</h2>
-                                <p>
+                                <h2 className='dark:text-slate-300'>{data.header}</h2>
+                                <p className='dark:text-slate-400'>
                                     {data.description}
                                 </p>
                             </div>
@@ -58,7 +59,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                 </div>
             </div>
 
-        </div>
+        </Background>
     )
 }
 
