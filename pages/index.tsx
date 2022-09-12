@@ -18,12 +18,6 @@ const Home: NextPage = (
   { landing_section, about_data, social_medias, skill_list, projects }: any
 ) => {
 
-  const { theme, setPreferredTheme } = useTheme();
-
-  useEffect(() => {
-    setPreferredTheme(localStorage.getItem("theme") ?? "")
-  }, [])
-
 
   return (
     <Background>

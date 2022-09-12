@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useState } from 'react'
 
 type themeProviderType = {
     children: React.ReactNode
 }
 
 const ThemeContext = createContext({
-    theme: "",
+    activeThemeMode: "",
     isDark: false,
     setPreferredTheme: (f: string) => { },
     setDarkTheme: () => { },
@@ -17,51 +17,72 @@ export const useTheme = () => useContext(ThemeContext)
 
 const ThemeProvider = ({ children }: themeProviderType) => {
     const [theme, setTheme] = useState("");
+    const [activeThemeMode, setActiveThemeMode] = useState("")
     let isDark = theme === "dark"
+    let [darkThemeQuery, setDarkThemeQuery] = useState<MediaQueryList>()
 
     const setPreferredTheme = (themeValue: string,) => {
         setTheme(themeValue)
         localStorage.setItem("theme", themeValue)
     }
 
+    const changeTheme = (isDarkTheme: boolean) => {
+        const osTheme = isDarkTheme ? "dark" : "light"
+        setPreferredTheme(osTheme)
+    }
+
+    const handleThemeChange = useCallback((e: MediaQueryListEvent) => {
+        isDark = e.matches
+        changeTheme(isDark)
+        console.log("handle theme change has run")
+    }, [])
+
     const setDarkTheme = () => {
+        darkThemeQuery?.removeEventListener && darkThemeQuery?.removeEventListener("change", handleThemeChange)
         setPreferredTheme("dark")
+        setActiveThemeMode("dark")
     }
 
     const setLightTheme = () => {
+        darkThemeQuery?.removeEventListener && darkThemeQuery?.removeEventListener("change", handleThemeChange)
         setPreferredTheme("light")
+        setActiveThemeMode("light")
     }
 
     const setOsTheme = () => {
-        const darkThemeQuery = window.matchMedia("(prefers-color-scheme:dark)")
-        let isDark = darkThemeQuery.matches
+        let isDark = darkThemeQuery?.matches
 
-        const changeTheme = (isDarkTheme: boolean) => {
-            const osTheme = isDarkTheme ? "dark" : "light"
-            setPreferredTheme(osTheme)
-        }
+        changeTheme(isDark ?? false)
+        setActiveThemeMode("os")
 
-        changeTheme(isDark)
-
-        darkThemeQuery.addEventListener && darkThemeQuery.addEventListener("change", (e) => {
-            isDark = e.matches
-            changeTheme(isDark)
-        })
+        darkThemeQuery?.addEventListener && darkThemeQuery?.addEventListener("change", handleThemeChange)
     }
 
-    const addDarkClass = () => {
+    const addDarkClass = useCallback(() => {
         const root = window.document.documentElement
 
         isDark ? root.classList.add("dark") : root.classList.remove("dark")
-    }
+    }, [isDark])
+
+
+    useLayoutEffect(() => {
+        setDarkThemeQuery(window.matchMedia("(prefers-color-scheme:dark)"))
+        console.log("theme set")
+    }, [])
 
     useEffect(() => {
         addDarkClass()
-        console.log(theme)
-    }, [theme])
+    }, [theme, addDarkClass])
+
+
+    useEffect(() => {
+        let userTheme = localStorage.getItem("theme")
+        setPreferredTheme(userTheme ?? "")
+        setActiveThemeMode(userTheme ?? "os")
+    }, [])
 
     return (
-        <ThemeContext.Provider value={{ theme, isDark, setPreferredTheme, setDarkTheme, setLightTheme, setOsTheme }}>
+        <ThemeContext.Provider value={{ activeThemeMode: activeThemeMode ?? "", isDark, setPreferredTheme, setDarkTheme, setLightTheme, setOsTheme }}>
             {children}
         </ThemeContext.Provider>
     )
