@@ -65,7 +65,7 @@ const ThemeProvider = ({ children }: themeProviderType) => {
     }, [isDark])
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setDarkThemeQuery(window.matchMedia("(prefers-color-scheme:dark)"))
         console.log("theme set")
     }, [])

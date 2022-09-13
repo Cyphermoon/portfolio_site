@@ -58,7 +58,7 @@ export const sanityClient = createClient({
   projectId: process.env['NEXT_PUBLIC_SANITY_PROJECT_KEY'] ?? "",
   dataset: "production",
   useCdn: false,
-  apiVersion: "2022-10-05",
+  apiVersion: "v2021-08-31",
 })
 
 export async function getStaticProps() {

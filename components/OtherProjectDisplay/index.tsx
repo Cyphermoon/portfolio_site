@@ -6,7 +6,7 @@ import { truncate } from '../ProjectDisplaySection'
 
 const OtherProject = ({ imageURL, altContent, projectName, description, id }: OtherProjectType) => {
   return (
-    <Link href="/project/[id]" as={`/project/${id}`}>
+    <Link href={`/project/${encodeURIComponent(id)}`}>
       <div className='min-w-full sm:w-72 md:w-[312px] space-y-4 scale-95 cursor-pointer'>
         <figure className='relative w-full h-52 md:h-40 
             before-h-full before:transition-opacity duration-100ms
