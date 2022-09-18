@@ -129,6 +129,11 @@ type techStack = {
             name: string, 
             altText: string
         }[]
+        others:{
+            icon_url: string,
+            name: string, 
+            altText: string
+        }[]
     
 }
 

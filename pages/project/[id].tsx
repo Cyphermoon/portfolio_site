@@ -22,8 +22,8 @@ const Project = ({ project, otherProjects }: projectPageType) => {
             <div className="space-y-32 container px-2 md:px-2 lg:px-0">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
-                        <div className="w-full md:w-9/12 items-center text-center space-y-6 flex flex-col">
-                            <h1 className="text-[2.5rem] lg:text-display_lg font-bold text-center dark:text-slate-300">
+                        <div className="w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
+                            <h1 className="text-[2rem] lg:text-display_lg font-bold text-center dark:text-slate-300">
                                 {project.title}
                             </h1>
 
@@ -31,7 +31,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                             <button className="shadow-lg shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">view site</button>
                         </div>
-                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[400px] lg:w-full max-w-7xl h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
+                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[400px] lg:w-full max-w-[83rem] h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>
