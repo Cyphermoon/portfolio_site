@@ -1,4 +1,5 @@
 import { GetStaticPropsContext } from 'next'
+import Link from 'next/link'
 import { sanityClient } from '..'
 import Background from '../../components/Background'
 import Carousel from '../../components/Carousel'
@@ -29,7 +30,11 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                             <p className="text-title_sm dark:text-slate-400">{project.description}</p>
 
-                            <button className="shadow-lg shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">view site</button>
+                            <Link href={"#"} passHref >
+                                <a className="shadow-lg shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
+                                    view site
+                                </a>
+                            </Link>
                         </div>
                         <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[400px] lg:w-full max-w-[83rem] h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />

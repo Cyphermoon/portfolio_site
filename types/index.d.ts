@@ -101,21 +101,26 @@ export type contactSectionType = {
 }
 
 export type skillDisplaySectionType = {
-    skill_list:{
-        url: string,
-        name: string,
-        altText: string
-    }[]
+    skill_list:skillDisplayType
 }
 
-export type projectDisplaySectionType = {
-    projects:{
+type skillDisplayType = {
+    url: string,
+    name: string,
+    altText: string
+}[]
+
+ 
+  type projectDisplayType =  {
         title: string,
         description: string,
         cover_image: string,
         _id: number,
         altText: string
     }[]
+
+export type projectDisplaySectionType = {
+    projects:projectDisplayType
 }
 
 type techStack = {
@@ -157,9 +162,30 @@ export type projectPageType = {
         description: string
     },
 
-    otherProjects: any
+    otherProjects: otherProjectType
 }
 
+type otherProjectType = projectCardType
+
 export type otherProjectDisplayType = {
-    other_projects: any[]
+    other_projects: otherProjectType
+}
+
+type sanityLink = {
+    display_text:string,
+    href: string
+}
+
+export type homePageType = {
+    landing_section: {
+        introductory_text:string,
+        role: string,
+        elongated_text: string,
+        contact_btn:sanityLink,
+        get_resume_btn:sanityLink
+    },
+    about_data: any,
+    social_medias: socialMedia,
+    skill_list: skillDisplayType,
+    projects: projectDisplayType
 }

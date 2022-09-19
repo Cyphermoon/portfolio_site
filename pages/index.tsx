@@ -9,13 +9,12 @@ import SkillDisplaySection from '../components/SkillDisplaySection'
 import { createClient } from "next-sanity"
 import query from "../queries.json"
 import Link from 'next/link'
-import { useTheme } from '../context/ThemeProvider'
-import { useEffect } from 'react'
 import Background from '../components/Background'
+import { homePageType } from '../types'
 
 
-const Home: NextPage = (
-  { landing_section, about_data, social_medias, skill_list, projects }: any
+const Home: NextPage<homePageType> = (
+  { landing_section, about_data, social_medias, skill_list, projects }
 ) => {
 
 
