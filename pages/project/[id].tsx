@@ -8,6 +8,7 @@ import Header from '../../components/Header'
 import OtherProjectDisplay from '../../components/OtherProjectDisplay'
 import PageHead from '../../components/PageHead'
 import TechStackDisplay from '../../components/TechStackDisplay'
+
 import { projectPageType } from '../../types'
 
 const Project = ({ project, otherProjects }: projectPageType) => {
@@ -15,7 +16,6 @@ const Project = ({ project, otherProjects }: projectPageType) => {
     const carouselItems: {
         imageURL: string
     }[] = project.slideshow_images
-
 
     return (
         <Background>
@@ -30,9 +30,9 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                             <p className="text-title_sm dark:text-slate-400">{project.description}</p>
 
-                            <Link href={"#"} passHref >
+                            <Link href={project?.link?.href} passHref >
                                 <a className="shadow-lg shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
-                                    view site
+                                    {project.link.display_text}
                                 </a>
                             </Link>
                         </div>
@@ -71,14 +71,15 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 export async function getStaticProps({ params }: GetStaticPropsContext) {
     const project = await sanityClient.fetch(`
     *[_type=='project' && _id=='${params?.id}']
-    {description,  title,
-     "slideshow_images":slideshow_images[]->{"imageURL":image.asset->url}, 
-     "tech_stack":{
-       "backend":tech_stack.backend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
-        "frontend":tech_stack.frontend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
-        } ,
-     "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
-     }`)
+    {description,  title, link,
+        "slideshow_images":slideshow_images[]->{"imageURL":image.asset->url}, 
+        "tech_stack":{
+          "backend":tech_stack.backend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
+           "frontend":tech_stack.frontend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
+          "others":tech_stack.others[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text}
+           } ,
+        "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
+        }`)
 
     const otherProjects = await sanityClient.fetch(`*[_type=='project' && (_id !='${params?.id}')]{_id, title, description, 'altText':cover_image->alt_text, 'cover_image':cover_image->image.asset->url}
     `)

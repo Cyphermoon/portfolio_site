@@ -3,8 +3,8 @@ import React from 'react'
 import { featureContentImageType, featureContentType } from '../../types'
 
 export const FeatureContentImage = ({ imageURL, altContent }: featureContentImageType) => (
-  <figure className='relative w-full lg:w-5/12 h-[365px]'>
-    <Image src={imageURL} alt={altContent} layout='fill' objectFit='cover' />
+  <figure className='relative w-full lg:w-5/12 h-[365px] bg-slate-600 dark:bg-slate-700'>
+    <Image src={imageURL ?? ""} alt={altContent} layout='fill' objectFit='cover' />
   </figure>
 )
 

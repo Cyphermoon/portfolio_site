@@ -64,7 +64,7 @@ export type featureContentType = {
 
 export type featureContentImageType = {
     altContent: string,
-    imageURL: string,
+    imageURL?: string,
 }
 export type OtherProjectType = {
     id: string,
@@ -160,6 +160,7 @@ export type projectPageType = {
 
         title:string,
         description: string
+        link:sanityLink
     },
 
     otherProjects: otherProjectType

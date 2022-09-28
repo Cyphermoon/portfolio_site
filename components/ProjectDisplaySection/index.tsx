@@ -15,7 +15,7 @@ const ProjectDisplaySection = ({ projects }: projectDisplaySectionType) => {
                     return <ProjectCard
                         key={idx}
                         title={project.title}
-                        description={truncate(project.description, 200)}
+                        description={truncate(project.description, 150)}
                         imageURL={project.cover_image}
                         projectId={project["_id"]} />
                 })}
