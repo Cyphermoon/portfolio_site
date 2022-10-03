@@ -25,9 +25,8 @@ const ContactForm = () => {
         setNameField("")
         setMessageField("")
         setEmailField("")
-
-
     }
+
     return (
         <>
             <form ref={formRef} id="contactForm" onSubmit={(e) => sendMessage(e)} className='w-full md:w-9/12 mb-12 md:mb-auto lg:max-w-md bg-slate-100 dark:bg-slate-800 rounded-2xl p-4 drop-shadow-lg space-y-8'>

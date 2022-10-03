@@ -1,7 +1,7 @@
 {
-    "landing_page_query":"*[_type=='landing_page' && _id=='ec5a94fb-569d-45b0-b630-9068e80453ff']",
+    "landing_page_query":"*[_type=='landing_page' && _id=='ec5a94fb-569d-45b0-b630-9068e80453ff']{role, elongated_text, introductory_text, contact_btn, get_resume_btn}",
 
-    "about_me_query":"*[_type=='about_me']",
+    "about_me_query":"*[_type=='about_me' && _id=='0ccfd969-350e-4fe0-ab13-e3ef1770ebbc']{'texts': content[].children[].text}",
 
     "project_query":"*[_type=='project']{_id, title, description, 'altText':cover_image->alt_text, 'cover_image':cover_image->image.asset->url}",
 

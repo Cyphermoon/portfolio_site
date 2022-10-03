@@ -67,7 +67,7 @@ export type featureContentImageType = {
     imageURL?: string,
 }
 export type OtherProjectType = {
-    id: string,
+    id: number,
     altContent: string,
     imageURL: string,
     projectName: string,
@@ -81,7 +81,9 @@ export type successModalType = {
 }
 
 export type aboutSectionType = {
-    about_data:any
+    about_data:{
+        texts: string[]
+    }
 }
 
 
@@ -166,7 +168,7 @@ export type projectPageType = {
     otherProjects: otherProjectType
 }
 
-type otherProjectType = projectCardType
+type otherProjectType = projectDisplayType
 
 export type otherProjectDisplayType = {
     other_projects: otherProjectType
