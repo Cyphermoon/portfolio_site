@@ -11,6 +11,13 @@ module.exports = {
       center: true,
     },
     extend: {
+      backgroundSize: {
+        "size-200": "200% 100%",
+      },
+      backgroundPosition: {
+        "right-100": "-100%",
+        "zero": "0"
+      },
       keyframes: {
         moveIn: {
           "0%": {
@@ -50,6 +57,7 @@ module.exports = {
         title_md: ["1.266rem", "1.5"],
         title_sm: ["1.125rem", "1.5"]
       }
+
     },
   },
   plugins: [],

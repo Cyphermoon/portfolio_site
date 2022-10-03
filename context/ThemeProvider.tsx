@@ -16,7 +16,7 @@ const ThemeContext = createContext({
 export const useTheme = () => useContext(ThemeContext)
 
 const ThemeProvider = ({ children }: themeProviderType) => {
-    const [theme, setTheme] = useState("");
+    const [theme, setTheme] = useState("dark");
     const [activeThemeMode, setActiveThemeMode] = useState("")
     let isDark = theme === "dark"
     let [darkThemeQuery, setDarkThemeQuery] = useState<MediaQueryList>()

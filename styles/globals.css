@@ -66,6 +66,14 @@
 
 }
 
+@layer utilities{
+    .text-fill-color-transparent{
+        text-fill-color: transparent;
+        -webkit-text-fill-color:transparent;
+    }
+    
+}
+
 
 
 
