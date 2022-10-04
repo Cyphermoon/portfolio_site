@@ -31,12 +31,28 @@ const Home: NextPage<homePageType> = (
 
             <div className="w-full self-center lg:w-6/12 flex flex-row sm:flex-row justify-between space-x-4">
               <Link href={landing_section?.contact_btn?.href} passHref >
-                <a className="block shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200 sm:mr-7">{landing_section.contact_btn.display_text}</a>
+                <a className="group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7
+                ">
+                  <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
+                    scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
+                    transition-all duration-150 ease-linear z-0' />
+
+                  <span className='block z-10 relative'>
+                    {landing_section.contact_btn.display_text}
+                  </span>
+                </a>
               </Link>
 
               <Link href={landing_section?.get_resume_btn?.href} passHref>
-                <a className="shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
-                  {landing_section.get_resume_btn.display_text}
+                <a className="group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7">
+
+                  <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
+                    scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
+                    transition-all duration-150 ease-linear z-0' />
+
+                  <span className='block z-10 relative'>
+                    {landing_section.get_resume_btn.display_text}
+                  </span>
                 </a>
               </Link>
             </div>

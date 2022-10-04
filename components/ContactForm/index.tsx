@@ -52,7 +52,12 @@ const ContactForm = () => {
                         onChange={(e) => setMessageField(e.target.value)} ></textarea>
                 </div>
 
-                <button className='w-full px-2 py-4 bg-blue-500 dark:bg-blue-400 rounded-2xl text-gray-100 dark:text-slate-200' type="submit">Send</button>
+                <button className='w-full relative group px-2 py-4 bg-blue-500 dark:bg-blue-400 rounded-2xl text-gray-100 dark:text-slate-200' type="submit">
+                    <span className='w-full block h-full absolute rounded-2xl bg-red-300 top-0 left-0
+                    scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
+                    transition-all duration-150 ease-linear z-0' />
+                    <span className='block z-10 relative'>send</span>
+                </button>
             </form>
 
             {promptModalDisplayed &&

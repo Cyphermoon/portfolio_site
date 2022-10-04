@@ -31,8 +31,11 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                             <p className="text-title_sm dark:text-slate-400">{project.description}</p>
 
                             <Link href={project?.link?.href} passHref >
-                                <a className="shadow-lg shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
-                                    {project.link.display_text}
+                                <a className="shadow-lg relative group shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
+                                    <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0 scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
+                                    transition-all duration-150 ease-linear z-0' />
+
+                                    <span className='block z-10 relative'>{project.link.display_text}</span>
                                 </a>
                             </Link>
                         </div>

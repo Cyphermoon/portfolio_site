@@ -9,7 +9,7 @@ const SocialCard = ({ title, imageURL, href }: socialCardType) => {
 
     return (
         <Link href={href} passHref={true}>
-            <a className='w-20 block h-20 lg:w-32 lg:h-32 space-y-2 md:p-2 rounded-lg bg-slate-100 dark:bg-slate-700 lg:drop-shadow-lg' >
+            <a className='w-20 block h-20 lg:w-32 lg:h-32 space-y-2 md:p-2 rounded-lg bg-slate-100 dark:bg-slate-700 lg:drop-shadow-lg transition duration-200 ease-in-out hover:-translate-y-6 hover:rounded-none hover:bg-slate-300 dark:hover:bg-slate-500' >
                 <figure className='w-fill h-3/5 lg:3/4 relative dark:fill-white'>
                     <Image
                         style={{
