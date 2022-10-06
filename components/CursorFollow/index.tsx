@@ -34,7 +34,7 @@ const CursorFollow = () => {
 
 
     return (
-        <div ref={cursorRef} className={`absolute w-14 z-50 h-14 transition-transform duration-75 ease-linear pointer-events-none rounded-full border dark:border-slate-400 border-slate-600 bg-slate-900 opacity-30 dark:bg-slate-100`}></div>
+        <div ref={cursorRef} className={`absolute w-12 z-50 h-12 transition-transform duration-[25ms] ease-linear pointer-events-none rounded-full border dark:border-slate-400 border-slate-600 bg-slate-900 opacity-30 dark:bg-slate-100`}></div>
     )
 }
 

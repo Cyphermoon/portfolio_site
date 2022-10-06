@@ -10,7 +10,9 @@ const ProjectDisplaySection = ({ projects }: projectDisplaySectionType) => {
     return (
         <section className='space-y-8'>
             {projects.length > 0 && <h2 className='dark:text-slate-300'>Projects</h2>}
-            <div className='w-full md:w-max grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 justify-items-center md:justify-items-start gap-y-9 sm:gap-5'>
+            <div className='w-fullmd:w-max grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 justify-items-center md:justify-items-start gap-y-9 sm:gap-5'
+                style={{ perspective: "1000px" }}>
+
                 {projects.map((project, idx) => {
                     return <ProjectCard
                         key={idx}

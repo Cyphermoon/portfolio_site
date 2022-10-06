@@ -1,17 +1,22 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { useTiltEffect } from '../../hooks/index.util'
 import { otherProjectDisplayType, OtherProjectType } from '../../types'
 import { truncate } from '../ProjectDisplaySection'
 
 const OtherProject = ({ imageURL, altContent, projectName, description, id }: OtherProjectType) => {
+  const { tiltCard, removeTiltEffect } = useTiltEffect()
+
   return (
     <Link href={`/project/${encodeURIComponent(id)}`}>
       <div className='min-w-full sm:w-72 md:w-[312px] space-y-4 scale-95 cursor-pointer'>
         <figure className='relative w-full h-52 md:h-40 
             before-h-full before:transition-opacity duration-100ms
             before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-10
-            before:hover:opacity-30'>
+            before:hover:opacity-30'
+          style={{ transform: "perspective(1000px)" }}
+          onMouseMove={tiltCard} onMouseLeave={removeTiltEffect}>
           <Image src={imageURL} alt={altContent} layout="fill" objectFit='cover' />
         </figure>
         <div className='space-y-1 dark:text-slate-400'>
