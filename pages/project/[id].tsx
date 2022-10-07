@@ -20,7 +20,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
     return (
         <Background>
             <PageHead title='Portfolio' />
-            <div className="space-y-32 container px-2 md:px-2 lg:px-0">
+            <div className="space-y-32 container w-[98%]">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
@@ -39,7 +39,9 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                                 </a>
                             </Link>
                         </div>
-                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[400px] lg:w-full max-w-[83rem] h-[379px] md:h-450px lg:h-[750px] min-h-min bg-slate-200 round-md'>
+
+
+                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[750px] lg:w-[1022px] max-w-[83rem] h-[379px] md:h-[500px] lg:h-[650px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>

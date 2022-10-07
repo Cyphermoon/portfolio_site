@@ -46,6 +46,7 @@ const Carousel = ({ carouselItems }: carouselType) => {
                         before-h-full before:transition-opacity duration-100ms
                         before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-10">
                             <Image
+                                priority
                                 layout="fill"
                                 src={item.imageURL}
                                 alt={`image slide ${i}`}
