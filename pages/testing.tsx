@@ -1,6 +1,7 @@
 import gsap from 'gsap'
 import Link from 'next/link'
 import React, { MouseEvent, useEffect } from 'react'
+import CursorTracker from '../components/CursorTracker'
 
 const Testing = () => {
 
@@ -70,6 +71,7 @@ const Testing = () => {
                 </Link>
             </div>
 
+            <CursorTracker />
         </div>
     )
 }
