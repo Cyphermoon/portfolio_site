@@ -9,6 +9,8 @@ const SkillDisplaySection = ({ skill_list, addAnimation }: skillDisplaySectionTy
 
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
     const skillDisplayAnimation = gsap.from(".skill_display > div > *", {
       scrollTrigger: {
         trigger: ".skill_display"

@@ -1,5 +1,7 @@
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useTiltEffect } from '../../hooks/index.util'
 import { featureContentImageType, featureContentType } from '../../types'
 
@@ -17,8 +19,41 @@ export const FeatureContentImage = ({ imageURL, altContent }: featureContentImag
 
 const FeatureContent = ({ children, reversed }: featureContentType) => {
 
+  const t1 = useRef<GSAPTimeline>()
+  const e1 = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+    const ctx = gsap.context(() => {
+
+      t1.current = gsap.timeline({
+        scrollTrigger: {
+          trigger: e1.current
+        },
+        defaults: {
+          duration: 1,
+          ease: "power1.out",
+        }
+      })
+        .from(".functionality_list > div", {
+          translateY: +100,
+          opacity: 0,
+        })
+        .from(".functionality_list figure", {
+          translateX: reversed ? -100 : +100,
+          opacity: 0
+        })
+    }, [e1])
+
+
+    return () => {
+      ctx.revert()
+    }
+  }, [reversed])
+
+
   return (
-    <div className={`flex relative ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} 
+    <div ref={e1} className={`functionality_list flex relative ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} 
      flex-col justify-between space-y-8 md:space-y-4  items-center`}
     >
       {children}

@@ -1,5 +1,8 @@
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { GetStaticPropsContext } from 'next'
 import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 import { sanityClient } from '..'
 import Background from '../../components/Background'
 import Carousel from '../../components/Carousel'
@@ -12,10 +15,19 @@ import TechStackDisplay from '../../components/TechStackDisplay'
 import { projectPageType } from '../../types'
 
 const Project = ({ project, otherProjects }: projectPageType) => {
-
     const carouselItems: {
         imageURL: string
     }[] = project.slideshow_images
+
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
+
+        ScrollTrigger.defaults({
+            toggleActions: "restart pause resume pause"
+        })
+
+    }, [])
 
     return (
         <Background>
@@ -23,7 +35,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
             <div className="space-y-32 container w-[98%]">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
-                        <div className="w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
+                        <div className="project_description w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
                             <h1 className="text-[2rem] lg:text-display_lg font-bold text-center dark:text-slate-300">
                                 {project.title}
                             </h1>
@@ -40,7 +52,6 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                             </Link>
                         </div>
 
-
                         <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[750px] lg:w-[1022px] max-w-[83rem] h-[379px] md:h-[500px] lg:h-[650px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
@@ -49,7 +60,6 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                 </Header>
 
                 <TechStackDisplay tech_stacks={project.tech_stack} />
-
 
                 <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
                     {project.functionality.map((data, idx) => {
@@ -68,7 +78,6 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                     <OtherProjectDisplay other_projects={otherProjects} />
                 </div>
             </div>
-
         </Background>
     )
 }
@@ -96,7 +105,6 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
         }
     }
 }
-
 
 export async function getStaticPaths() {
     // Call an external API endpoint to get projects

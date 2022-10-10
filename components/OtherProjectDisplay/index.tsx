@@ -1,6 +1,8 @@
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTiltEffect } from '../../hooks/index.util'
 import { otherProjectDisplayType, OtherProjectType } from '../../types'
 import { truncate } from '../ProjectDisplaySection'
@@ -31,12 +33,31 @@ const OtherProject = ({ imageURL, altContent, projectName, description, id }: Ot
 
 const OtherProjectDisplay = ({ other_projects }: otherProjectDisplayType) => {
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+    const otherProjectsDisplayAnimation = gsap.from(".other_project_display > * ", {
+      scrollTrigger: {
+        trigger: ".other_project_display"
+      },
+      translateX: -100,
+      duration: 1,
+      scale: .75,
+      opacity: 0,
+      stagger: .5,
+    })
+
+
+    return () => {
+      otherProjectsDisplayAnimation.revert()
+    }
+  })
+
   if (other_projects.length <= 0) return null
 
   return (
     <section className='space-y-8'>
       <h2 className='dark:text-slate-300'>Other Project</h2>
-      <div className='w-full lg:w-11/12 md:w-max grid grid-cols-1 justify-start sm:grid-cols-2 lg:grid-cols-3 justify-items-start md:justify-items-start gap-y-16 sm:gap-14'>
+      <div className='other_project_display w-full lg:w-11/12 md:w-max grid grid-cols-1 justify-start sm:grid-cols-2 lg:grid-cols-3 justify-items-start md:justify-items-start gap-y-16 sm:gap-14'>
 
         {other_projects.map((project, idx) => {
           return <OtherProject

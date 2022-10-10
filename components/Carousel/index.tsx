@@ -11,8 +11,12 @@ import "swiper/css/effect-fade"
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper";
 import { carouselType } from "../../types";
 import Image from "next/image";
+import { useEffect } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 const Carousel = ({ carouselItems }: carouselType) => {
+
     return (
         <>
             <Swiper
@@ -46,7 +50,6 @@ const Carousel = ({ carouselItems }: carouselType) => {
                         before-h-full before:transition-opacity duration-100ms
                         before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-10">
                             <Image
-                                priority
                                 layout="fill"
                                 src={item.imageURL}
                                 alt={`image slide ${i}`}

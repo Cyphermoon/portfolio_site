@@ -32,9 +32,10 @@ const SocialCard = ({ title, imageURL, href }: socialCardType) => {
 }
 
 const SocialMediaDisplay = ({ social_medias, addAnimation }: socialMediaDisplayType) => {
-    gsap.registerPlugin(ScrollTrigger)
 
     useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger)
+
         const socialMediaDisplayAnimation = gsap.from(".social_display", {
             scrollTrigger: {
                 trigger: ".social_display",

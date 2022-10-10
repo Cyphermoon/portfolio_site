@@ -9,7 +9,7 @@ export const truncate = (text: string, end: number) => {
 }
 
 const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySectionType) => {
-
+    gsap.registerPlugin(ScrollTrigger)
     useEffect(() => {
         const projectDisplayAnimation = gsap.from(".project_display_section > * > *", {
             scrollTrigger: {
@@ -18,7 +18,7 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
             translateY: +70,
             duration: 1,
             opacity: 0,
-            stagger: .7,
+            stagger: .3,
         })
 
 
@@ -31,7 +31,7 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
     return (
         <section className='project_display_section space-y-8'>
             {projects.length > 0 && <h2 className='dark:text-slate-300'>Projects</h2>}
-            <div className='w-fullmd:w-max grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 justify-items-center md:justify-items-start gap-y-9 sm:gap-5'
+            <div className='w-full md:w-max grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 justify-items-center md:justify-items-start gap-y-9 sm:gap-5'
                 style={{ perspective: "1000px" }}>
 
                 {projects.map((project, idx) => {

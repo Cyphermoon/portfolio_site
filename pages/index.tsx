@@ -22,6 +22,7 @@ const Home: NextPage<homePageType> = (
   const [timeline, setTimeline] = useState(() => gsap.timeline({
     defaults: {
       ease: "slow(0.3, 0.4, false)",
+      duration: 1,
     }
   }));
 
@@ -33,7 +34,6 @@ const Home: NextPage<homePageType> = (
     gsap.registerPlugin(ScrollTrigger)
 
     ScrollTrigger.defaults({
-      markers: true,
       toggleActions: "restart pause resume pause"
     })
 

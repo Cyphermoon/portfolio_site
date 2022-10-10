@@ -21,7 +21,7 @@ export type hamburgerType = {
 }
 
 export type headerType = {
-    addAnimation: function
+    addAnimation?: function
     children: React.ReactNode
 }
 
@@ -35,7 +35,7 @@ export type cursorTrackerPropType = {
 
 export type backgroundType = {
     children: React.ReactNode,
-    addAnimation: function
+    addAnimation?: function
 }
 
 export type projectCardType={
