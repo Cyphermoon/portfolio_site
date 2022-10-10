@@ -1,6 +1,9 @@
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { start } from 'repl'
 import { useTheme } from '../../context/ThemeProvider'
 import { socialCardType, socialMediaDisplayType } from '../../types'
 
@@ -28,9 +31,26 @@ const SocialCard = ({ title, imageURL, href }: socialCardType) => {
     )
 }
 
-const SocialMediaDisplay = ({ social_medias }: socialMediaDisplayType) => {
+const SocialMediaDisplay = ({ social_medias, addAnimation }: socialMediaDisplayType) => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    useEffect(() => {
+        const socialMediaDisplayAnimation = gsap.from(".social_display", {
+            scrollTrigger: {
+                trigger: ".social_display",
+            },
+            opacity: 0,
+            duration: 2,
+        })
+
+
+        return () => {
+            socialMediaDisplayAnimation.revert()
+        }
+    }, [addAnimation])
+
     return (
-        <div className='grid grid-cols-3 gap-4 md:gap-6 content-start h-max'>
+        <div className='social_display grid grid-cols-3 gap-4 md:gap-6 content-start h-max'>
             {social_medias.map((data, idx) => (
                 <SocialCard
                     key={idx}

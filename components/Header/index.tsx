@@ -2,9 +2,9 @@ import { headerType } from "../../types"
 import Nav from "../Nav"
 
 
-const Header = ({ children }: headerType) => {
+const Header = ({ children, addAnimation }: headerType) => {
     return <div className="pt-6 space-y-20 flex flex-col">
-        <Nav />
+        <Nav addAnimation={addAnimation} />
         <div className="grow flex flex-col sm:items-center sm:justify-center">
             {children}
         </div>

@@ -1,6 +1,8 @@
+import gsap from 'gsap'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../../context/ThemeProvider'
+import { cursorTrackerPropType } from '../../types'
 
 type eyeSocketPropType = {
     rotation: number
@@ -27,7 +29,7 @@ const EyeSocket = ({ rotation }: eyeSocketPropType) => {
     )
 }
 
-const CursorTracker = () => {
+const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
     let cursorRef = useRef<HTMLDivElement>(null)
     const [rotation, setRotation] = useState(0);
 
@@ -40,6 +42,24 @@ const CursorTracker = () => {
 
         return angleInDeg
     }
+
+    useEffect(() => {
+
+        if (addAnimation) {
+            const cursorEyesAnimation = gsap.from(".cursor_eyes", {
+                translateY: +20,
+                opacity: 0,
+
+            })
+
+            addAnimation(cursorEyesAnimation, .6)
+
+            return () => {
+                cursorEyesAnimation.revert()
+            }
+        }
+
+    }, [addAnimation])
 
     useEffect(() => {
         let boundingClientRect = cursorRef.current?.getBoundingClientRect();
@@ -56,7 +76,7 @@ const CursorTracker = () => {
     })
 
     return (
-        <div ref={cursorRef} className='flex space-x-4 absolute top-20 left-[100px]'>
+        <div ref={cursorRef} className='cursor_eyes flex space-x-4 absolute top-20 left-[100px]'>
             <EyeSocket rotation={rotation} />
             <EyeSocket rotation={rotation} />
         </div>

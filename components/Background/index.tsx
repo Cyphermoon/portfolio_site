@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { backgroundType } from '../../types'
 import CursorFollow from '../CursorFollow'
 import CursorTracker from '../CursorTracker'
 
-type backgroundType = {
-    children: React.ReactNode
-}
-
-const Background = ({ children }: backgroundType) => {
+const Background = ({ children, addAnimation }: backgroundType) => {
     let [isMinimumWidth, setIsMinWidth] = useState<boolean>()
 
     useEffect(() => {
@@ -16,9 +13,9 @@ const Background = ({ children }: backgroundType) => {
 
 
     return (
-        <div className={`transition-colors ease-in-out duration-500 w-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10`}>
-            {isMinimumWidth && <CursorFollow />}
-            {isMinimumWidth && <CursorTracker />}
+        <div className={`w-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10`}>
+            {/* {isMinimumWidth && <CursorFollow />} */}
+            {isMinimumWidth && <CursorTracker addAnimation={addAnimation} />}
             {children}
         </div>
     )

@@ -1,10 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import emailjs from "@emailjs/browser"
 import Input from '../Input'
 import { usePromptModal } from '../../hooks/index.util'
 import SuccessModal from '../SucessModal'
+import { contactFormPropType } from '../../types'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
-const ContactForm = () => {
+const ContactForm = ({ addAnimation }: contactFormPropType) => {
     const formRef = useRef<HTMLFormElement>(null)
     const [nameField, setNameField] = useState("")
     const [emailField, setEmailField] = useState("")
@@ -27,9 +30,28 @@ const ContactForm = () => {
         setEmailField("")
     }
 
+    gsap.registerPlugin(ScrollTrigger)
+
+    useEffect(() => {
+        const projectDisplayAnimation = gsap.from(".contact_form", {
+            scrollTrigger: {
+                trigger: ".contact_form",
+            },
+            translateX: -100,
+            duration: 1,
+            rotate: -10,
+            opacity: 0,
+        })
+
+
+        return () => {
+            projectDisplayAnimation.revert()
+        }
+    }, [addAnimation])
+
     return (
         <>
-            <form ref={formRef} id="contactForm" onSubmit={(e) => sendMessage(e)} className='w-full md:w-9/12 mb-12 md:mb-auto lg:max-w-md bg-slate-100 dark:bg-slate-800 rounded-2xl p-4 drop-shadow-lg space-y-8'>
+            <form ref={formRef} id="contactForm" onSubmit={(e) => sendMessage(e)} className='contact_form w-full md:w-9/12 mb-12 md:mb-auto lg:max-w-md bg-slate-100 dark:bg-slate-800 rounded-2xl p-4 drop-shadow-lg space-y-8'>
                 <Input
                     inputType='text'
                     labelText='Name'

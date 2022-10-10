@@ -1,8 +1,9 @@
+import gsap from "gsap"
 import Image from "next/image"
 import Link from "next/link"
-import { useReducer, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import { useTheme } from "../../context/ThemeProvider"
-import { hamburgerType } from "../../types"
+import { hamburgerType, navPropType } from "../../types"
 import NavItem from "../NatItem"
 import ThemeToggle from "../ThemeToggle"
 
@@ -20,7 +21,7 @@ const Logo = () => (
 const Hamburger = ({ hamburgerClicked }: hamburgerType) => {
     const { isDark } = useTheme()
 
-    return <figure className="mr-4 inline-block md:hidden relative z-50" onClick={hamburgerClicked} >
+    return <figure className="mr-4 inline-block md:hidden relative z-[60]" onClick={hamburgerClicked} >
         <Image
             style={{
                 filter: `${isDark
@@ -32,11 +33,29 @@ const Hamburger = ({ hamburgerClicked }: hamburgerType) => {
 
 }
 
-const Nav = () => {
+
+
+const Nav = ({ addAnimation }: navPropType) => {
     const [navOpened, toggleNavState] = useReducer((initialState) => !initialState, false);
 
+
+    useEffect(() => {
+        if (addAnimation) {
+            const navAnimation = gsap.from(".gsap_nav", {
+                opacity: 0,
+            })
+
+            addAnimation(navAnimation, 0.6)
+
+            return () => {
+                navAnimation.revert()
+            }
+        }
+
+    }, [addAnimation])
+
     return (
-        <nav className="flex justify-between items-center">
+        <nav className="gsap_nav flex justify-between items-center">
             <Logo />
 
             <ul

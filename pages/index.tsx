@@ -11,19 +11,50 @@ import query from "../queries.json"
 import Link from 'next/link'
 import Background from '../components/Background'
 import { homePageType } from '../types'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
 
 const Home: NextPage<homePageType> = (
   { landing_section, about_data, social_medias, skill_list, projects }
 ) => {
+  const [timeline, setTimeline] = useState(() => gsap.timeline({
+    defaults: {
+      ease: "slow(0.3, 0.4, false)",
+    }
+  }));
 
+  const addAnimation = useCallback((animation: GSAPTween, index: number) => {
+    timeline.add(animation, index)
+  }, [timeline])
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    ScrollTrigger.defaults({
+      markers: true,
+      toggleActions: "restart pause resume pause"
+    })
+
+    const headerAnimation = gsap.from(".gsap_header", {
+      translateY: +50,
+      opacity: 0,
+    })
+
+    addAnimation(headerAnimation, 1.5)
+
+    return () => {
+      headerAnimation.revert()
+    }
+  }, [addAnimation, timeline])
 
   return (
-    <Background>
+    <Background addAnimation={addAnimation}>
       <PageHead title='Portfolio' />
       <Container>
-        <Header >
-          <div className="w-full md:w-9/12 text-center space-y-9 flex flex-col">
+        <Header addAnimation={addAnimation} >
+          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col">
             <h1 className="text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="text-blue-500"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
@@ -58,11 +89,10 @@ const Home: NextPage<homePageType> = (
             </div>
           </div>
         </Header>
-
-        <AboutSection about_data={about_data} />
-        <ProjectDisplaySection projects={projects} />
-        <SkillDisplaySection skill_list={skill_list} />
-        <ContactSection social_medias={social_medias} />
+        <AboutSection addAnimation={addAnimation} about_data={about_data} />
+        <ProjectDisplaySection addAnimation={addAnimation} projects={projects} />
+        <SkillDisplaySection addAnimation={addAnimation} skill_list={skill_list} />
+        <ContactSection addAnimation={addAnimation} social_medias={social_medias} />
       </Container>
     </Background>
   )

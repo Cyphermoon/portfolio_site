@@ -21,7 +21,21 @@ export type hamburgerType = {
 }
 
 export type headerType = {
+    addAnimation: function
     children: React.ReactNode
+}
+
+export type navPropType = {
+    addAnimation?: function
+}
+
+export type cursorTrackerPropType = {
+    addAnimation: function
+}
+
+export type backgroundType = {
+    children: React.ReactNode,
+    addAnimation: function
 }
 
 export type projectCardType={
@@ -84,6 +98,7 @@ export type aboutSectionType = {
     about_data:{
         texts: string[]
     }
+    addAnimation: function
 }
 
 
@@ -95,15 +110,22 @@ type socialMedia = {
 }[]
 
 export type socialMediaDisplayType = {
-    social_medias:socialMedia
+    social_medias:socialMedia,
+    addAnimation:function
+}
+
+export type contactFormPropType = {
+    addAnimation: function;
 }
 
 export type contactSectionType = {
     social_medias: socialMedia
+    addAnimation: function
 }
 
 export type skillDisplaySectionType = {
-    skill_list:skillDisplayType
+    skill_list:skillDisplayType,
+    addAnimation:function,
 }
 
 type skillDisplayType = {
@@ -123,6 +145,7 @@ type skillDisplayType = {
 
 export type projectDisplaySectionType = {
     projects:projectDisplayType
+    addAnimation:function
 }
 
 type techStack = {
