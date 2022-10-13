@@ -18,7 +18,7 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
             translateY: +70,
             duration: 1,
             opacity: 0,
-            stagger: .3,
+            stagger: .5
         })
 
 
@@ -29,7 +29,7 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
 
 
     return (
-        <section className='project_display_section space-y-8'>
+        <section id='projects_section' className='project_display_section space-y-8'>
             {projects.length > 0 && <h2 className='dark:text-slate-300'>Projects</h2>}
             <div className='w-full md:w-max grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 justify-items-center md:justify-items-start gap-y-9 sm:gap-5'
                 style={{ perspective: "1000px" }}>

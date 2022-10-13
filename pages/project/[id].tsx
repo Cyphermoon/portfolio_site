@@ -36,14 +36,14 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="project_description w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
-                            <h1 className="text-[2rem] lg:text-display_lg font-bold text-center dark:text-slate-300">
+                            <h1 className="text-[2rem] capitalize lg:text-display_lg font-bold text-center dark:text-slate-300">
                                 {project.title}
                             </h1>
 
-                            <p className="text-title_sm dark:text-slate-400">{project.description}</p>
+                            <p className="text-title_sm normal-case dark:text-slate-400">{project.description}</p>
 
                             <Link href={project?.link?.href} passHref >
-                                <a className="shadow-lg relative group shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
+                                <a className="shadow-lg capitalize relative group shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
                                     <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0 scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
                                     transition-all duration-150 ease-linear z-0' />
 
@@ -52,7 +52,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                             </Link>
                         </div>
 
-                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[750px] lg:w-[1022px] max-w-[83rem] h-[379px] md:h-[500px] lg:h-[650px] min-h-min bg-slate-200 round-md'>
+                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[750px] lg:w-[1022px] max-w-[83rem] h-[379px] md:h-[500px] lg:h-[800px] min-h-min bg-slate-200 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>
@@ -63,16 +63,20 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                 <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
                     {project.functionality.map((data, idx) => {
-                        return <FeatureContent key={idx} reversed={idx / 2 !== 0} >
-                            <div className='space-y-4 lg:w-2/5'>
-                                <h2 className='dark:text-slate-300'>{data.header}</h2>
-                                <p className='dark:text-slate-400'>
-                                    {data.description}
-                                </p>
-                            </div>
+                        const isEven = (idx + 1) % 2 === 0
 
-                            <FeatureContentImage imageURL={data.image_url} altContent={data.altText} />
-                        </FeatureContent>
+                        return (
+                            <FeatureContent key={idx} reversed={isEven} >
+                                <div className='space-y-4 lg:w-2/5'>
+                                    <h2 className='dark:text-slate-300 capitalize'>{data.header}</h2>
+                                    <p className='dark:text-slate-400 normal-case'>
+                                        {data.description}
+                                    </p>
+                                </div>
+
+                                <FeatureContentImage imageURL={data.image_url} altContent={data.altText} />
+                            </FeatureContent>
+                        )
                     })}
 
                     <OtherProjectDisplay other_projects={otherProjects} />

@@ -41,7 +41,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
             <h2 className='dark:text-slate-300'>Tech Stack</h2>
             <div className='tech_stacks_container space-y-32'>
                 <div className="space-y-4 dark:text-slate-400">
-                    <h4 className='dark:text-slate-300'>Front end</h4>
+                    <h4 className='dark:text-slate-300 capitalize'>Front end</h4>
 
                     <div className='frontend_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
                         {tech_stacks?.frontend?.map((stack, idx) => {
@@ -58,7 +58,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
                 </div>
 
                 <div className="space-y-4 dark:text-slate-400">
-                    <h4 className='dark:text-slate-300'>Back end</h4>
+                    <h4 className='dark:text-slate-300 capitalize'>Back end</h4>
                     <div className='backend_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
                         {tech_stacks.backend ?
                             tech_stacks?.backend?.map((stack, idx) => {
@@ -77,7 +77,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
                 {tech_stacks.others
                     &&
                     <div className="space-y-4 dark:text-slate-400">
-                        <h4 className='dark:text-slate-300'>Others</h4>
+                        <h4 className='dark:text-slate-300 capitalize'>Others</h4>
                         <div className='other_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
                             {
                                 tech_stacks?.others?.map((stack, idx) => {

@@ -48,6 +48,7 @@
     h2{
         @apply text-headline_md;
         font-weight:500;
+        text-transform:capitalize;
     }
 
     h3{

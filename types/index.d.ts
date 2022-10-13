@@ -30,7 +30,7 @@ export type navPropType = {
 }
 
 export type cursorTrackerPropType = {
-    addAnimation: function
+    addAnimation?: function
 }
 
 export type backgroundType = {

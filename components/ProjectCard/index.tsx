@@ -19,8 +19,8 @@ const ProjectCard = ({ title, description, imageURL, projectId }: projectCardTyp
                 <Image src={imageURL} alt="project image 1" layout='fill' objectFit='cover' />
 
                 <div className="absolute top-3 left-3 z-10 text-gray-100 dark:text-slate-300 space-y-2">
-                    <h3 className='dark:text-slate-300'>{title}</h3>
-                    <p className='text-label_md'>{description}</p>
+                    <h3 className='dark:text-slate-300 capitalize'>{title}</h3>
+                    <p className='text-label_md normal-case'>{description}</p>
                 </div>
             </div>
         </Link>

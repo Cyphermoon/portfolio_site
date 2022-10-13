@@ -24,7 +24,7 @@ const SocialCard = ({ title, imageURL, href }: socialCardType) => {
                         src={imageURL}
                         alt={`${title} logo`} />
                 </figure>
-                <p className='text-label_md text-center dark:text-slate-300'>{title}</p>
+                <p className='text-label_md lowercase text-center dark:text-slate-300'>{title}</p>
             </a>
 
         </Link>

@@ -22,8 +22,8 @@ const OtherProject = ({ imageURL, altContent, projectName, description, id }: Ot
           <Image src={imageURL} alt={altContent} layout="fill" objectFit='cover' />
         </figure>
         <div className='space-y-1 dark:text-slate-400'>
-          <h3 className='dark:text-slate-300'>{projectName}</h3>
-          <p>{description}</p>
+          <h3 className='dark:text-slate-300 capitalize'>{projectName}</h3>
+          <p className='text-base normal-case'>{description}</p>
         </div>
       </div>
     </Link >

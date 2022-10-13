@@ -55,14 +55,14 @@ const Home: NextPage<homePageType> = (
       <Container>
         <Header addAnimation={addAnimation} >
           <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col">
-            <h1 className="text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="text-blue-500"> {landing_section.role}</span></h1>
+            <h1 className="normal-case text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="capitalize text-blue-500"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
 
 
             <div className="w-full self-center lg:w-6/12 flex flex-row sm:flex-row justify-between space-x-4">
               <Link href={landing_section?.contact_btn?.href} passHref >
-                <a className="group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7
+                <a className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7
                 ">
                   <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
                     scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
@@ -75,7 +75,7 @@ const Home: NextPage<homePageType> = (
               </Link>
 
               <Link href={landing_section?.get_resume_btn?.href} passHref>
-                <a className="group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7">
+                <a className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7">
 
                   <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
                     scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
