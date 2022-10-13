@@ -99,14 +99,18 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
         "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
         }`)
 
-    const otherProjects = await sanityClient.fetch(`*[_type=='project' && (_id !='${params?.id}')]{_id, title, description, 'altText':cover_image->alt_text, 'cover_image':cover_image->image.asset->url}
+    const otherProjects = await sanityClient.fetch(`
+    *[_type=='project' && (_id !='${params?.id}')]
+    {_id, title, description, 'altText':cover_image->alt_text, 'cover_image':cover_image->image.asset->url}
     `)
 
     return {
         props: {
             project: project[0],
             otherProjects: otherProjects
-        }
+        },
+
+        revalidate: 100,
     }
 }
 
