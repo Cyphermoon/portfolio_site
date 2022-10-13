@@ -128,7 +128,8 @@ export async function getStaticProps() {
       social_medias,
       skill_list,
       projects
-    }
+    },
+    revalidate: 100
   }
 }
 
