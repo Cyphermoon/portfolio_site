@@ -77,8 +77,8 @@ const ThemeProvider = ({ children }: themeProviderType) => {
 
     useEffect(() => {
         let userTheme = localStorage.getItem("theme")
-        setPreferredTheme(userTheme ?? "")
-        setActiveThemeMode(userTheme ?? "os")
+        setPreferredTheme(userTheme ?? "dark")
+        setActiveThemeMode(userTheme ?? "dark")
     }, [])
 
     return (
