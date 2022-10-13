@@ -13,7 +13,7 @@ const OtherProject = ({ imageURL, altContent, projectName, description, id }: Ot
   return (
     <Link href={`/project/${encodeURIComponent(id)}`}>
       <div className='min-w-full sm:w-72 md:w-[312px] space-y-4 scale-95 cursor-pointer'>
-        <figure className='relative w-full h-52 md:h-40 
+        <figure className='relative w-full h-52 md:h-40 drop-shadow-2xl shadow-slate-900 dark:drop-shadow-none 
             before-h-full before:transition-opacity duration-100ms
             before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-10
             before:hover:opacity-30'

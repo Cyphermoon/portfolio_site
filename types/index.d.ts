@@ -54,6 +54,7 @@ export type skillCardType={
 }
 
 export type inputType = {
+    inputName: string
     labelText: string,
     inputType: string,
     inputValue: string,

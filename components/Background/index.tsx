@@ -14,7 +14,7 @@ const Background = ({ children, addAnimation }: backgroundType) => {
 
     return (
         <div className={`w-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10`}>
-            {isMinimumWidth && <CursorFollow />}
+            {/* {isMinimumWidth && <CursorFollow />} */}
             {isMinimumWidth && <CursorTracker addAnimation={addAnimation} />}
             {children}
         </div>

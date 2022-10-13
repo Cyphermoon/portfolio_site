@@ -55,12 +55,14 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
                 <Input
                     inputType='text'
                     labelText='Name'
+                    inputName='client_name'
                     inputValue={nameField}
                     setInputValue={setNameField}
                 />
                 <Input
                     inputType='email'
                     labelText='Email'
+                    inputName='client_email'
                     inputValue={emailField}
                     setInputValue={setEmailField} />
 
@@ -70,6 +72,7 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
                         className='w-full h-36 min-h-max border outline-none focus:border-2  focus:border-slate-500 border-slate-800 text-base py-3 px-4 rounded-lg
                          bg-slate-200 dark:bg-slate-700'
                         value={messageField}
+                        name="client_message"
                         required={true}
                         onChange={(e) => setMessageField(e.target.value)} ></textarea>
                 </div>
