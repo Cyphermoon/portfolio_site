@@ -176,6 +176,7 @@ export type projectPageType = {
     project: {
         slideshow_images:{imageURL: string}[],
         tech_stack:techStack,
+        status?: string,
 
         functionality:{
             header: string,

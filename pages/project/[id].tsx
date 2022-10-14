@@ -43,7 +43,9 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                             <p className="text-title_sm normal-case dark:text-slate-400">{project.description}</p>
 
                             <Link href={project?.link?.href} passHref >
-                                <a className="shadow-lg capitalize relative group shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200">
+                                <a
+                                    className={`${project?.status === "not deployed" && "pointer-events-none opacity-75"} shadow-lg capitalize relative group shadow-blue-400 dark:shadow-slate-800 w-full max-w-sm bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white dark:text-slate-200`}>
+
                                     <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0 scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
                                     transition-all duration-150 ease-linear z-0' />
 
@@ -91,6 +93,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     *[_type=='project' && _id=='${params?.id}']
     {description,  title, link,
         "slideshow_images":slideshow_images[]->{"imageURL":image.asset->url}, 
+        "status":status,
         "tech_stack":{
           "backend":tech_stack.backend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
            "frontend":tech_stack.frontend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
