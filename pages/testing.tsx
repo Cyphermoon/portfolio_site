@@ -2,6 +2,7 @@ import gsap from 'gsap'
 import Link from 'next/link'
 import React, { MouseEvent, useEffect } from 'react'
 import CursorTracker from '../components/CursorTracker'
+import PageHead from '../components/PageHead'
 
 const Testing = () => {
 
@@ -34,6 +35,7 @@ const Testing = () => {
 
     return (
         <div className='space-y-16 grid place-items-center py-8'>
+            <PageHead title="Portfolio | testing" />
             <h1>Testing</h1>
             <Link href="#" passHref >
                 <a className="group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 
