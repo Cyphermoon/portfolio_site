@@ -38,10 +38,10 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
 
     return (
         <section ref={e1} className='bg-slate-200  dark:bg-slate-800 p-8 space-y-12'>
-            <h2 className='dark:text-slate-300'>Tech Stack</h2>
+            <h2 className='dark:text-slate-300'>Tech Stacks</h2>
             <div className='tech_stacks_container space-y-32'>
                 <div className="space-y-4 dark:text-slate-400">
-                    <h4 className='dark:text-slate-300 capitalize'>Front end</h4>
+                    <h4 className='dark:text-slate-300 capitalize'>Front-end Stacks</h4>
 
                     <div className='frontend_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
                         {tech_stacks?.frontend?.map((stack, idx) => {
@@ -58,7 +58,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
                 </div>
 
                 <div className="space-y-4 dark:text-slate-400">
-                    <h4 className='dark:text-slate-300 capitalize'>Back end</h4>
+                    <h4 className='dark:text-slate-300 capitalize'>Back-end Stacks</h4>
                     <div className='backend_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
                         {tech_stacks.backend ?
                             tech_stacks?.backend?.map((stack, idx) => {

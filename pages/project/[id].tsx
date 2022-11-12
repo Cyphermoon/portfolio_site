@@ -38,7 +38,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
     return (
         <Background>
-            <PageHead title={`Portfolio ${getFirstWord(project.title)}`} />
+            <PageHead title={`Portfolio Project --> ${getFirstWord(project.title)}`} />
             <div className="space-y-32 container w-[98%]">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
