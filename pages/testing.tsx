@@ -2,6 +2,7 @@ import gsap from 'gsap'
 import Link from 'next/link'
 import React, { MouseEvent, useEffect } from 'react'
 import CursorTracker from '../components/CursorTracker'
+import LoadingScreen from '../components/LoadingScreen'
 import PageHead from '../components/PageHead'
 
 const Testing = () => {
@@ -72,6 +73,8 @@ const Testing = () => {
                     </div>
                 </Link>
             </div>
+
+            <LoadingScreen />
 
             <CursorTracker />
         </div>
