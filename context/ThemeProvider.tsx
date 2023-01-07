@@ -16,7 +16,7 @@ const ThemeContext = createContext({
 export const useTheme = () => useContext(ThemeContext)
 
 const ThemeProvider = ({ children }: themeProviderType) => {
-    const [theme, setTheme] = useState("dark");
+    const [theme, setTheme] = useState("");
     const [activeThemeMode, setActiveThemeMode] = useState("")
     let isDark = theme === "dark"
     let [darkThemeQuery, setDarkThemeQuery] = useState<MediaQueryList>()
@@ -26,15 +26,15 @@ const ThemeProvider = ({ children }: themeProviderType) => {
         localStorage.setItem("theme", themeValue)
     }
 
-    const changeTheme = (isDarkTheme: boolean) => {
+    const changeOsTheme = (isDarkTheme: boolean) => {
         const osTheme = isDarkTheme ? "dark" : "light"
         setPreferredTheme(osTheme)
     }
 
+    // event handler for when the theme changes
     const handleThemeChange = useCallback((e: MediaQueryListEvent) => {
         isDark = e.matches
-        changeTheme(isDark)
-        console.log("handle theme change has run")
+        changeOsTheme(isDark)
     }, [])
 
     const setDarkTheme = () => {
@@ -52,31 +52,34 @@ const ThemeProvider = ({ children }: themeProviderType) => {
     const setOsTheme = () => {
         let isDark = darkThemeQuery?.matches
 
-        changeTheme(isDark ?? false)
+        changeOsTheme(isDark ?? false)
         setActiveThemeMode("os")
 
         darkThemeQuery?.addEventListener && darkThemeQuery?.addEventListener("change", handleThemeChange)
     }
 
-    const addDarkClass = useCallback(() => {
+    const addDarkClass = useCallback((theme: string) => {
         const root = window.document.documentElement
+        const isDark = theme === "dark"
 
         isDark ? root.classList.add("dark") : root.classList.remove("dark")
-    }, [isDark])
+    }, [])
 
 
     useEffect(() => {
         setDarkThemeQuery(window.matchMedia("(prefers-color-scheme:dark)"))
-        console.log("theme set")
     }, [])
 
     useEffect(() => {
-        addDarkClass()
-    }, [theme, addDarkClass])
+        if (theme)
+            addDarkClass(theme)
 
+    }, [addDarkClass, theme])
 
     useEffect(() => {
+        // get the theme from local storage and set it
         let userTheme = localStorage.getItem("theme")
+
         setPreferredTheme(userTheme ?? "dark")
         setActiveThemeMode(userTheme ?? "dark")
     }, [])
