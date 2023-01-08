@@ -1,7 +1,7 @@
 import gsap from "gsap"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useReducer, useState } from "react"
+import { useEffect, useReducer } from "react"
 import { useTheme } from "../../context/ThemeProvider"
 import { hamburgerType, navPropType } from "../../types"
 import NavItem from "../NatItem"
@@ -41,8 +41,10 @@ const Nav = ({ addAnimation }: navPropType) => {
 
     useEffect(() => {
         if (addAnimation) {
-            const navAnimation = gsap.from(".gsap_nav", {
-                opacity: 0,
+            const navAnimation = gsap.to("#gsap_nav", {
+                opacity: 1,
+                duration: 1.2,
+                scale: 1,
             })
 
             addAnimation(navAnimation, 0.6)
@@ -55,7 +57,7 @@ const Nav = ({ addAnimation }: navPropType) => {
     }, [addAnimation])
 
     return (
-        <nav className="gsap_nav flex justify-between items-center">
+        <nav id="gsap_nav" className="flex justify-between items-center opacity-0 scale-95">
             <Logo />
 
             <ul

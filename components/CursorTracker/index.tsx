@@ -46,13 +46,13 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
     useEffect(() => {
 
         if (addAnimation) {
-            const cursorEyesAnimation = gsap.from(".cursor_eyes", {
-                translateY: +20,
-                opacity: 0,
+            const cursorEyesAnimation = gsap.to("#cursor_eyes", {
+                left: "98px",
+                opacity: 1,
 
             })
 
-            addAnimation(cursorEyesAnimation, .6)
+            addAnimation(cursorEyesAnimation, 2.3)
 
             return () => {
                 cursorEyesAnimation.revert()
@@ -76,7 +76,7 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
     })
 
     return (
-        <div ref={cursorRef} className='cursor_eyes flex space-x-4 absolute top-20 left-[100px]'>
+        <div ref={cursorRef} id="cursor_eyes" className='flex space-x-4 absolute top-20 -left-[100px] opacity-0'>
             <EyeSocket rotation={rotation} />
             <EyeSocket rotation={rotation} />
         </div>

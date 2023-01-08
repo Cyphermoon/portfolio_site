@@ -11,7 +11,7 @@ import query from "../queries.json"
 import Link from 'next/link'
 import Background from '../components/Background'
 import { homePageType } from '../types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
@@ -30,6 +30,7 @@ const Home: NextPage<homePageType> = (
     timeline.add(animation, index)
   }, [timeline])
 
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
@@ -37,9 +38,9 @@ const Home: NextPage<homePageType> = (
       toggleActions: "restart pause resume pause"
     })
 
-    const headerAnimation = gsap.from(".gsap_header", {
-      translateY: +50,
-      opacity: 0,
+    const headerAnimation = gsap.to(".gsap_header", {
+      translateY: 0,
+      opacity: 1,
     })
 
     addAnimation(headerAnimation, 1.5)
@@ -54,7 +55,7 @@ const Home: NextPage<homePageType> = (
       <PageHead title={`Kelvin's | Portfolio`} />
       <Container>
         <Header addAnimation={addAnimation} >
-          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col">
+          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-0 translate-y-14">
             <h1 className="normal-case text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="capitalize text-blue-500"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
