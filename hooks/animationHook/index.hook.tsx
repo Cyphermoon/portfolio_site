@@ -1,6 +1,6 @@
 import { animationClassesType } from "./type"
 
-export const useAnimationClass = (animationFunc: Function, animationClasses: animationClassesType) => {
+export const useAnimationClass = (animationFunc: Function | undefined, animationClasses: animationClassesType) => {
     let isAnimatable: boolean
     let animationClass: string
 
