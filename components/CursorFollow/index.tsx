@@ -12,9 +12,10 @@ const CursorFollow = ({ addAnimation }: cursorFollowPropType) => {
         if (cursorRef.current) cursorRef.current.style.transform = `translate(${left}px, ${top}px )`
     }
 
+    //animation code
     const animationClasses = {
         animatable: "opacity-0 ",
-        non_animatable: "opacity-100"
+        non_animatable: "opacity-30"
     }
 
     const { animationClass } = useAnimationClass(addAnimation, animationClasses)
@@ -27,6 +28,7 @@ const CursorFollow = ({ addAnimation }: cursorFollowPropType) => {
 
             })
 
+            // add animation to timeline
             addAnimation(cursorFollowAnimation, 2.7)
 
             return () => {
@@ -36,14 +38,20 @@ const CursorFollow = ({ addAnimation }: cursorFollowPropType) => {
 
     }, [addAnimation])
 
+    const handleMouseMove = (e: MouseEvent) => {
+        setTop(e.pageY - 22)
+        setLeft(e.pageX - 22);
+
+        setCursorFollow(cursorRef, top, left)
+    }
+
 
     useEffect(() => {
-        document.addEventListener("mousemove", e => {
-            setTop(e.pageY - 22)
-            setLeft(e.pageX - 22);
+        document.addEventListener("mousemove", handleMouseMove)
 
-            setCursorFollow(cursorRef, top, left)
-        })
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove)
+        }
     })
 
 
