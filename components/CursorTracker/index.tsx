@@ -44,7 +44,7 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
         return angleInDeg
     }
 
-
+    //animation code
     const animationClasses = {
         animatable: "-left-[100px] opacity-0",
         non_animatable: "left-[100px] opacity-100"
@@ -70,17 +70,23 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
 
     }, [addAnimation])
 
-    useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
         let boundingClientRect = cursorRef.current?.getBoundingClientRect();
         let centerX = boundingClientRect?.left ?? 0 + (boundingClientRect?.width ?? 0 / 2)
         let centerY = boundingClientRect?.top ?? 0 + (boundingClientRect?.height ?? 0 / 2)
 
-        document.addEventListener("mousemove", (e) => {
-            let mouseX = e.clientX;
-            let mouseY = e.clientY;
+        let mouseX = e.clientX;
+        let mouseY = e.clientY;
 
-            setRotation(angle(mouseX, mouseY, centerX, centerY));
-        })
+        setRotation(angle(mouseX, mouseY, centerX, centerY));
+    }
+
+    useEffect(() => {
+        document.addEventListener("mousemove", handleMouseMove)
+
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove)
+        }
 
     })
 
