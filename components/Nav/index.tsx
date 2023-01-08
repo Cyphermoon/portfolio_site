@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useReducer } from "react"
 import { useTheme } from "../../context/ThemeProvider"
+import { useAnimationClass } from "../../hooks/animationHook/index.hook"
 import { hamburgerType, navPropType } from "../../types"
 import NavItem from "../NatItem"
 import ThemeToggle from "../ThemeToggle"
@@ -38,9 +39,15 @@ const Hamburger = ({ hamburgerClicked }: hamburgerType) => {
 const Nav = ({ addAnimation }: navPropType) => {
     const [navOpened, toggleNavState] = useReducer((initialState) => !initialState, false);
 
+    const animationClasses = {
+        animatable: "opacity-0 scale-95",
+        non_animatable: "opacity-100 scale-100"
+    }
+
+    const { animationClass, isAnimatable } = useAnimationClass(addAnimation, animationClasses)
 
     useEffect(() => {
-        if (addAnimation) {
+        if (isAnimatable) {
             const navAnimation = gsap.to("#gsap_nav", {
                 opacity: 1,
                 duration: 1.2,
@@ -54,10 +61,10 @@ const Nav = ({ addAnimation }: navPropType) => {
             }
         }
 
-    }, [addAnimation])
+    }, [addAnimation, isAnimatable])
 
     return (
-        <nav id="gsap_nav" className="flex justify-between items-center opacity-0 scale-95">
+        <nav id="gsap_nav" className={`flex justify-between items-center ${animationClass}`}>
             <Logo />
 
             <ul
