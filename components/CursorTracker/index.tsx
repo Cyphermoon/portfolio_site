@@ -71,6 +71,7 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
     }, [addAnimation])
 
     const handleMouseMove = (e: MouseEvent) => {
+        //define variables to move the eye socket component
         let boundingClientRect = cursorRef.current?.getBoundingClientRect();
         let centerX = boundingClientRect?.left ?? 0 + (boundingClientRect?.width ?? 0 / 2)
         let centerY = boundingClientRect?.top ?? 0 + (boundingClientRect?.height ?? 0 / 2)

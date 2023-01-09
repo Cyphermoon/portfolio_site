@@ -39,6 +39,7 @@ const CursorFollow = ({ addAnimation }: cursorFollowPropType) => {
     }, [addAnimation])
 
     const handleMouseMove = (e: MouseEvent) => {
+        // define variables to move the cursorFollow component
         setTop(e.pageY - 22)
         setLeft(e.pageX - 22);
 
