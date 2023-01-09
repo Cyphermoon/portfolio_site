@@ -2,6 +2,7 @@ import gsap from 'gsap'
 import React, { useEffect, useRef } from 'react'
 import MoonBody from './MoonBody'
 import MoonCrescent from './MoonCrescent'
+import SplitScreen from './SplitScreen'
 
 const LoadingScreen = () => {
     const rootComp = useRef<HTMLDivElement>(null)
@@ -23,16 +24,32 @@ const LoadingScreen = () => {
                     duration: .8
                 }, "<.4")
                 .to("#moon_container", {
-                    width: "500px",
-                    duration: .9
+                    width: "300%",
+                    duration: 1.5
                 }, "<.35")
+                .to("div[data-animation='pull-left']", {
+                    translateX: "-100%",
+                    duration: 1.5,
+                }, "<.1")
+                .to("div[data-animation='pull-right']", {
+                    translateX: "+100%",
+                    duration: 1.5
+                }, "<")
+                .to("#moon_container > *", {
+                    opacity: "0",
+                    duration: 1
+                }, "<")
         }, rootComp)
 
         return () => ctx.revert()
     }, [])
 
     return (
-        <div ref={rootComp} className='w-screen relative h-screen bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400'>
+        <div ref={rootComp} className='w-screen overflow-hidden relative h-screen flex'>
+
+            <SplitScreen animationType="pull-left" />
+            <SplitScreen animationType="pull-right" />
+
             <div id='moon_container' className='
                     absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
                     grid grid-cols-2 justify-items-center items-center p-4 w-8/12'>
