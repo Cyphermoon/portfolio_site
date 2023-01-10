@@ -1,12 +1,22 @@
 import gsap from 'gsap'
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import MoonBody from './MoonBody'
 import MoonCrescent from './MoonCrescent'
 import SplitScreen from './SplitScreen'
 
-const LoadingScreen = () => {
+type loadingScreenPropType = {
+    setLoading?: Function
+}
+
+const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
     const rootComp = useRef<HTMLDivElement>(null)
     const t1 = useRef<GSAPTimeline>()
+
+    const update = useCallback(() => {
+        if (setLoading) {
+            setLoading(false);
+        }
+    }, [setLoading])
 
     useEffect(() => {
         const animationProps = {
@@ -63,7 +73,8 @@ const LoadingScreen = () => {
                 }, "<.11")
                 .to("div[data-animation='pull-right']", {  // split screen right
                     translateX: `${animationProps.split_screen.travelDistance}`,
-                    duration: animationProps.split_screen.duration
+                    duration: animationProps.split_screen.duration,
+                    onComplete: update,
                 }, "<")
                 .to("#moon_container > *", {    // fade the crescent and moon
                     opacity: `${animationProps.crescentFade.opacity}`,
@@ -72,10 +83,10 @@ const LoadingScreen = () => {
         }, rootComp)
 
         return () => ctx.revert()
-    }, [])
+    }, [update])
 
     return (
-        <div ref={rootComp} className='w-screen bg-transparent overflow-hidden relative h-screen flex'>
+        <div ref={rootComp} className='w-screen bg-transparent bg-slate-100 dark:bg-slate-900  overflow-hidden relative h-screen flex'>
 
             <SplitScreen animationType="pull-left" />
             <SplitScreen animationType="pull-right" />

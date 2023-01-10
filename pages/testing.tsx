@@ -1,11 +1,12 @@
 import gsap from 'gsap'
 import Link from 'next/link'
-import React, { MouseEvent, useEffect } from 'react'
+import React, { MouseEvent, useState } from 'react'
 import CursorTracker from '../components/CursorTracker'
 import LoadingScreen from '../components/LoadingScreen'
 import PageHead from '../components/PageHead'
 
 const Testing = () => {
+    const [loaderDisplayed, setLoaderDisplayed] = useState(true)
 
     const tiltCard = (e: MouseEvent<HTMLDivElement>) => {
 
@@ -73,8 +74,11 @@ const Testing = () => {
                     </div>
                 </Link>
             </div>
+            <button onClick={() => setLoaderDisplayed(!loaderDisplayed)}>
+                toggle loading screen
+            </button>
 
-            <LoadingScreen />
+            {loaderDisplayed && <LoadingScreen />}
 
             <CursorTracker />
         </div>
