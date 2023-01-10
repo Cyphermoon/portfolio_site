@@ -72,7 +72,17 @@
         text-fill-color: transparent;
         -webkit-text-fill-color:transparent;
     }
-    
+
+    .clip-moon{
+        clip-path: ellipse(35% 38% at 42% 50%);
+    }  
+}
+
+
+@layer components{
+    .details{
+        @apply w-5 h-5 absolute rounded-full shadow-moon-details bg-transparent top-2 left-5;
+    }
 }
 
 

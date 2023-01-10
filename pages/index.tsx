@@ -6,19 +6,20 @@ import Header from '../components/Header'
 import PageHead from '../components/PageHead'
 import ProjectDisplaySection from '../components/ProjectDisplaySection'
 import SkillDisplaySection from '../components/SkillDisplaySection'
-import { createClient } from "next-sanity"
 import query from "../queries.json"
 import Link from 'next/link'
 import Background from '../components/Background'
 import { homePageType } from '../types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import { sanityClient } from "../utils/sanity_config"
 
 
 const Home: NextPage<homePageType> = (
   { landing_section, about_data, social_medias, skill_list, projects }
 ) => {
+  // page animation
   const [timeline,] = useState(() => gsap.timeline({
     defaults: {
       ease: "slow(0.3, 0.4, false)",
@@ -30,6 +31,7 @@ const Home: NextPage<homePageType> = (
     timeline.add(animation, index)
   }, [timeline])
 
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
@@ -37,9 +39,9 @@ const Home: NextPage<homePageType> = (
       toggleActions: "restart pause resume pause"
     })
 
-    const headerAnimation = gsap.from(".gsap_header", {
-      translateY: +50,
-      opacity: 0,
+    const headerAnimation = gsap.to(".gsap_header", {
+      translateY: 0,
+      opacity: 1,
     })
 
     addAnimation(headerAnimation, 1.5)
@@ -54,7 +56,7 @@ const Home: NextPage<homePageType> = (
       <PageHead title={`Kelvin's | Portfolio`} />
       <Container>
         <Header addAnimation={addAnimation} >
-          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col">
+          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-0 translate-y-14">
             <h1 className="normal-case text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="capitalize text-blue-500"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
@@ -98,13 +100,6 @@ const Home: NextPage<homePageType> = (
   )
 }
 
-
-export const sanityClient = createClient({
-  projectId: process.env['NEXT_PUBLIC_SANITY_PROJECT_KEY'] ?? "",
-  dataset: "production",
-  useCdn: process.env.NODE_ENV === "production",
-  apiVersion: "v2021-08-31",
-})
 
 export async function getStaticProps() {
 

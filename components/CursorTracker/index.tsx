@@ -2,6 +2,7 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../../context/ThemeProvider'
+import { useAnimationClass } from '../../hooks/animationHook/index.hook'
 import { cursorTrackerPropType } from '../../types'
 
 type eyeSocketPropType = {
@@ -43,16 +44,24 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
         return angleInDeg
     }
 
+    //animation code
+    const animationClasses = {
+        animatable: "-left-[100px] opacity-0",
+        non_animatable: "left-[100px] opacity-100"
+    }
+
+    const { animationClass } = useAnimationClass(addAnimation, animationClasses)
+
     useEffect(() => {
 
         if (addAnimation) {
-            const cursorEyesAnimation = gsap.from(".cursor_eyes", {
-                translateY: +20,
-                opacity: 0,
+            const cursorEyesAnimation = gsap.to("#cursor_eyes", {
+                left: "98px",
+                opacity: 1,
 
             })
 
-            addAnimation(cursorEyesAnimation, .6)
+            addAnimation(cursorEyesAnimation, 2.3)
 
             return () => {
                 cursorEyesAnimation.revert()
@@ -61,22 +70,29 @@ const CursorTracker = ({ addAnimation }: cursorTrackerPropType) => {
 
     }, [addAnimation])
 
-    useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+        //define variables to move the eye socket component
         let boundingClientRect = cursorRef.current?.getBoundingClientRect();
         let centerX = boundingClientRect?.left ?? 0 + (boundingClientRect?.width ?? 0 / 2)
         let centerY = boundingClientRect?.top ?? 0 + (boundingClientRect?.height ?? 0 / 2)
 
-        document.addEventListener("mousemove", (e) => {
-            let mouseX = e.clientX;
-            let mouseY = e.clientY;
+        let mouseX = e.clientX;
+        let mouseY = e.clientY;
 
-            setRotation(angle(mouseX, mouseY, centerX, centerY));
-        })
+        setRotation(angle(mouseX, mouseY, centerX, centerY));
+    }
+
+    useEffect(() => {
+        document.addEventListener("mousemove", handleMouseMove)
+
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove)
+        }
 
     })
 
     return (
-        <div ref={cursorRef} className='cursor_eyes flex space-x-4 absolute top-20 left-[100px]'>
+        <div ref={cursorRef} id="cursor_eyes" className={`flex space-x-4 absolute top-20 ${animationClass}`}>
             <EyeSocket rotation={rotation} />
             <EyeSocket rotation={rotation} />
         </div>

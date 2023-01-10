@@ -2,6 +2,7 @@
 
 module.exports = {
   darkMode: "class",
+  mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -13,6 +14,10 @@ module.exports = {
     extend: {
       backgroundSize: {
         "size-200": "200% 100%",
+      },
+      boxShadow: {
+        'moon-outline': 'inset 10px 0px 2px 0 #93c5fd',
+        'moon-details': 'inset 2px 0 4px rgba(167, 167, 167, 0.685)'
       },
       backgroundPosition: {
         "right-100": "-100%",
