@@ -40,8 +40,8 @@ const Nav = ({ addAnimation }: navPropType) => {
     const [navOpened, toggleNavState] = useReducer((initialState) => !initialState, false);
 
     const animationClasses = {
-        animatable: "opacity-0 scale-95",
-        non_animatable: "opacity-100 scale-100"
+        animatable: "opacity-0",
+        non_animatable: "opacity-100"
     }
 
     const { animationClass, isAnimatable } = useAnimationClass(addAnimation, animationClasses)
@@ -51,7 +51,6 @@ const Nav = ({ addAnimation }: navPropType) => {
             const navAnimation = gsap.to("#gsap_nav", {
                 opacity: 1,
                 duration: 1.2,
-                scale: 1,
             })
 
             addAnimation(navAnimation, 0.6)
@@ -68,8 +67,8 @@ const Nav = ({ addAnimation }: navPropType) => {
             <Logo />
 
             <ul
-                className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition-none
-                items-center bg-red-300 dark:bg-slate-900 md:bg-transparent inset-0 md:inset-auto absolute md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
+                className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "flex animate-moveOut"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition-none
+                items-center bg-red-300 dark:bg-slate-900 md:bg-transparent inset-0 md:inset-auto fixed md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
                 <li>
                     <NavItem title="projects" href="/#projects_section" />
                 </li>
