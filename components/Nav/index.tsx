@@ -67,7 +67,7 @@ const Nav = ({ addAnimation }: navPropType) => {
             <Logo />
 
             <ul
-                className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition-none
+                className={`origin-top-right flex ${navOpened && "translate-x-0 scale-x-100"}  space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition duration-700 scale-x-0 md:scale-x-100 translate-x-full md:translate-x-0 scale-y-100
                 items-center bg-red-300 dark:bg-slate-900 md:bg-transparent inset-0 md:inset-auto absolute md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
                 <li>
                     <NavItem title="projects" href="/#projects_section" />
