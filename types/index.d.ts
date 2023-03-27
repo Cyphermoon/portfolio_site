@@ -6,7 +6,8 @@ export type headType = {
 }
 
 export type containerType = {
-    children :React.ReactNode
+    children: React.ReactNode
+    className?: string
 }
 
 export type navItemType = {
@@ -22,7 +23,7 @@ export type hamburgerType = {
 
 export type headerType = {
     addAnimation?: function
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 export type navPropType = {

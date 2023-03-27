@@ -10,9 +10,8 @@ import Header from '../../components/Header'
 import OtherProjectDisplay from '../../components/OtherProjectDisplay'
 import PageHead from '../../components/PageHead'
 import TechStackDisplay from '../../components/TechStackDisplay'
-import { sanityClient } from '../../utils/sanity_config'
-
 import { projectPageType } from '../../types'
+import { sanityClient } from '../../utils/sanity_config'
 
 const Project = ({ project, otherProjects }: projectPageType) => {
     const carouselItems: {
