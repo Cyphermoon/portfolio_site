@@ -10,7 +10,7 @@ interface Props {
 const SmallProjectCardSection = ({ headerTitle, projects }: Props) => {
     const dummyArray: any[] = [...Array(10)]
     return (
-        <div className='space-y-3'>
+        <div className='space-y-6 mb-12'>
             <h4 className='font-medium text-4xl capitalize dark:text-slate-300 text-slate-800'>{headerTitle}</h4>
             <div className='grid gap-4 grid-cols-dynamic'>
                 {dummyArray.map((project, idx) => {
