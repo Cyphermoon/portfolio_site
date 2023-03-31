@@ -14,6 +14,7 @@ import { useCallback, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { sanityClient } from "../utils/sanity_config"
+import { BestProjectQuery } from '../sanity-queries/project.query'
 
 
 const Home: NextPage<homePageType> = (
@@ -108,7 +109,7 @@ export async function getStaticProps() {
     var about_data = (await sanityClient.fetch(query.about_me_query))[0]
     var social_medias = await sanityClient.fetch(query.social_contact_query)
     var skill_list = await sanityClient.fetch(query.programming_language_query)
-    var projects = await sanityClient.fetch(query.project_query)
+    var projects = await sanityClient.fetch(BestProjectQuery)
   }
   catch (err) {
     if (err instanceof Error)
