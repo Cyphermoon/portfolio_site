@@ -5,7 +5,7 @@ interface Props {
     text: string
 }
 
-const DropDownItem = forwardRef((props: Props, ref: any) => {
+const ListBoxItem = forwardRef((props: Props, ref: any) => {
     let { active, text, ...rest } = props
 
     return (
@@ -15,7 +15,6 @@ const DropDownItem = forwardRef((props: Props, ref: any) => {
     )
 })
 
-DropDownItem.displayName = "DropDowItem"
+ListBoxItem.displayName = "ListBoxItem"
 
-
-export default DropDownItem
+export default ListBoxItem
