@@ -1,19 +1,14 @@
-import { Listbox, Menu, Transition } from '@headlessui/react'
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { Fragment, useEffect, useState } from 'react'
+import { gsap } from 'gsap'
+import { useEffect, useState } from 'react'
+import { CiBatteryEmpty } from 'react-icons/ci'
+import CategorySelector from '../components/CategorySelector'
 import Container from '../components/Container'
-import ListBoxItem from '../components/ListBoxItem'
 import Header from '../components/Header'
+import Spinner from '../components/Loaders/Spinner'
 import PageHead from '../components/PageHead'
 import SmallProjectCardSection from '../components/SmallProjectCardSection'
-import { IoIosArrowDown } from 'react-icons/io'
-import { sanityClient } from '../utils/sanity_config'
 import { CategoriesQuery, getCategoryProjectsQuery } from '../sanity-queries/project.query'
-import { truncate } from '../utils/index.util'
-import Spinner from '../components/Loaders/Spinner'
-import { gsap } from 'gsap'
-import { CiBatteryEmpty } from 'react-icons/ci'
+import { sanityClient } from '../utils/sanity_config'
 
 
 interface Props {
@@ -48,12 +43,9 @@ const Projects = ({ _categories }: Props) => {
 
     }, [selectedCategory._id])
 
+
     useEffect(() => {
-        // gsap.registerPlugin(ScrollTrigger)
         const otherProjectsDisplayAnimation = gsap.from("[data-animate='shuffle-in'] > * ", {
-            // scrollTrigger: {
-            //     trigger: ".other_project_display"
-            // },
             translateX: -200,
             duration: 1,
             scale: .75,
@@ -77,54 +69,21 @@ const Projects = ({ _categories }: Props) => {
                     <h1 className='bg-gradient-to-r  from-blue-600 via-blue-400 to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory.name} Projects</h1>
 
                     <div className='dark:bg-slate-800 py-6 px-5 rounded-xl flex flex-col start space-y-12'>
-                        <Listbox value={selectedCategory} onChange={handleCategoryChanged}>
-                            <div className='relative w-fit self-end'>
-                                <Listbox.Button
-                                    className="w-32 text-slate-300 bg-blue-500 dark:bg-slate-900 rounded-lg capitalize p-2 inline-flex justify-between items-center space-x-2 text-md">
-                                    <span>{truncate(selectedCategory.name, 8)}</span>
-                                    <IoIosArrowDown />
-                                </Listbox.Button>
-
-                                <Transition
-                                    as={Fragment}
-                                    enter="transition duration-200 ease-in-out"
-                                    enterFrom='opacity-0 scale-95'
-                                    enterTo='opacity-100 scale-100'
-                                    leave="transition duration-100 linear"
-                                    leaveFrom='opacity-100 scale-100'
-                                    leaveTo='opacity-0 scale-95'
-                                >
-
-                                    <Listbox.Options className={"flex flex-col space-y-2 items-start absolute mt-2 w-32 py-4 px-2 z-30 right-0 bg-blue-500 dark:bg-slate-900 rounded-md"}>
-
-                                        {categories.map((category) => {
-                                            return (
-                                                <Listbox.Option key={category._id} value={category}>
-                                                    {
-                                                        ({ active }) => (
-                                                            <ListBoxItem active={active} text={category.name} />
-                                                        )
-                                                    }
-
-                                                </Listbox.Option>
-                                            )
-                                        })}
-
-                                    </Listbox.Options>
-                                </Transition>
-                            </div>
-
-                        </Listbox>
+                        <CategorySelector
+                            selectedCategory={selectedCategory}
+                            categories={categories}
+                            value={selectedCategory}
+                            handleCategoryChanged={handleCategoryChanged} />
 
                         <section className="space-y-28 min-h-[300px]">
                             {
                                 !projectsLoading ?
-                                    categoryProjects.map((category, idx, arr) => {
+                                    categoryProjects.map((category, _, arr) => {
                                         if (arr.length === 1 && category.projects.length === 0) {
                                             return (
                                                 <div className='w-full h-full grid place-items-center animate-fadeIn'>
                                                     <CiBatteryEmpty className='text-[10rem] text-slate-500' />
-                                                    <h1 className='text-center text-xl lg:text-4xl'>This Section is empty</h1>
+                                                    <h1 className='text-center text-xl lg:text-4xl'>This category is empty</h1>
                                                 </div>
                                             )
                                         }
@@ -138,7 +97,6 @@ const Projects = ({ _categories }: Props) => {
 
                                     }) :
                                     <div className="w-full grid place-items-center text-5xl">
-
                                         <Spinner />
                                     </div>
 

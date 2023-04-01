@@ -17,7 +17,7 @@ const SmallProjectCard = ({ imageURL, description, title, projectId }: projectCa
             >
                 <Image src={imageURL} alt={title} layout='fill' objectFit='cover' className="rounded-2xl" />
 
-                <div className="absolute top-3 left-3 z-10 text-gray-100 dark:text-slate-400 dark:group-hover:text-slate-200 space-y-2">
+                <div className="absolute top-3 left-3 z-10 transition-opacity duration-200 text-gray-100 dark:text-slate-400 dark:group-hover:opacity-0">
                     <h3 className='capitalize'>{title}</h3>
                     <p className='text-label_md normal-case'>{truncate(description, 120)}</p>
                 </div>
