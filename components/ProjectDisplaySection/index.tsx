@@ -4,10 +4,7 @@ import React, { useEffect } from 'react'
 import { projectDisplaySectionType } from '../../types'
 import ProjectCard from '../ProjectCard'
 import SeeMoreLink from './components/SeeMoreLink'
-
-export const truncate = (text: string, end: number) => {
-    return text.length > end ? text.substring(0, end) + "......" : text
-}
+import { truncate } from '../../utils/index.util'
 
 const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySectionType) => {
     gsap.registerPlugin(ScrollTrigger)
