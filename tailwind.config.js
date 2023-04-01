@@ -43,10 +43,23 @@ module.exports = {
             transform: "scale(0, 1)"
           }
         },
+        fadeIn: {
+          "0%": {
+            opacity: "0"
+          },
+          "50%": {
+            opacity: "5"
+          },
+
+          "100%": {
+            opacity: "1"
+          }
+        }
       },
       animation: {
         moveIn: "moveIn 450ms ease-in-out 1",
-        moveOut: "moveOut 450ms ease-in-out 1 forwards"
+        moveOut: "moveOut 450ms ease-in-out 1 forwards",
+        fadeIn: "fadeIn 1s ease-in-out"
       },
 
       fontFamily: {
@@ -68,8 +81,5 @@ module.exports = {
       }
 
     },
-  },
-  plugins: [
-    require('@headlessui/tailwindcss')({ prefix: 'ui' })
-  ],
+  }
 }

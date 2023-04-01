@@ -11,7 +11,9 @@ import { IoIosArrowDown } from 'react-icons/io'
 import { sanityClient } from '../utils/sanity_config'
 import { CategoriesQuery, getCategoryProjectsQuery } from '../sanity-queries/project.query'
 import { truncate } from '../utils/index.util'
-import Spinner from '../components/Loaders/spinner'
+import Spinner from '../components/Loaders/Spinner'
+import { gsap } from 'gsap'
+import { CiBatteryEmpty } from 'react-icons/ci'
 
 
 interface Props {
@@ -46,9 +48,28 @@ const Projects = ({ _categories }: Props) => {
 
     }, [selectedCategory._id])
 
+    useEffect(() => {
+        // gsap.registerPlugin(ScrollTrigger)
+        const otherProjectsDisplayAnimation = gsap.from("[data-animate='shuffle-in'] > * ", {
+            // scrollTrigger: {
+            //     trigger: ".other_project_display"
+            // },
+            translateX: -200,
+            duration: 1,
+            scale: .75,
+            opacity: 0,
+            stagger: .5,
+        })
+
+
+        return () => {
+            otherProjectsDisplayAnimation.revert()
+        }
+    })
+
 
     return (
-        <div className='w-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10'>
+        <div className='w-screen min-h-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10'>
             <PageHead title='Portfolio | projects' />
             <Container className='space-y-14'>
                 <Header />
@@ -95,17 +116,23 @@ const Projects = ({ _categories }: Props) => {
 
                         </Listbox>
 
-                        <section className="space-y-28">
+                        <section className="space-y-28 min-h-[300px]">
                             {
                                 !projectsLoading ?
                                     categoryProjects.map((category, idx, arr) => {
                                         if (arr.length === 1 && category.projects.length === 0) {
-                                            return <h1 className='text-center'>This Section is empty</h1>
+                                            return (
+                                                <div className='w-full h-full grid place-items-center animate-fadeIn'>
+                                                    <CiBatteryEmpty className='text-[10rem] text-slate-500' />
+                                                    <h1 className='text-center text-xl lg:text-4xl'>This Section is empty</h1>
+                                                </div>
+                                            )
                                         }
                                         return (
                                             <SmallProjectCardSection
                                                 key={category._id}
                                                 headerTitle={category.name}
+                                                isSingleSection={arr.length === 1}
                                                 projects={category.projects} />
                                         )
 
@@ -118,10 +145,10 @@ const Projects = ({ _categories }: Props) => {
                             }
                         </section>
                     </div>
-                </main>
+                </main >
 
-            </Container>
-        </div>
+            </Container >
+        </div >
     )
 }
 
