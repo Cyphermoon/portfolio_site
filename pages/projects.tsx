@@ -66,9 +66,9 @@ const Projects = ({ _categories }: Props) => {
             <Container className='space-y-14'>
                 <Header />
                 <main className='space-y-12 flex flex-col'>
-                    <h1 className='bg-gradient-to-r  from-blue-600 via-blue-400 to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory.name} Projects</h1>
+                    <h1 className='bg-gradient-to-r from-slate-700 to-slate-600  dark:from-blue-600 dark:via-blue-400 dark:to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory.name} Projects</h1>
 
-                    <div className='dark:bg-slate-800 py-6 px-5 rounded-xl flex flex-col start space-y-12'>
+                    <div className='dark:bg-slate-800 bg-slate-200 shadow-md py-6 px-5 rounded-xl flex flex-col start space-y-12'>
                         <CategorySelector
                             selectedCategory={selectedCategory}
                             categories={categories}
@@ -81,9 +81,9 @@ const Projects = ({ _categories }: Props) => {
                                     categoryProjects.map((category, _, arr) => {
                                         if (arr.length === 1 && category.projects.length === 0) {
                                             return (
-                                                <div className='w-full h-full grid place-items-center animate-fadeIn'>
-                                                    <CiBatteryEmpty className='text-[10rem] text-slate-500' />
-                                                    <h1 className='text-center text-xl lg:text-4xl'>This category is empty</h1>
+                                                <div className='w-full h-full grid place-items-center animate-fadeIn dark:text-slate-500 text-slate-700'>
+                                                    <CiBatteryEmpty className='text-[10rem] ' />
+                                                    <h1 className='text-center text-xl lg:text-4xl '>This category is empty</h1>
                                                 </div>
                                             )
                                         }

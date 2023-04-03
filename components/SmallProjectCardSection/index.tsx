@@ -20,7 +20,7 @@ const SmallProjectCardSection = ({ headerTitle, projects, isSingleSection }: Pro
     return (
         <div className='space-y-8' >
             {isHeaderDisplay ?
-                <h4 className='font-black text-6xl capitalize dark:text-slate-400 text-slate-800 animate-fadeIn'>{headerTitle}</h4> :
+                <h4 className='font-black text-6xl capitalize dark:text-slate-400 text-slate-700 animate-fadeIn'>{headerTitle}</h4> :
                 null
             }
             <div className='grid gap-4 grid-cols-dynamic' data-animate="shuffle-in" >

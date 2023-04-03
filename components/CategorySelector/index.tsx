@@ -21,7 +21,7 @@ const ListBoxItem = forwardRef((props: listBoxProps, ref: any) => {
     let { active, text, ...rest } = props
 
     return (
-        <button ref={ref} {...rest} className={`text-slate-300  w-full p-1 rounded-md text-left ${active ? "bg-slate-400 text-slate-600" : ""}`}>
+        <button ref={ref} {...rest} className={`text-slate-100 dark:text-slate-300  w-full p-1 rounded-md text-left ${active ? "bg-slate-400 dark:text-slate-600 text-slate-800" : ""}`}>
             {text}
         </button>
     )
@@ -37,7 +37,7 @@ const CategorySelector = ({ value, handleCategoryChanged, categories, selectedCa
         <Listbox value={selectedCategory} onChange={handleCategoryChanged}>
             <div className='relative w-fit self-end'>
                 <Listbox.Button
-                    className="w-32 text-slate-300 bg-blue-500 dark:bg-slate-900 rounded-lg capitalize p-2 inline-flex justify-between items-center space-x-2 text-md">
+                    className="w-32 text-slate-300 bg-slate-500 dark:bg-slate-900 rounded-lg capitalize p-2 inline-flex justify-between items-center space-x-2 text-md">
                     <span>{truncate(selectedCategory.name, 8)}</span>
                     <IoIosArrowDown />
                 </Listbox.Button>
@@ -52,7 +52,7 @@ const CategorySelector = ({ value, handleCategoryChanged, categories, selectedCa
                     leaveTo='opacity-0 scale-95'
                 >
 
-                    <Listbox.Options className={"flex flex-col space-y-2 items-start absolute mt-2 w-32 py-4 px-2 z-30 right-0 bg-blue-500 dark:bg-slate-900 rounded-md"}>
+                    <Listbox.Options className={"flex flex-col space-y-2 items-start absolute mt-2 w-32 py-4 px-2 z-30 right-0 bg-slate-500 dark:bg-slate-900 rounded-md"}>
 
                         {categories.map((category) => {
                             return (
