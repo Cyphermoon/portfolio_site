@@ -53,3 +53,57 @@ export const getCategoryProjectsQuery = (id: string) => {
     }
   `
 }
+
+export const LandingPageQuery = `
+*[_type=='landing_page' && _id=='ec5a94fb-569d-45b0-b630-9068e80453ff']{
+    role, 
+    elongated_text, 
+    introductory_text, 
+    contact_btn, 
+    get_resume_btn
+  }
+`
+
+
+export const AboutMeQuery = `
+*[_type=='about_me' && _id=='0ccfd969-350e-4fe0-ab13-e3ef1770ebbc']{
+    'texts': content[].children[].text
+  }
+`;
+
+export const ProjectQuery = `
+*[_type=='project']{
+    _id, 
+    title, 
+    description, 
+    'altText':cover_image->alt_text, 
+    'cover_image':cover_image->image.asset->url
+  }
+`;
+
+export const SocialContactQuery = `
+*[_type=='social_media']{
+    'displayText':link.display_text, 
+    'url':link.href, 
+    'altText':logo->alt_text, 
+    'social_media_logo':logo->image.asset->url
+  }
+`;
+
+export const ProgrammingLanguageQuery = `
+*[_type=='programming_language' && isVisible == true]{
+    'altText':icon->alt_text,
+    'name':name,
+    'url':icon->image.asset->url
+  }
+`;
+
+
+export const OtherProjectsQuery = (currentProjectId: string) => `
+  *[_type=='project' && !_id == "${currentProjectId}"]{
+    _id,
+    title,
+    'altText':cover_image->alt_text, 
+    'cover_image':cover_image->image.asset->url
+  }
+`;

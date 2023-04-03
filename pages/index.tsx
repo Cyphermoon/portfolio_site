@@ -1,20 +1,19 @@
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import type { NextPage } from 'next'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 import AboutSection from '../components/AboutSection'
+import Background from '../components/Background'
 import ContactSection from '../components/ContactSection'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import PageHead from '../components/PageHead'
 import ProjectDisplaySection from '../components/ProjectDisplaySection'
 import SkillDisplaySection from '../components/SkillDisplaySection'
-import query from "../queries.json"
-import Link from 'next/link'
-import Background from '../components/Background'
+import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SocialContactQuery } from '../sanity-queries/project.query'
 import { homePageType } from '../types'
-import { useCallback, useEffect, useState } from 'react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { sanityClient } from "../utils/sanity_config"
-import { BestProjectQuery } from '../sanity-queries/project.query'
 
 
 const Home: NextPage<homePageType> = (
@@ -105,10 +104,10 @@ const Home: NextPage<homePageType> = (
 export async function getStaticProps() {
 
   try {
-    var landing_section = (await sanityClient.fetch(query.landing_page_query))[0];
-    var about_data = (await sanityClient.fetch(query.about_me_query))[0]
-    var social_medias = await sanityClient.fetch(query.social_contact_query)
-    var skill_list = await sanityClient.fetch(query.programming_language_query)
+    var landing_section = (await sanityClient.fetch(LandingPageQuery))[0];
+    var about_data = (await sanityClient.fetch(AboutMeQuery))[0]
+    var social_medias = await sanityClient.fetch(SocialContactQuery)
+    var skill_list = await sanityClient.fetch(ProgrammingLanguageQuery)
     var projects = await sanityClient.fetch(BestProjectQuery)
   }
   catch (err) {
