@@ -1,18 +1,18 @@
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import type { NextPage } from 'next'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 import AboutSection from '../components/AboutSection'
+import Background from '../components/Background'
 import ContactSection from '../components/ContactSection'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import PageHead from '../components/PageHead'
 import ProjectDisplaySection from '../components/ProjectDisplaySection'
 import SkillDisplaySection from '../components/SkillDisplaySection'
-import query from "../queries.json"
-import Link from 'next/link'
-import Background from '../components/Background'
+import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SocialContactQuery } from '../sanity-queries/project.query'
 import { homePageType } from '../types'
-import { useCallback, useEffect, useState } from 'react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { sanityClient } from "../utils/sanity_config"
 
 
@@ -54,7 +54,7 @@ const Home: NextPage<homePageType> = (
   return (
     <Background addAnimation={addAnimation}>
       <PageHead title={`Kelvin's | Portfolio`} />
-      <Container>
+      <Container className='space-y-32'>
         <Header addAnimation={addAnimation} >
           <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-0 translate-y-14">
             <h1 className="normal-case text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="capitalize text-blue-500"> {landing_section.role}</span></h1>
@@ -104,11 +104,11 @@ const Home: NextPage<homePageType> = (
 export async function getStaticProps() {
 
   try {
-    var landing_section = (await sanityClient.fetch(query.landing_page_query))[0];
-    var about_data = (await sanityClient.fetch(query.about_me_query))[0]
-    var social_medias = await sanityClient.fetch(query.social_contact_query)
-    var skill_list = await sanityClient.fetch(query.programming_language_query)
-    var projects = await sanityClient.fetch(query.project_query)
+    var landing_section = (await sanityClient.fetch(LandingPageQuery))[0];
+    var about_data = (await sanityClient.fetch(AboutMeQuery))[0]
+    var social_medias = await sanityClient.fetch(SocialContactQuery)
+    var skill_list = await sanityClient.fetch(ProgrammingLanguageQuery)
+    var projects = await sanityClient.fetch(BestProjectQuery)
   }
   catch (err) {
     if (err instanceof Error)

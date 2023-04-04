@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useTiltEffect } from '../../hooks/index.util'
 import { otherProjectDisplayType, OtherProjectType } from '../../types'
-import { truncate } from '../ProjectDisplaySection'
+import { truncate } from '../../utils/index.util'
 
 const OtherProject = ({ imageURL, altContent, projectName, description, id }: OtherProjectType) => {
   const { tiltCard, removeTiltEffect } = useTiltEffect()

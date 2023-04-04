@@ -43,11 +43,25 @@ module.exports = {
             transform: "scale(0, 1)"
           }
         },
+        fadeIn: {
+          "0%": {
+            opacity: "0"
+          },
+          "50%": {
+            opacity: "5"
+          },
+
+          "100%": {
+            opacity: "1"
+          }
+        }
       },
       animation: {
         moveIn: "moveIn 450ms ease-in-out 1",
-        moveOut: "moveOut 450ms ease-in-out 1 forwards"
+        moveOut: "moveOut 450ms ease-in-out 1 forwards",
+        fadeIn: "fadeIn 1s ease-in-out"
       },
+
       fontFamily: {
         sans: ["Roboto", "sans-serif"]
       },
@@ -61,9 +75,11 @@ module.exports = {
         label_md: ["0.889rem", "1.5"],
         title_md: ["1.266rem", "1.5"],
         title_sm: ["1.125rem", "1.5"]
+      },
+      gridTemplateColumns: {
+        'dynamic': 'repeat(auto-fit, minmax(200px, 1fr))',
       }
 
     },
-  },
-  plugins: [],
+  }
 }

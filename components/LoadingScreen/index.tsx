@@ -86,7 +86,7 @@ const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
     }, [update])
 
     return (
-        <div ref={rootComp} className='w-screen bg-transparent bg-slate-100 dark:bg-slate-900  overflow-hidden relative h-screen flex'>
+        <div ref={rootComp} className='w-screen bg-transparent bg-slate-100 dark:bg-slate-900  overflow-hidden fixed h-screen flex'>
 
             <SplitScreen animationType="pull-left" />
             <SplitScreen animationType="pull-right" />

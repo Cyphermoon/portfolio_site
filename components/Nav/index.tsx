@@ -70,7 +70,7 @@ const Nav = ({ addAnimation }: navPropType) => {
                 className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition-none
                 items-center bg-red-300 dark:bg-slate-900 md:bg-transparent inset-0 md:inset-auto absolute md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
                 <li>
-                    <NavItem title="projects" href="/#projects_section" />
+                    <NavItem title="projects" href="/projects" />
                 </li>
                 <li>
                     <NavItem title="contact me" href="/#contact_section" />

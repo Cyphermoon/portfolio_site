@@ -56,25 +56,28 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
 
                     </div>
                 </div>
+                {
+                    tech_stacks.backend?.length > 0 ?
+                        <div className="space-y-4 dark:text-slate-400">
+                            <h4 className='dark:text-slate-300 capitalize'>Back-end Stacks</h4>
+                            <div className='backend_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
+                                {tech_stacks.backend ?
+                                    tech_stacks?.backend?.map((stack, idx) => {
+                                        return <SkillCard
+                                            key={idx}
+                                            width='w-28'
+                                            height='h-28'
+                                            imageURL={stack.icon_url}
+                                            title={stack.name}
+                                            altContent={stack.altText} />
+                                    }) :
+                                    <p>stacks are empty</p>}
+                            </div>
+                        </div> :
+                        null
+                }
 
-                <div className="space-y-4 dark:text-slate-400">
-                    <h4 className='dark:text-slate-300 capitalize'>Back-end Stacks</h4>
-                    <div className='backend_stacks w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-9'>
-                        {tech_stacks.backend ?
-                            tech_stacks?.backend?.map((stack, idx) => {
-                                return <SkillCard
-                                    key={idx}
-                                    width='w-28'
-                                    height='h-28'
-                                    imageURL={stack.icon_url}
-                                    title={stack.name}
-                                    altContent={stack.altText} />
-                            }) :
-                            <p>stacks are empty</p>}
-                    </div>
-                </div>
-
-                {tech_stacks.others
+                {tech_stacks.others?.length > 0
                     &&
                     <div className="space-y-4 dark:text-slate-400">
                         <h4 className='dark:text-slate-300 capitalize'>Others</h4>
