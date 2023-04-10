@@ -77,7 +77,7 @@ module.exports = {
         title_sm: ["1.125rem", "1.5"]
       },
       gridTemplateColumns: {
-        'dynamic': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'dynamic': 'repeat(auto-fill, minmax(250px, 1fr))',
       }
 
     },

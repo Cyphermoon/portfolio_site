@@ -70,22 +70,25 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                 <TechStackDisplay tech_stacks={project.tech_stack} />
 
                 <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
-                    {project.functionality.map((data, idx) => {
-                        const isEven = (idx + 1) % 2 === 0
+                    {
+                        project.functionality?.length > 0 ?
+                            project.functionality.map((data, idx) => {
+                                const isEven = (idx + 1) % 2 === 0
 
-                        return (
-                            <FeatureContent key={idx} reversed={isEven} >
-                                <div className='space-y-4 lg:w-2/5'>
-                                    <h2 className='dark:text-slate-300 capitalize'>{data.header}</h2>
-                                    <p className='dark:text-slate-400 normal-case'>
-                                        {data.description}
-                                    </p>
-                                </div>
+                                return (
+                                    <FeatureContent key={idx} reversed={isEven} >
+                                        <div className='space-y-4 lg:w-2/5'>
+                                            <h2 className='dark:text-slate-300 capitalize'>{data.header}</h2>
+                                            <p className='dark:text-slate-400 normal-case'>
+                                                {data.description}
+                                            </p>
+                                        </div>
 
-                                <FeatureContentImage imageURL={data.image_url} altContent={data.altText} />
-                            </FeatureContent>
-                        )
-                    })}
+                                        <FeatureContentImage imageURL={data.image_url} altContent={data.altText} />
+                                    </FeatureContent>
+                                )
+                            }) :
+                            null}
 
                     <OtherProjectDisplay other_projects={otherProjects} />
                 </div>

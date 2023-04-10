@@ -13,7 +13,7 @@ const SmallProjectCard = ({ imageURL, description, title, projectId }: projectCa
                 before:transition-opacity before:duration-100ms before:w-full before:rounded-2xl
                 before:inset-0 before:z-10 before:absolute before:bg-slate-900 before:opacity-60 dark:before:opacity-60
                 md:dark:before:opacity-80 dark:bg-slate-800
-                before:hover:opacity-80 dark:before:hover:opacity-30 group max-w-[300px]'
+                before:hover:opacity-80 dark:before:hover:opacity-30 group'
             >
                 <Image src={imageURL} alt={title} layout='fill' objectFit='cover' className="rounded-2xl" />
 
