@@ -78,24 +78,32 @@ const Projects = ({ _categories }: Props) => {
                         <section className="space-y-28 min-h-[300px]">
                             {
                                 !projectsLoading ?
-                                    categoryProjects.map((category, _, arr) => {
-                                        if (arr.length === 1 && category.projects.length === 0) {
+                                    categoryProjects
+                                        .sort((a, b) => {
+                                            if (a.name.toLowerCase() === "best") return -1;
+                                            if (b.name.toLowerCase() === "best") return 1;
+                                            if (a.name.toLowerCase() === "others") return 1;
+                                            if (b.name.toLowerCase() === "others") return -1;
+                                            return a.projects.length > b.projects.length ? -1 : 1;
+                                        })
+                                        .map((category, _, arr) => {
+                                            if (arr.length === 1 && category.projects.length === 0) {
+                                                return (
+                                                    <div className='w-full h-full grid place-items-center animate-fadeIn dark:text-slate-500 text-slate-700'>
+                                                        <CiBatteryEmpty className='text-[10rem] ' />
+                                                        <h1 className='text-center text-xl lg:text-4xl '>This category is empty</h1>
+                                                    </div>
+                                                )
+                                            }
                                             return (
-                                                <div className='w-full h-full grid place-items-center animate-fadeIn dark:text-slate-500 text-slate-700'>
-                                                    <CiBatteryEmpty className='text-[10rem] ' />
-                                                    <h1 className='text-center text-xl lg:text-4xl '>This category is empty</h1>
-                                                </div>
+                                                <SmallProjectCardSection
+                                                    key={category._id}
+                                                    headerTitle={category.name}
+                                                    isSingleSection={arr.length === 1}
+                                                    projects={category.projects} />
                                             )
-                                        }
-                                        return (
-                                            <SmallProjectCardSection
-                                                key={category._id}
-                                                headerTitle={category.name}
-                                                isSingleSection={arr.length === 1}
-                                                projects={category.projects} />
-                                        )
 
-                                    }) :
+                                        }) :
                                     <div className="w-full grid place-items-center text-5xl">
                                         <Spinner />
                                     </div>
@@ -118,6 +126,7 @@ export async function getStaticProps() {
     // make page requests
     try {
         var _categories = await sanityClient.fetch(CategoriesQuery)
+        _categories = _categories.sort((a: CategoryItemProps, b: CategoryItemProps) => a.name.localeCompare(b.name))
 
     } catch (err: any) {
         console.error(err.message)

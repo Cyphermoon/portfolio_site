@@ -130,7 +130,7 @@ export async function getStaticPaths() {
     // Call an external API endpoint to get projects
     const res: { _id: string }[] = await sanityClient.fetch("*[_type=='project']{_id}")
 
-    // Get the paths we want to pre-render based on posts
+    // Get the paths we want to pre-render based on projects
     const paths = res.map((project) => ({
         params: { id: project._id },
     }))
