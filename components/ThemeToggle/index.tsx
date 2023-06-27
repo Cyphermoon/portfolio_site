@@ -16,32 +16,40 @@ const ThemeToggle = () => {
 
 
     return (
-        <div className='flex align-baseline space-x-6 bg-slate-200 dark:bg-slate-700 rounded-lg py-1 px-4'>
-            <ToggleButton handleClick={setDarkTheme} active={activeThemeMode === "dark"}>
-                <Image
-                    style={{
-                        filter: `${isDark
-                            ? "invert(67%) sepia(14%) saturate(434%) hue-rotate(175deg) brightness(94%) contrast(87%)"
-                            : "brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(3937%) hue-rotate(180deg) brightness(97%) contrast(83%)"}`
-                    }}
-                    src={"/icons/dark_mode_icon.svg"}
-                    alt="dark mode icon"
-                    layout='fill' />
-            </ToggleButton>
-            <ToggleButton handleClick={setOsTheme} active={activeThemeMode === "os"}>
-                <span className='font-normal'>OS</span>
-            </ToggleButton>
-            <ToggleButton handleClick={setLightTheme} active={activeThemeMode == "light"}>
-                <Image
-                    style={{
-                        filter: `${isDark
-                            ? "invert(67%) sepia(14%) saturate(434%) hue-rotate(175deg) brightness(94%) contrast(87%)"
-                            : "brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(3937%) hue-rotate(180deg) brightness(97%) contrast(83%)"}`
-                    }}
-                    src={"/icons/light_mode_icon.svg"}
-                    alt="light mode icon"
-                    layout="fill" />
-            </ToggleButton>
+        <div className='relative'>
+            <span className='absolute -top-6 md:-top-4 left-1/2 -translate-x-1/2 w-full whitespace-nowrap text-center text-xs block m-0'>
+                {activeThemeMode !== "os" && activeThemeMode + " mode"}
+                {activeThemeMode === "os" && "system theme"}
+            </span>
+
+            <div className='flex align-baseline space-x-6 bg-slate-200 dark:bg-slate-700 rounded-lg py-1 px-4 '>
+                <ToggleButton handleClick={setDarkTheme} active={activeThemeMode === "dark"}>
+                    <Image
+                        style={{
+                            filter: `${isDark
+                                ? "invert(67%) sepia(14%) saturate(434%) hue-rotate(175deg) brightness(94%) contrast(87%)"
+                                : "brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(3937%) hue-rotate(180deg) brightness(97%) contrast(83%)"}`
+                        }}
+                        src={"/icons/dark_mode_icon.svg"}
+                        alt="dark mode icon"
+                        layout='fill' />
+                </ToggleButton>
+                <ToggleButton handleClick={setOsTheme} active={activeThemeMode === "os"}>
+                    <span className='font-normal'>OS</span>
+                </ToggleButton>
+                <ToggleButton handleClick={setLightTheme} active={activeThemeMode == "light"}>
+                    <Image
+                        style={{
+                            filter: `${isDark
+                                ? "invert(67%) sepia(14%) saturate(434%) hue-rotate(175deg) brightness(94%) contrast(87%)"
+                                : "brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(3937%) hue-rotate(180deg) brightness(97%) contrast(83%)"}`
+                        }}
+                        src={"/icons/light_mode_icon.svg"}
+                        alt="light mode icon"
+                        layout="fill" />
+                </ToggleButton>
+            </div>
+
         </div>
     )
 }

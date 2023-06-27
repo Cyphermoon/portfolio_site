@@ -82,8 +82,8 @@ const Projects = ({ _categories }: Props) => {
                                         .sort((a, b) => {
                                             if (a.name.toLowerCase() === "best") return -1;
                                             if (b.name.toLowerCase() === "best") return 1;
-                                            if (a.name.toLowerCase() === "others") return 1;
-                                            if (b.name.toLowerCase() === "others") return -1;
+                                            if (a.name.toLowerCase() === "other") return 1;
+                                            if (b.name.toLowerCase() === "other") return -1;
                                             return a.projects.length > b.projects.length ? -1 : 1;
                                         })
                                         .map((category, _, arr) => {
