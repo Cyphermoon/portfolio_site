@@ -39,9 +39,9 @@ const Home: NextPage<homePageType> = (
       toggleActions: "restart pause resume pause"
     })
 
-    const headerAnimation = gsap.to(".gsap_header", {
-      translateY: 0,
-      opacity: 1,
+    const headerAnimation = gsap.from(".gsap_header", {
+      translateY: "-10%",
+      opacity: 0,
     })
 
     addAnimation(headerAnimation, 1.5)
@@ -56,15 +56,15 @@ const Home: NextPage<homePageType> = (
       <PageHead title={`Kelvin's | Portfolio`} />
       <Container className='space-y-32'>
         <Header addAnimation={addAnimation} >
-          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-0 translate-y-14">
+          <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-100">
             <h1 className="normal-case text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="capitalize text-blue-500"> {landing_section.role}</span></h1>
 
             <p className="text-title_sm">{landing_section.elongated_text}</p>
 
 
-            <div className="w-full self-center lg:w-6/12 flex flex-row sm:flex-row justify-between space-x-4">
+            <div className="w-full self-center lg:w-6/12 flex flex-col  sm:flex-row justify-between sm:space-x-4 space-y-4 sm:space-y-0">
               <Link href={landing_section?.contact_btn?.href} passHref >
-                <a className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7
+                <a className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-200 dark:text-slate-200 sm:mr-7
                 ">
                   <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
                     scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
@@ -77,9 +77,9 @@ const Home: NextPage<homePageType> = (
               </Link>
 
               <Link href={landing_section?.get_resume_btn?.href} passHref>
-                <a target={'_blank'} className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-800 dark:hover:text-slate-200 dark:text-slate-200 sm:mr-7">
+                <a target={'_blank'} className="capitalize group block relative dark:shadow-lg  dark:shadow-gray-900 w-full md:w-3/4 bg-transparent border-2 border-blue-400 rounded-full px-10 sm:px-14 py-4 text-base text-blue-500 dark:text-slate-200 hover:text-slate-200 sm:mr-7">
 
-                  <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
+                  <span className='w-full block h-full absolute rounded-full bg-blue-400 top-0 left-0
                     scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
                     transition-all duration-150 ease-linear z-0' />
 

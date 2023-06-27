@@ -42,12 +42,13 @@ export const useTiltEffect = () => {
     }
 
 
-    const removeTiltEffect = (e: MouseEvent) => {
-
-        gsap.to(e.currentTarget, {
-            rotateX: 0,
-            rotateY: 0,
-        })
+    const removeTiltEffect = (e: MouseEvent, delay = 300) => {
+        setTimeout(() => {
+            gsap.to(e.target, {
+                rotateX: 0,
+                rotateY: 0,
+            })
+        }, delay)
     }
 
     return { tiltCard, removeTiltEffect }
