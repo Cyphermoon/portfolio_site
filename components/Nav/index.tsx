@@ -13,7 +13,7 @@ const Logo = () => (
     <Link href="/">
         <a className="flex justify-between items-center">
             <Image src="/icons/cypher_moon_logo.png" alt="Portfolio logo" width={32} height={32} />
-            <p className="ml-1 text-base">Cypher Moon</p>
+            <p className="ml-1 text-base">Kelvin</p>
         </a>
 
     </Link>
@@ -40,7 +40,7 @@ const Nav = ({ addAnimation }: navPropType) => {
     const [navOpened, toggleNavState] = useReducer((initialState) => !initialState, false);
 
     const animationClasses = {
-        animatable: "opacity-0",
+        animatable: "opacity-100",
         non_animatable: "opacity-100"
     }
 
@@ -48,8 +48,8 @@ const Nav = ({ addAnimation }: navPropType) => {
 
     useEffect(() => {
         if (isAnimatable) {
-            const navAnimation = gsap.to("#gsap_nav", {
-                opacity: 1,
+            const navAnimation = gsap.from("#gsap_nav", {
+                opacity: 0,
                 duration: 1.2,
             })
 
@@ -67,7 +67,7 @@ const Nav = ({ addAnimation }: navPropType) => {
             <Logo />
 
             <ul
-                className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition-none
+                className={`origin-top-right  ${navOpened ? "flex animate-moveIn" : "hidden"} space-y-8 md:space-y-0 flex-col md:flex-row justify-center md:justify-between transition-colors duration-200
                 items-center bg-red-300 dark:bg-slate-900 md:bg-transparent inset-0 md:inset-auto absolute md:static w-screen z-40 h-full md:h-auto md:flex md:max-w-xs`}>
                 <li>
                     <NavItem title="projects" href="/projects" />
