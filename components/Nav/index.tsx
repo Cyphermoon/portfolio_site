@@ -12,8 +12,8 @@ import ThemeToggle from "../ThemeToggle"
 const Logo = () => (
     <Link href="/">
         <a className="flex justify-between items-center">
-            <Image src="/icons/cypher_moon_logo.png" alt="Portfolio logo" width={32} height={32} />
-            <p className="ml-1 text-base">Kelvin</p>
+            <Image src="/images/avatar_me.jpeg" className="rounded-full" alt="Avatar Representation" width={32} height={32} />
+            <p className="ml-2 text-base">Home</p>
         </a>
 
     </Link>

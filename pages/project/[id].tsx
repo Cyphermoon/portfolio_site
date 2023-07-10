@@ -28,16 +28,9 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
     }, [])
 
-    const getFirstWord = (sentence: string): string => {
-        const spaceIndex = sentence.indexOf(" ");
-        const firstWord = sentence.substring(0, spaceIndex);
-
-        return firstWord;
-    }
-
     return (
         <Background>
-            <PageHead title={`Portfolio Project --> ${getFirstWord(project.title)}`} />
+            <PageHead title={project.title} />
             <div className="space-y-32 container w-[98%]">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>

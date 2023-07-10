@@ -62,7 +62,7 @@ const Projects = ({ _categories }: Props) => {
 
     return (
         <div className='w-screen min-h-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10'>
-            <PageHead title='Portfolio | projects' />
+            <PageHead title='All Projects' />
             <Container className='space-y-14'>
                 <Header />
                 <main className='space-y-12 flex flex-col'>
