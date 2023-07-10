@@ -46,7 +46,7 @@ const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
                 defaults: {
                     ease: "power3.inOut",
                     duration: 1,
-                }
+                },
             })
                 .to("#moon_crescent", {     // pull crescent to the right
                     translateX: `${animationProps.moon.start}`,
@@ -86,7 +86,7 @@ const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
     }, [update])
 
     return (
-        <div ref={rootComp} className='w-screen bg-transparent bg-slate-100 dark:bg-slate-900  overflow-hidden fixed h-screen flex'>
+        <div ref={rootComp} className='w-screen bg-transparent bg-opacity-0 pointer-events-none z-[100] overflow-hidden fixed h-screen flex'>
 
             <SplitScreen animationType="pull-left" />
             <SplitScreen animationType="pull-right" />
