@@ -53,7 +53,7 @@ const Home: NextPage<homePageType> = (
 
   return (
     <Background addAnimation={addAnimation}>
-      <PageHead title={`Kelvin's | Portfolio`} />
+      <PageHead title={`Portfolio Home`} />
       <Container className='space-y-32'>
         <Header addAnimation={addAnimation} >
           <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-100">

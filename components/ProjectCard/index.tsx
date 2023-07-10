@@ -4,6 +4,16 @@ import React, { MouseEvent } from 'react'
 import { useTiltEffect } from '../../hooks/index.util'
 import { projectCardType } from '../../types'
 
+
+/**
++ * Renders a project card component.
++ * @param {projectCardType} title - The title of the project card.
++ * @param {projectCardType} description - The description of the project card.
++ * @param {projectCardType} imageURL - The URL of the image for the project card.
++ * @param {projectCardType} projectId - The ID of the project.
++ * @return {JSX.Element} The rendered project card component.
++ */
+
 const ProjectCard = ({ title, description, imageURL, projectId }: projectCardType) => {
 
     const { tiltCard, removeTiltEffect } = useTiltEffect()

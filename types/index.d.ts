@@ -1,9 +1,6 @@
 import { StaticImageData } from "next/image"
 import React from "react"
 
-export type headType = {
-    title: string,
-}
 
 export type containerType = {
     children: React.ReactNode
