@@ -37,7 +37,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
     }, [])
 
     return (
-        <section ref={e1} className='bg-slate-200  dark:bg-slate-800 p-8 space-y-12'>
+        <section ref={e1} className='bg-slate-200  dark:bg-slate-700 p-8 space-y-12'>
             <h2 className='dark:text-slate-300'>Tech Stacks</h2>
             <div className='tech_stacks_container space-y-32'>
                 {
