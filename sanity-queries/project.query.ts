@@ -99,10 +99,11 @@ export const ProgrammingLanguageQuery = `
 `;
 
 
-export const OtherProjectsQuery = (currentProjectId: string) => `
-  *[_type=='project' && !_id == "${currentProjectId}"]{
+export const otherProjectsQuery = (currentProjectId: string) => `
+  *[_type=='project' && _id != '${currentProjectId}'][0...6]{
     _id,
     title,
+    description,
     'altText':cover_image->alt_text, 
     'cover_image':cover_image->image.asset->url
   }

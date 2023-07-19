@@ -2,6 +2,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { GetStaticPropsContext } from 'next'
 import Link from 'next/link'
+import { ParsedUrlQuery } from 'querystring'
 import { useEffect } from 'react'
 import Background from '../../components/Background'
 import Carousel from '../../components/Carousel'
@@ -10,8 +11,13 @@ import Header from '../../components/Header'
 import OtherProjectDisplay from '../../components/OtherProjectDisplay'
 import PageHead from '../../components/PageHead'
 import TechStackDisplay from '../../components/TechStackDisplay'
+import { otherProjectsQuery } from '../../sanity-queries/project.query'
 import { projectPageType } from '../../types'
 import { sanityClient } from '../../utils/sanity_config'
+
+interface ParamProps extends ParsedUrlQuery {
+    id: string
+}
 
 const Project = ({ project, otherProjects }: projectPageType) => {
     const carouselItems: {
@@ -90,7 +96,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
     )
 }
 
-export async function getStaticProps({ params }: GetStaticPropsContext) {
+export async function getStaticProps({ params }: GetStaticPropsContext<ParamProps>) {
     const project = await sanityClient.fetch(`
     *[_type=='project' && _id=='${params?.id}']
     {description,  title, link,
@@ -104,10 +110,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
         "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
         }`)
 
-    const otherProjects = await sanityClient.fetch(`
-    *[_type=='project' && (_id !='${params?.id}')]
-    {_id, title, description, 'altText':cover_image->alt_text, 'cover_image':cover_image->image.asset->url}
-    `)
+    const otherProjects = await sanityClient.fetch(otherProjectsQuery(params?.id ?? ""))
 
     return {
         props: {
