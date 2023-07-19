@@ -6,6 +6,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { useEffect } from 'react'
 import Background from '../../components/Background'
 import Carousel from '../../components/Carousel'
+import Container from '../../components/Container'
 import FeatureContent, { FeatureContentImage } from '../../components/FeatureContent'
 import Header from '../../components/Header'
 import OtherProjectDisplay from '../../components/OtherProjectDisplay'
@@ -37,7 +38,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
     return (
         <Background>
             <PageHead title={project.title} />
-            <div className="space-y-32 container w-[98%]">
+            <Container className="space-y-32 w-[98%]">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12'>
                         <div className="project_description w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
@@ -91,7 +92,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                     <OtherProjectDisplay other_projects={otherProjects} />
                 </div>
-            </div>
+            </Container>
         </Background>
     )
 }

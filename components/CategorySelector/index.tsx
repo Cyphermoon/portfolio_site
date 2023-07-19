@@ -37,7 +37,7 @@ const CategorySelector = ({ value, handleCategoryChanged, categories, selectedCa
         <Listbox value={selectedCategory} onChange={handleCategoryChanged}>
             <div className='relative w-fit self-end'>
                 <Listbox.Button
-                    className="w-32 text-slate-300 bg-slate-500 dark:bg-slate-900 rounded-lg capitalize p-2 inline-flex justify-between items-center space-x-2 text-md">
+                    className="w-32 text-slate-300 bg-slate-500 dark:bg-slate-700 md:dark:bg-slate-900 rounded-lg capitalize p-2 inline-flex justify-between items-center space-x-2 text-md">
                     <span>{truncate(selectedCategory.name, 8)}</span>
                     <IoIosArrowDown />
                 </Listbox.Button>
