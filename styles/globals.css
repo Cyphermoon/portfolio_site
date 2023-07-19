@@ -5,6 +5,13 @@
 @tailwind utilities;
 
 
+:root{
+    --swiper-theme-color: theme("colors.gray.500") !important;
+    --swiper-pagination-bullet-inactive-opacity: .3;
+    --swiper-pagination-bullet-inactive-color: theme("colors.gray.500");
+}
+
+
 @layer base{
     html{
         font-size:14px;

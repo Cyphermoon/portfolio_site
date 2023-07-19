@@ -9,7 +9,7 @@ export const FeatureContentImage = ({ imageURL, altContent }: featureContentImag
   const { tiltCard, removeTiltEffect } = useTiltEffect()
   return (
     <figure
-      className={`relative drop-shadow-2xl shadow-slate-900 dark:drop-shadow-none w-full lg:w-5/12 h-[365px] bg-slate-100 ${imageURL ? "dark:bg-slate-900" : "dark:bg-slate-700"}`}
+      className={`relative drop-shadow-2xl bg-opacity-0 shadow-slate-900 dark:drop-shadow-none w-full lg:w-5/12 h-[365px] bg-slate-100 ${imageURL ? "dark:bg-slate-900" : "dark:bg-slate-700"}`}
       style={{ transform: "perspective(1000px)" }}
       onMouseMove={tiltCard} onMouseLeave={removeTiltEffect}>
       {imageURL ?
