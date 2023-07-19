@@ -63,19 +63,21 @@ const Projects = ({ _categories }: Props) => {
     return (
         <div className='w-screen min-h-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800: dark:text-slate-400 pb-10'>
             <PageHead title='All Projects' />
-            <Container className='space-y-14'>
-                <Header />
-                <main className='space-y-12 flex flex-col'>
+            <div className='space-y-14'>
+                <Container>
+                    <Header />
+                </Container>
+                <Container className='space-y-12 flex flex-col !px-0'>
                     <h1 className='bg-gradient-to-r from-slate-700 to-slate-600  dark:from-blue-600 dark:via-blue-400 dark:to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory.name} Projects</h1>
 
-                    <div className='dark:bg-slate-800 bg-slate-200 shadow-md py-6 px-5 rounded-xl flex flex-col start space-y-12'>
+                    <div className='bg-none md:dark:bg-slate-800 md:bg-slate-200 shadow-md py-6 px-5 rounded-xl flex flex-col start space-y-12'>
                         <CategorySelector
                             selectedCategory={selectedCategory}
                             categories={categories}
                             value={selectedCategory}
                             handleCategoryChanged={handleCategoryChanged} />
 
-                        <section className="space-y-28 min-h-[300px]">
+                        <section className="space-y-28 pb-5 min-h-[300px]">
                             {
                                 !projectsLoading ?
                                     categoryProjects
@@ -111,9 +113,9 @@ const Projects = ({ _categories }: Props) => {
                             }
                         </section>
                     </div>
-                </main >
+                </Container>
 
-            </Container >
+            </div>
         </div >
     )
 }

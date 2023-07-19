@@ -45,17 +45,16 @@ const Carousel = ({ carouselItems }: carouselType) => {
             // }}
             >
                 {carouselItems.map((item, i) => (
-                    <SwiperSlide key={i}>
+                    <SwiperSlide key={i} >
                         <figure className="w-full h-full relative before:w-full
-                        before-h-full before:transition-opacity duration-100ms
-                        before:inset-0 before:z-10 before:absolute before:bg-black before:opacity-10">
+                            before:h-full before:transition-opacity duration-100ms
+                            before:inset-0 before:z-10 before:absolute before:bg-black/20">
                             <Image
                                 layout="fill"
                                 src={item.imageURL}
                                 alt={`image slide ${i}`}
                                 objectFit="cover"
                             />
-
                         </figure>
 
                     </SwiperSlide>

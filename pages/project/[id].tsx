@@ -6,6 +6,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { useEffect } from 'react'
 import Background from '../../components/Background'
 import Carousel from '../../components/Carousel'
+import Container from '../../components/Container'
 import FeatureContent, { FeatureContentImage } from '../../components/FeatureContent'
 import Header from '../../components/Header'
 import OtherProjectDisplay from '../../components/OtherProjectDisplay'
@@ -37,9 +38,9 @@ const Project = ({ project, otherProjects }: projectPageType) => {
     return (
         <Background>
             <PageHead title={project.title} />
-            <div className="space-y-32 container w-[98%]">
+            <Container className="space-y-32">
                 <Header >
-                    <div className='flex flex-col items-center justify-center space-y-12'>
+                    <div className='flex flex-col items-center justify-center space-y-12 w-full'>
                         <div className="project_description w-full md:w-11/12 items-center text-center space-y-6 flex flex-col">
                             <h1 className="text-[2rem] capitalize lg:text-display_lg font-bold text-center dark:text-slate-300">
                                 {project.title}
@@ -59,7 +60,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                             </Link>
                         </div>
 
-                        <figure className='min-w-full shadow-2xl shadow-gray-600  dark:shadow-slate-800 w-72 md:w-[750px] lg:w-[1022px] max-w-[83rem] h-[379px] md:h-[500px] lg:h-[800px] min-h-min bg-slate-200 round-md'>
+                        <figure className='w-full h-[379px] md:h-[500px] lg:h-[800px] bg-slate-100 dark:bg-slate-900 round-md'>
                             <Carousel carouselItems={carouselItems} />
                         </figure>
                     </div>
@@ -91,7 +92,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                     <OtherProjectDisplay other_projects={otherProjects} />
                 </div>
-            </div>
+            </Container>
         </Background>
     )
 }
