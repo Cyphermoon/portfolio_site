@@ -50,7 +50,7 @@ const Nav = ({ addAnimation }: navPropType) => {
         if (isAnimatable) {
             const navAnimation = gsap.from("#gsap_nav", {
                 opacity: 0,
-                duration: 1.2,
+                duration: 1,
             })
 
             addAnimation(navAnimation, 0.6)

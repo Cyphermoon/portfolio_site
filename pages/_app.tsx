@@ -1,13 +1,17 @@
 import type { AppProps } from 'next/app'
+import LoaderAnimationContext from '../context/LoaderAnimationContext'
 import ThemeProvider from '../context/ThemeProvider'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <LoaderAnimationContext>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </LoaderAnimationContext>
+
 
   )
 }

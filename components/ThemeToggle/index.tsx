@@ -17,12 +17,12 @@ const ThemeToggle = () => {
 
     return (
         <div className='relative'>
-            <span className='absolute -top-6 md:-top-4 left-1/2 -translate-x-1/2 w-full whitespace-nowrap text-center text-xs block m-0'>
+            <span className='absolute capitalize -top-6 md:-top-4 left-1/2 -translate-x-1/2 w-full whitespace-nowrap text-center text-xs block m-0'>
                 {activeThemeMode !== "os" && activeThemeMode + " mode"}
                 {activeThemeMode === "os" && "system theme"}
             </span>
 
-            <div className='flex align-baseline space-x-6 bg-slate-200 dark:bg-slate-700 rounded-lg py-1 px-4 '>
+            <div className='flex align-baseline space-x-6 bg-slate-200 dark:bg-slate-700 rounded-lg py-2.5 lg:py-1 px-4 '>
                 <ToggleButton handleClick={setDarkTheme} active={activeThemeMode === "dark"}>
                     <Image
                         style={{
