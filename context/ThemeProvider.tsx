@@ -4,6 +4,7 @@ type themeProviderType = {
     children: React.ReactNode
 }
 
+
 const ThemeContext = createContext({
     activeThemeMode: "",
     isDark: false,

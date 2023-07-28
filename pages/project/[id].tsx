@@ -37,7 +37,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
     return (
         <Background>
-            <PageHead title={project.title} />
+            <PageHead title={`${project.title} - Kelvin's Portfolio Project `} />
             <Container className="space-y-32">
                 <Header >
                     <div className='flex flex-col items-center justify-center space-y-12 w-full'>

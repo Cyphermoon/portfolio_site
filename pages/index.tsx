@@ -12,6 +12,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import PageHead from '../components/PageHead'
 import ProjectDisplaySection from '../components/ProjectDisplaySection'
 import SkillDisplaySection from '../components/SkillDisplaySection'
+import { useLoaderAnimation } from '../context/LoaderAnimationContext'
 import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SocialContactQuery } from '../sanity-queries/project.query'
 import { homePageType } from '../types'
 import { sanityClient } from "../utils/sanity_config"
@@ -21,17 +22,18 @@ const Home: NextPage<homePageType> = (
   { landing_section, about_data, social_medias, skill_list, projects }
 ) => {
   // page animation
-  const [animationComplete, setAnimationComplete] = useState(true)
   const [timeline,] = useState(() => gsap.timeline({
     defaults: {
       ease: "slow(0.3, 0.4, false)",
       duration: 1,
     }
-  }).delay(1));
+  }));
 
   const addAnimation = useCallback((animation: GSAPTween, index: number) => {
     timeline.add(animation, index)
   }, [timeline])
+
+  const { animationLoading, setAnimationLoading } = useLoaderAnimation()
 
 
   useEffect(() => {
@@ -56,8 +58,8 @@ const Home: NextPage<homePageType> = (
 
   return (
     <Background addAnimation={addAnimation}>
-      <PageHead title={`Portfolio Home`} />
-      {animationComplete && <LoadingScreen setLoading={setAnimationComplete} />}
+      <PageHead title={`Kelvin's Portfolio`} />
+      {animationLoading && <LoadingScreen setLoading={setAnimationLoading} />}
 
       <Container className='space-y-32'>
         <Header addAnimation={addAnimation} >
