@@ -16,6 +16,7 @@ import { useLoaderAnimation } from '../context/LoaderAnimationContext'
 import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SocialContactQuery } from '../sanity-queries/project.query'
 import { homePageType } from '../types'
 import { sanityClient } from "../utils/sanity_config"
+import { isDevMode } from '../utils/index.util'
 
 
 const Home: NextPage<homePageType> = (
@@ -59,7 +60,7 @@ const Home: NextPage<homePageType> = (
   return (
     <Background addAnimation={addAnimation}>
       <PageHead title={`Kelvin's Portfolio`} />
-      {animationLoading && <LoadingScreen setLoading={setAnimationLoading} />}
+      {!isDevMode && animationLoading && <LoadingScreen setLoading={setAnimationLoading} />}
 
       <Container className='space-y-32'>
         <Header addAnimation={addAnimation} >
