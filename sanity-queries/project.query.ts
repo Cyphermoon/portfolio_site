@@ -23,7 +23,7 @@ export const CategoriesQuery = `
 export const getCategoryProjectsQuery = (id: string) => {
   const isAllCategory = id === "all"
 
-  if(isAllCategory){
+  if (isAllCategory) {
     return `
     *[_type=='project_category']{
       _id,
@@ -92,10 +92,11 @@ export const SocialContactQuery = `
 
 export const ProgrammingLanguageQuery = `
 *[_type=='programming_language' && isVisible == true]{
-    'altText':icon->alt_text,
-    'name':name,
-    'url':icon->image.asset->url
-  }
+  'altText':icon->alt_text,
+  'name':name,
+  'url':icon->image.asset->url,
+  'category': category -> field
+}
 `;
 
 

@@ -36,19 +36,19 @@ export type backgroundType = {
     addAnimation?: function
 }
 
-export type projectCardType={
+export type projectCardType = {
     title: string,
     description: string,
     imageURL: string,
     projectId: number
 }
 
-export type skillCardType={
+export type skillCardType = {
     title: string,
     imageURL: string,
     altContent: string,
-    width?:string,
-    height?:string
+    width?: string,
+    height?: string,
 }
 
 export type inputType = {
@@ -63,11 +63,11 @@ export type inputType = {
 export type socialCardType = {
     title: string,
     imageURL: string,
-    href:string
+    href: string
 }
 
 export type carouselType = {
-    carouselItems:{imageURL:string}[]
+    carouselItems: { imageURL: string }[]
 }
 
 export type featureContentType = {
@@ -94,7 +94,7 @@ export type successModalType = {
 }
 
 export type aboutSectionType = {
-    about_data:{
+    about_data: {
         texts: string[]
     }
     addAnimation: function
@@ -105,12 +105,12 @@ type socialMedia = {
     displayText: string,
     social_media_logo: string,
     url: string
-    altText:string
+    altText: string
 }[]
 
 export type socialMediaDisplayType = {
-    social_medias:socialMedia,
-    addAnimation:function
+    social_medias: socialMedia,
+    addAnimation: function
 }
 
 export type contactFormPropType = {
@@ -123,69 +123,70 @@ export type contactSectionType = {
 }
 
 export type skillDisplaySectionType = {
-    skill_list:skillDisplayType,
-    addAnimation:function,
+    skill_list: skillDisplayType,
+    addAnimation: function,
 }
 
 type skillDisplayType = {
     url: string,
     name: string,
+    altText: string,
+    category: string,
+}[]
+
+
+type projectDisplayType = {
+    title: string,
+    description: string,
+    cover_image: string,
+    _id: number,
     altText: string
 }[]
 
- 
-  type projectDisplayType =  {
-        title: string,
-        description: string,
-        cover_image: string,
-        _id: number,
-        altText: string
-    }[]
-
 export type projectDisplaySectionType = {
-    projects:projectDisplayType
-    addAnimation:function
+    projects: projectDisplayType
+    addAnimation: function
 }
 
 type techStack = {
-        backend:{
-            icon_url: string,
-            name: string, 
-            altText: string
-        }[],
-        frontend:{
-            icon_url: string,
-            name: string, 
-            altText: string
-        }[]
-        others:{
-            icon_url: string,
-            name: string, 
-            altText: string
-        }[]
-    
+    backend: {
+        icon_url: string,
+        name: string,
+        altText: string
+    }[],
+    frontend: {
+        icon_url: string,
+        name: string,
+        altText: string
+    }[]
+    others: {
+        icon_url: string,
+        name: string,
+        altText: string
+    }[]
+
 }
 
 export type techStackDisplayType = {
-    tech_stacks:techStack
+    tech_stacks: techStack
 }
 
 export type projectPageType = {
     project: {
-        slideshow_images:{imageURL: string}[],
-        tech_stack:techStack,
+        slideshow_images: { imageURL: string }[],
+        tech_stack: techStack,
         status?: string,
 
-        functionality:{
+        functionality: {
             header: string,
             description: string,
             image_url: string,
             altText: string
         }[],
 
-        title:string,
+        title: string,
         description: string
-        link:sanityLink
+        link: sanityLink
     },
 
     otherProjects: otherProjectType
@@ -198,17 +199,17 @@ export type otherProjectDisplayType = {
 }
 
 type sanityLink = {
-    display_text:string,
+    display_text: string,
     href: string
 }
 
 export type homePageType = {
     landing_section: {
-        introductory_text:string,
+        introductory_text: string,
         role: string,
         elongated_text: string,
-        contact_btn:sanityLink,
-        get_resume_btn:sanityLink
+        contact_btn: sanityLink,
+        get_resume_btn: sanityLink
     },
     about_data: any,
     social_medias: socialMedia,
