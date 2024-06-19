@@ -85,6 +85,18 @@
     .clip-moon{
         clip-path: ellipse(35% 38% at 42% 50%);
     }  
+
+    .background-layer::before{
+        content: "";
+        width: 110%;
+        height: 110%;
+        top: -10%;
+        left: -10%;
+        position: absolute;
+        /* z-index: -1; */
+        background-color: theme("colors.slate.600");
+        border-radius: 100%;
+    }
 }
 
 
