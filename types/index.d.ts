@@ -95,7 +95,11 @@ export type successModalType = {
 
 export type aboutSectionType = {
     about_data: {
-        texts: string[]
+        texts: string[],
+        profilePhoto: {
+            url: string,
+            alt: string
+        }
     }
     addAnimation: function
 }

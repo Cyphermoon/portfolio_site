@@ -30,7 +30,7 @@ const Home: NextPage<homePageType> = (
     }
   }));
 
-  const addAnimation = useCallback((animation: GSAPTween, index: number) => {
+  const addAnimation = useCallback((animation: GSAPTween, index: number | string) => {
     timeline.add(animation, index)
   }, [timeline])
 
@@ -38,24 +38,32 @@ const Home: NextPage<homePageType> = (
 
 
   useEffect(() => {
+    // Registering the ScrollTrigger plugin with GSAP
     gsap.registerPlugin(ScrollTrigger)
 
+    // Setting default properties for ScrollTrigger
     ScrollTrigger.defaults({
       toggleActions: "restart pause resume pause"
     })
 
+    // Creating an animation for the header
+    // The animation targets the element with class 'gsap_header'
+    // It translates the element 10% upwards, over a duration of 1.5 seconds, and sets its initial opacity to 0
     const headerAnimation = gsap.from(".gsap_header", {
       translateY: "-10%",
       duration: 1.5,
       opacity: 0,
     })
 
+    // Adding the created animation to a queue with a delay of 1.5 seconds
     addAnimation(headerAnimation, 1.5)
 
+    // Returning a cleanup function that will be called when the component unmounts
+    // This function reverts the animation to its original state
     return () => {
       headerAnimation.revert()
     }
-  }, [addAnimation, timeline])
+  }, [addAnimation, timeline]) // The effect depends on the 'addAnimation' function and 'timeline' variable
 
   return (
     <Background addAnimation={addAnimation}>

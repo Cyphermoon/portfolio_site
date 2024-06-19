@@ -48,7 +48,7 @@ const SocialMediaDisplay = ({ social_medias, addAnimation }: socialMediaDisplayT
         return () => {
             socialMediaDisplayAnimation.revert()
         }
-    }, [addAnimation])
+    }, [])
 
     return (
         <div className='social_display grid grid-cols-3 gap-4 md:gap-6 content-start h-max'>

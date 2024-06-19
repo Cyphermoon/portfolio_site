@@ -47,7 +47,7 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
         return () => {
             projectDisplayAnimation.revert()
         }
-    }, [addAnimation])
+    }, [])
 
     return (
         <>

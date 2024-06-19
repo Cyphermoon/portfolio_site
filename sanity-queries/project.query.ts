@@ -66,8 +66,13 @@ export const LandingPageQuery = `
 
 
 export const AboutMeQuery = `
-*[_type=='about_me' && _id=='0ccfd969-350e-4fe0-ab13-e3ef1770ebbc']{
-    'texts': content[].children[].text
+  *[_type=='about_me' && _id=='0ccfd969-350e-4fe0-ab13-e3ef1770ebbc']{
+    'texts': content[].children[].text,
+  'profilePhoto':{
+    'url': profile_photo -> image.asset -> url,
+    'alt': profile_photo -> alt_text
+  }
+
   }
 `;
 

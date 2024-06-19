@@ -23,7 +23,7 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
         return () => {
             projectDisplayAnimation.revert()
         }
-    }, [addAnimation])
+    }, [])
 
 
     return (
