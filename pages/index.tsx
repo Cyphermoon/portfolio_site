@@ -13,14 +13,15 @@ import PageHead from '../components/PageHead'
 import ProjectDisplaySection from '../components/ProjectDisplaySection'
 import SkillDisplaySection from '../components/SkillDisplaySection'
 import { useLoaderAnimation } from '../context/LoaderAnimationContext'
-import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SocialContactQuery } from '../sanity-queries/project.query'
+import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SchoolHistoryQuery, SocialContactQuery } from '../sanity-queries/project.query'
 import { homePageType } from '../types'
 import { sanityClient } from "../utils/sanity_config"
 import { isDevMode } from '../utils/index.util'
+import SchoolHistorySection from '../components/SchoolHistorySection'
 
 
 const Home: NextPage<homePageType> = (
-  { landing_section, about_data, social_medias, skill_list, projects }
+  { landing_section, about_data, social_medias, skill_list, projects, school_history }
 ) => {
   // page animation
   const [timeline,] = useState(() => gsap.timeline({
@@ -81,7 +82,7 @@ const Home: NextPage<homePageType> = (
             <div className="w-full self-center lg:w-6/12 flex flex-col sm:flex-row-reverse justify-between sm:space-x-4 space-y-4 sm:space-y-0">
 
               <Link href={landing_section?.get_resume_btn?.href} passHref >
-                <a className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-200 dark:text-slate-200 sm:ml-5
+                <a target={'_blank'} className="capitalize group block relative shadow-lg shadow-blue-400 dark:shadow-gray-900 w-full md:w-3/4 bg-blue-500 rounded-full px-10 sm:px-14 py-4 text-base text-white hover:text-slate-200 dark:text-slate-200 sm:ml-5
                 ">
                   <span className='w-full block h-full absolute rounded-full bg-red-300 top-0 left-0
                     scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
@@ -95,7 +96,7 @@ const Home: NextPage<homePageType> = (
               </Link>
 
               <Link href={landing_section?.contact_btn?.href} passHref>
-                <a target={'_blank'} className="capitalize group block relative dark:shadow-lg  dark:shadow-gray-900 w-full md:w-3/4 bg-transparent border-2 border-blue-400 rounded-full px-10 sm:px-14 py-4 text-base text-blue-500 dark:text-slate-200 hover:text-slate-200">
+                <a className="capitalize group block relative dark:shadow-lg  dark:shadow-gray-900 w-full md:w-3/4 bg-transparent border-2 border-blue-400 rounded-full px-10 sm:px-14 py-4 text-base text-blue-500 dark:text-slate-200 hover:text-slate-200">
 
                   <span className='w-full block h-full absolute rounded-full bg-blue-400 top-0 left-0
                     scale-y-1 scale-x-0 group-hover:scale-x-100 origin-left  
@@ -111,6 +112,7 @@ const Home: NextPage<homePageType> = (
           </div>
         </Header>
         <SkillDisplaySection addAnimation={addAnimation} skill_list={skill_list} />
+        <SchoolHistorySection history={school_history} />
         <AboutSection addAnimation={addAnimation} about_data={about_data} />
         <ProjectDisplaySection addAnimation={addAnimation} projects={projects} />
         <ContactSection addAnimation={addAnimation} social_medias={social_medias} />
@@ -123,27 +125,35 @@ const Home: NextPage<homePageType> = (
 export async function getStaticProps() {
 
   try {
-    var landing_section = (await sanityClient.fetch(LandingPageQuery))[0];
-    var about_data = (await sanityClient.fetch(AboutMeQuery))[0]
-    var social_medias = await sanityClient.fetch(SocialContactQuery)
-    var skill_list = await sanityClient.fetch(ProgrammingLanguageQuery)
-    var projects = await sanityClient.fetch(BestProjectQuery)
+    // pre fetch data required in each section of portfolio
+    let landing_section = (await sanityClient.fetch(LandingPageQuery))[0];
+    let about_data = (await sanityClient.fetch(AboutMeQuery))[0]
+    let social_medias = await sanityClient.fetch(SocialContactQuery)
+    let skill_list = await sanityClient.fetch(ProgrammingLanguageQuery)
+    let projects = await sanityClient.fetch(BestProjectQuery)
+    let school_history = await sanityClient.fetch(SchoolHistoryQuery)
+
+    // This `prop` key is the fetched data and will be passed to the `Home` component
+    return {
+      props: {
+        landing_section,
+        about_data,
+        social_medias,
+        skill_list,
+        projects,
+        school_history
+      },
+      revalidate: 100
+    }
   }
   catch (err) {
-    if (err instanceof Error)
+    // handle any error that occurs while fetching the data
+    if (err instanceof Error) {
       console.error(err.message)
-  }
+      throw new Error("An Error occured While fetching the data. Please try again later")
+    }
 
-
-  return {
-    props: {
-      landing_section,
-      about_data,
-      social_medias,
-      skill_list,
-      projects
-    },
-    revalidate: 100
+    return null
   }
 }
 

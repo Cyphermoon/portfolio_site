@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image"
 import React from "react"
+import { SchoolCardProps } from "../components/SchoolHistorySection/components/SchoolCard"
 
 
 export type containerType = {
@@ -218,5 +219,6 @@ export type homePageType = {
     about_data: any,
     social_medias: socialMedia,
     skill_list: skillDisplayType,
-    projects: projectDisplayType
+    projects: projectDisplayType,
+    school_history: SchoolCardProps[]
 }

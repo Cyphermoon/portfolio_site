@@ -114,3 +114,20 @@ export const otherProjectsQuery = (currentProjectId: string) => `
     'cover_image':cover_image->image.asset->url
   }
 `;
+
+export const SchoolHistoryQuery = `
+  *[_type=='school_history'] | order(start_date asc){
+      'grade':grade,
+    'schoolLogo':{
+      'url': school_image -> image.asset -> url,
+      'alt': school_image -> alt_text
+    },
+    'schoolName': school_name,
+    'courseName': course_name,
+    'startDate': start_date,
+    'endDate': end_date,
+    'abbr': school_abbr,
+    'slug': slug.current,
+    'certificate': certificate
+}
+`
