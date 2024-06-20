@@ -181,7 +181,7 @@ export type projectPageType = {
         slideshow_images: { imageURL: string }[],
         tech_stack: techStack,
         status?: string,
-
+        video_id: string,
         functionality: {
             header: string,
             description: string,

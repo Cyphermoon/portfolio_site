@@ -61,7 +61,21 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                         </div>
 
                         <figure className='w-full h-[379px] md:h-[500px] lg:h-[800px] bg-slate-100 dark:bg-slate-900 round-md'>
-                            <Carousel carouselItems={carouselItems} />
+                            {
+                                project.video_id ?
+                                    <iframe
+                                        className='w-full h-full'
+                                        src={`https://www.youtube.com/embed/${project.video_id}`}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        loading="lazy" // Add this attribute for lazy loading
+                                    >
+                                        I Frame is not supported in this browser
+                                    </iframe>
+                                    : <Carousel carouselItems={carouselItems} />
+                            }
                         </figure>
                     </div>
 
@@ -108,8 +122,10 @@ export async function getStaticProps({ params }: GetStaticPropsContext<ParamProp
            "frontend":tech_stack.frontend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
           "others":tech_stack.others[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text}
            } ,
-        "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
-        }`)
+        "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text},
+        "video_id": video_id
+        }
+        `)
 
     const otherProjects = await sanityClient.fetch(otherProjectsQuery(params?.id ?? ""))
 

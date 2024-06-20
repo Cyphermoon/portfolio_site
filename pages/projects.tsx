@@ -1,5 +1,5 @@
 import { gsap } from 'gsap'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { CiBatteryEmpty } from 'react-icons/ci'
 import CategorySelector from '../components/CategorySelector'
 import Container from '../components/Container'
@@ -18,13 +18,13 @@ interface Props {
 
 
 const Projects = ({ _categories }: Props) => {
-    const categories: CategoryItemProps[] = [
+    const categories: CategoryItemProps[] = useMemo(() => [
         {
             _id: "all",
             name: "All"
         },
         ..._categories
-    ]
+    ], [_categories])
 
     const [selectedCategory, setSelectedCategory] = useState<CategoryItemProps>()
     const [categoryProjects, setCategoryProjects] = useState<CategoryProjectsProps[]>([])
@@ -153,7 +153,7 @@ export default Projects
 
 
 export async function getStaticProps() {
-    // make page requests
+    // prefetch all the categories in sanity
     try {
         var _categories = await sanityClient.fetch(CategoriesQuery)
         _categories = _categories.sort((a: CategoryItemProps, b: CategoryItemProps) => a.name.localeCompare(b.name))
