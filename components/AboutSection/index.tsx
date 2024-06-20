@@ -31,7 +31,7 @@ const AboutSection = ({ about_data, addAnimation }: aboutSectionType) => {
     }, [addAnimation])
 
     return (
-        <section className='gsap_about space-y-8 pt-20 lg:pt-10'>
+        <section className='gsap_about space-y-6 pt-20 lg:pt-0'>
             <h2 className='dark:text-slate-300 hidden lg:block'>About</h2>
             <div className='p-4 lg:py-12 lg:px-8 mx-auto rounded-xl bg-slate-200 dark:bg-slate-800 w-full flex flex-col lg:flex-row lg:justify-between lg:items-center lg:space-x-10 '>
                 <div className='lg:w-5/12 flex flex-col items-center justify-between space-y-8 relative'>

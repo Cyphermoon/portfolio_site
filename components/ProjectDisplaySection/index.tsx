@@ -27,9 +27,9 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
 
 
     return (
-        <section id='projects_section' className='project_display_section space-y-8'>
+        <section id='projects_section' className='project_display_section space-y-6'>
             {projects.length > 0 && <h2 className='dark:text-slate-300'>Projects</h2>}
-            <div className='w-full grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-dynamic justify-items-center md:justify-items-start gap-9 sm:gap-5'
+            <div className='w-full grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-dynamic justify-items-center md:justify-items-start gap-4 sm:gap-5'
                 style={{ perspective: "1000px" }}>
 
                 {projects.map((project, idx) => {

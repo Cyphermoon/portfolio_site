@@ -41,7 +41,7 @@ const SkillDisplaySection = ({ skill_list, addAnimation }: skillDisplaySectionTy
   }, [addAnimation])
 
   return (
-    <section id='skills_section' className='skill_display space-y-8'>
+    <section id='skills_section' className='skill_display space-y-6'>
       <h2 className='dark:text-slate-300'>Skills</h2>
       <div className='w-full flex flex-col lg:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-12 gap-4 dark:bg-slate-800 bg-slate-200 lg:bg-transparent lg:dark:bg-transparent shadow-md md:shadow-none py-6 px-5 md:px-0 rounded-xl '>
         <SkillCategorySection skill_list={webStacks} title='Web' className='col-span-9' />

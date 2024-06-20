@@ -9,9 +9,9 @@ const SchoolHistorySection = ({ history }: Props) => {
 
 
     return (
-        <section>
-            <h2 className='dark:text-slate-300 mb-8'>School History</h2>
-            <div className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-3 items-start justify-between'>
+        <section className='space-y-6'>
+            <h2 className='dark:text-slate-300'>School History</h2>
+            <div className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-start justify-between'>
                 {history.map((school) => {
                     return <SchoolCard
                         key={school.schoolName}
