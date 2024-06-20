@@ -52,7 +52,7 @@ const SchoolCard = ({ grade, schoolLogo, schoolName, courseName, startDate, endD
             </div>
 
             {/*CTA to view projects*/}
-            <Link href={`/projects?name=${slug}`} passHref>
+            <Link href={`/projects?category=${slug}`} passHref>
                 <a className="block w-full text-center py-5 rounded-xl shadow-md shadow-slate-300 dark:shadow-slate-900 duration-200 transition-colors hover:bg-slate-300 dark:hover:bg-slate-700" >
                     View Projects
                 </a>

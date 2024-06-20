@@ -9,6 +9,7 @@ import PageHead from '../components/PageHead'
 import SmallProjectCardSection from '../components/SmallProjectCardSection'
 import { CategoriesQuery, getCategoryProjectsQuery } from '../sanity-queries/project.query'
 import { sanityClient } from '../utils/sanity_config'
+import { useRouter } from 'next/router'
 
 
 interface Props {
@@ -25,23 +26,50 @@ const Projects = ({ _categories }: Props) => {
         ..._categories
     ]
 
-    const [selectedCategory, setSelectedCategory] = useState<CategoryItemProps>(categories[0])
+    const [selectedCategory, setSelectedCategory] = useState<CategoryItemProps>()
     const [categoryProjects, setCategoryProjects] = useState<CategoryProjectsProps[]>([])
     const [projectsLoading, setProjectsLoading] = useState(true)
 
+    const router = useRouter()
+    const urlCategory = router.query.category as string
+
     const handleCategoryChanged = (category: CategoryItemProps) => {
         setSelectedCategory(category)
-
     }
 
     useEffect(() => {
+        if (!router.isReady) return
+
+        // if no category param in the url, display all projects
+        if (!urlCategory) {
+            setSelectedCategory(categories[0])
+            return
+        }
+        // try to find the url category in the categories array
+        const category = categories.find(cat => cat.name.toLowerCase() === urlCategory)
+        // set the category it it exists in the database
+        if (category) {
+            setSelectedCategory(category)
+        }
+        // else, display all projects
+        else {
+            setSelectedCategory(categories[0])
+        }
+    }, [urlCategory, router.isReady, categories])
+
+
+    useEffect(() => {
+        if (!selectedCategory?._id) return
+        // set loading to true
         setProjectsLoading(true)
+
+        // fetch projects for selected category
         sanityClient.fetch(getCategoryProjectsQuery(selectedCategory._id))
             .then((res) => setCategoryProjects(res))
             .catch((err) => console.error(err.message))
             .finally(() => setProjectsLoading(false))
 
-    }, [selectedCategory._id])
+    }, [selectedCategory?._id])
 
 
     useEffect(() => {
@@ -68,13 +96,12 @@ const Projects = ({ _categories }: Props) => {
                     <Header />
                 </Container>
                 <Container className='space-y-12 flex flex-col !px-0'>
-                    <h1 className='bg-gradient-to-r from-slate-700 to-slate-600  dark:from-blue-600 dark:via-blue-400 dark:to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory.name} Projects</h1>
+                    <h1 className='bg-gradient-to-r from-slate-700 to-slate-600  dark:from-blue-600 dark:via-blue-400 dark:to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory ? selectedCategory.name + " Projects" : "..............."} </h1>
 
                     <div className='bg-none md:dark:bg-slate-800 md:bg-slate-200 shadow-md py-6 px-5 rounded-xl flex flex-col start space-y-12'>
                         <CategorySelector
                             selectedCategory={selectedCategory}
                             categories={categories}
-                            value={selectedCategory}
                             handleCategoryChanged={handleCategoryChanged} />
 
                         <section className="space-y-28 pb-5 min-h-[300px]">
@@ -107,6 +134,7 @@ const Projects = ({ _categories }: Props) => {
 
                                         }) :
                                     <div className="w-full grid place-items-center text-5xl">
+                                        {/* Show spinner while loading projects */}
                                         <Spinner />
                                     </div>
 
