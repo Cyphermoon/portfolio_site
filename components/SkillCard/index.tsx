@@ -9,7 +9,7 @@ const normalizeLanguageName = (name: string) => {
 
 const getImageFilter = (title: string, isDark: boolean) => {
     // Normalize the title to ensure consistency in comparison
-    const normalizedTitle = normalizeLanguageName(title)
+    const normalizedTitle = normalizeLanguageName(title);
 
     // Check if the normalized title is not included in the list of dark logos
     // If it's not, return undefined indicating no filter is needed

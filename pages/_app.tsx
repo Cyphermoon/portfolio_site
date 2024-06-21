@@ -6,11 +6,11 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-    <LoaderAnimationContext>
-      <ThemeProvider>
+    <ThemeProvider>
+      <LoaderAnimationContext>
         <Component {...pageProps} />
-      </ThemeProvider>
-    </LoaderAnimationContext>
+      </LoaderAnimationContext>
+    </ThemeProvider>
 
 
   )

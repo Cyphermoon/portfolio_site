@@ -9,4 +9,5 @@ export const formateDate = (date: Date) => {
     return `${date.getFullYear()}/${month >= 10 ? month : "0" + month}`
 }
 
-export const isDevMode = process.env.NODE_ENV === "development"
+// export const isDevMode = process.env.NODE_ENV === "development"
+export const isDevMode = false

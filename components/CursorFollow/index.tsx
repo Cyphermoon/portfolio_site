@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useAnimationClass } from '../../hooks/animationHook/index.hook';
 
 
@@ -38,13 +38,13 @@ const CursorFollow = ({ addAnimation }: cursorFollowPropType) => {
 
     }, [addAnimation])
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = useCallback((e: MouseEvent) => {
         // define variables to move the cursorFollow component
         setTop(e.pageY - 22)
         setLeft(e.pageX - 22);
 
         setCursorFollow(cursorRef, top, left)
-    }
+    }, [left, top])
 
 
     useEffect(() => {

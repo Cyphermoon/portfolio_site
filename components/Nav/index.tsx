@@ -51,9 +51,10 @@ const Nav = ({ addAnimation }: navPropType) => {
             const navAnimation = gsap.from("#gsap_nav", {
                 opacity: 0,
                 duration: 1,
+                translateY: -10
             })
 
-            addAnimation(navAnimation, 0.6)
+            addAnimation(navAnimation, ">")
 
             return () => {
                 navAnimation.revert()

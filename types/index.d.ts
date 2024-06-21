@@ -6,6 +6,7 @@ import { SchoolCardProps } from "../components/SchoolHistorySection/components/S
 export type containerType = {
     children: React.ReactNode
     className?: string
+    id?: string
 }
 
 export type navItemType = {
@@ -22,6 +23,7 @@ export type hamburgerType = {
 export type headerType = {
     addAnimation?: function
     children?: React.ReactNode
+    heightFull?: boolean
 }
 
 export type navPropType = {

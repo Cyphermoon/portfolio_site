@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import AboutSection from '../components/AboutSection'
 import Background from '../components/Background'
 import ContactSection from '../components/ContactSection'
@@ -19,6 +19,8 @@ import { sanityClient } from "../utils/sanity_config"
 import { isDevMode } from '../utils/index.util'
 import SchoolHistorySection from '../components/SchoolHistorySection'
 
+// Registering the ScrollTrigger plugin with GSAP
+gsap.registerPlugin(ScrollTrigger)
 
 const Home: NextPage<homePageType> = (
   { landing_section, about_data, social_medias, skill_list, projects, school_history }
@@ -37,15 +39,24 @@ const Home: NextPage<homePageType> = (
 
   const { animationLoading, setAnimationLoading } = useLoaderAnimation()
 
-
   useEffect(() => {
-    // Registering the ScrollTrigger plugin with GSAP
-    gsap.registerPlugin(ScrollTrigger)
-
     // Setting default properties for ScrollTrigger
     ScrollTrigger.defaults({
       toggleActions: "restart pause resume pause"
     })
+
+    // Create animation to reveal the container
+    // Creating an animation for the container with id 'reveal_container'
+    // It sets the initial opacity to 0 and gradually increases it to 1
+    const revealAnimation = gsap.to("#reveal_container", {
+      autoAlpha: 1,
+      ease: "linear",
+    })
+
+    // Adding the created animation to the timeline at the beginning (index 0)
+    addAnimation(revealAnimation, 0)
+
+    // Create animation to remove the visibility of the container
 
     // Creating an animation for the header
     // The animation targets the element with class 'gsap_header'
@@ -63,6 +74,7 @@ const Home: NextPage<homePageType> = (
     // This function reverts the animation to its original state
     return () => {
       headerAnimation.revert()
+      revealAnimation.revert()
     }
   }, [addAnimation, timeline]) // The effect depends on the 'addAnimation' function and 'timeline' variable
 
@@ -71,8 +83,8 @@ const Home: NextPage<homePageType> = (
       <PageHead title={`Kelvin's Portfolio`} />
       {!isDevMode && animationLoading && <LoadingScreen setLoading={setAnimationLoading} />}
 
-      <Container className='space-y-32'>
-        <Header addAnimation={addAnimation} >
+      <Container id='reveal_container' className='space-y-32 visible'>
+        <Header addAnimation={addAnimation}  >
           <div className="gsap_header w-full md:w-9/12 text-center space-y-9 flex flex-col opacity-100">
             <h1 className="normal-case text-[2.75rem] md:text-5xl dark:text-slate-300  lg:text-display_lg font-bold text-center">{landing_section.introductory_text}<span className="capitalize text-blue-500"> {landing_section.role}</span></h1>
 
@@ -90,7 +102,6 @@ const Home: NextPage<homePageType> = (
 
                   <span className='block z-10 relative'>
                     {landing_section.get_resume_btn.display_text}
-
                   </span>
                 </a>
               </Link>
