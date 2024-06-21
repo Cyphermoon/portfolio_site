@@ -4,11 +4,13 @@ import { useEffect } from 'react'
 import { TECH_STACK } from '../../constants'
 import { skillDisplaySectionType, skillDisplayType } from '../../types'
 import SkillCard from '../SkillCard'
+import { useTheme } from '../../context/ThemeProvider'
 
 interface SkillCategorySectionProps {
   skill_list: skillDisplayType
   title: string
   className?: string
+  isDark: boolean
 
 }
 
@@ -20,6 +22,8 @@ const SkillDisplaySection = ({ skill_list, addAnimation }: skillDisplaySectionTy
   const mobileStacks = skill_list.filter(skill => skill.category === TECH_STACK.mobile)
   const toolsStacks = skill_list.filter(skill => skill.category === TECH_STACK.tools)
   const languagesStacks = skill_list.filter(skill => skill.category === TECH_STACK.languages)
+
+  const { isDark } = useTheme()
 
 
 
@@ -44,11 +48,11 @@ const SkillDisplaySection = ({ skill_list, addAnimation }: skillDisplaySectionTy
     <section id='skills_section' className='skill_display space-y-6'>
       <h2 className='dark:text-slate-300'>Skills</h2>
       <div className='w-full flex flex-col lg:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-12 gap-4 dark:bg-slate-800 bg-slate-200 lg:bg-transparent lg:dark:bg-transparent shadow-md md:shadow-none py-6 px-5 md:px-0 rounded-xl '>
-        <SkillCategorySection skill_list={webStacks} title='Web' className='col-span-9' />
-        <SkillCategorySection skill_list={mobileStacks} title='Mobile' className='col-span-3' />
-        <SkillCategorySection skill_list={languagesStacks} title='Languages' className='col-span-5' />
-        <SkillCategorySection skill_list={backendStacks} title='Backend' className='col-span-3' />
-        <SkillCategorySection skill_list={toolsStacks} title='Tools' className='col-span-4' />
+        <SkillCategorySection isDark={isDark} skill_list={webStacks} title='Web' className='col-span-9' />
+        <SkillCategorySection isDark={isDark} skill_list={mobileStacks} title='Mobile' className='col-span-3' />
+        <SkillCategorySection isDark={isDark} skill_list={languagesStacks} title='Languages' className='col-span-5' />
+        <SkillCategorySection isDark={isDark} skill_list={backendStacks} title='Backend' className='col-span-3' />
+        <SkillCategorySection isDark={isDark} skill_list={toolsStacks} title='Tools' className='col-span-4' />
       </div>
 
     </section>
@@ -58,7 +62,7 @@ const SkillDisplaySection = ({ skill_list, addAnimation }: skillDisplaySectionTy
 export default SkillDisplaySection
 
 
-const SkillCategorySection = ({ skill_list, title, className }: SkillCategorySectionProps) => {
+const SkillCategorySection = ({ skill_list, title, className, isDark }: SkillCategorySectionProps) => {
   return (
     <div className={`bg-transparent lg:dark:bg-slate-800 lg:bg-slate-200 rounded-xl ${className} px-4 py-5 md:shadow-md md:dark:shadow-slate-800`}>
       <h3 className='dark:text-slate-300 mb-4'>{title}</h3>
@@ -66,6 +70,7 @@ const SkillCategorySection = ({ skill_list, title, className }: SkillCategorySec
         {skill_list.map((skill, idx) => {
           return <SkillCard
             key={idx}
+            isDark={isDark}
             imageURL={skill.url}
             title={skill.name}
             altContent={skill.altText} />

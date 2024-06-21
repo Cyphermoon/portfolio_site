@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useTheme } from '../../context/ThemeProvider'
 import { socialCardType, socialMediaDisplayType } from '../../types'
+import { IMAGE_DARK_FILTER, IMAGE_LIGHT_FILTER } from '../../constants'
 
-const SocialCard = ({ title, imageURL, href }: socialCardType) => {
-    const { isDark } = useTheme()
+const SocialCard = ({ title, imageURL, href, isDark }: socialCardType) => {
 
     return (
         <Link href={href} passHref={true}>
@@ -15,9 +15,7 @@ const SocialCard = ({ title, imageURL, href }: socialCardType) => {
                 <figure className='w-fill h-3/5 lg:3/4 relative dark:fill-white'>
                     <Image
                         style={{
-                            filter: `${isDark
-                                ? "invert(93%) sepia(16%) saturate(103%) hue-rotate(177deg) brightness(96%) contrast(96%)"
-                                : "brightness(0) saturate(100%) invert(9%) sepia(11%) saturate(3937%) hue-rotate(180deg) brightness(97%) contrast(83%)"}`
+                            filter: `${isDark ? IMAGE_LIGHT_FILTER : IMAGE_DARK_FILTER}`
                         }}
                         layout='fill'
                         src={imageURL}
@@ -31,6 +29,7 @@ const SocialCard = ({ title, imageURL, href }: socialCardType) => {
 }
 
 const SocialMediaDisplay = ({ social_medias, addAnimation }: socialMediaDisplayType) => {
+    const { isDark } = useTheme()
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger)
@@ -57,6 +56,7 @@ const SocialMediaDisplay = ({ social_medias, addAnimation }: socialMediaDisplayT
                     <SocialCard
                         key={idx}
                         title={data.displayText}
+                        isDark={isDark}
                         imageURL={data.social_media_logo}
                         href={data.url} />
                 ))}

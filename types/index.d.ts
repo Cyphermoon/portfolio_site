@@ -50,6 +50,7 @@ export type skillCardType = {
     altContent: string,
     width?: string,
     height?: string,
+    isDark: boolean
 }
 
 export type inputType = {
@@ -64,7 +65,8 @@ export type inputType = {
 export type socialCardType = {
     title: string,
     imageURL: string,
-    href: string
+    href: string,
+    isDark: boolean,
 }
 
 export type carouselType = {

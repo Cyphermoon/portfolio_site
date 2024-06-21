@@ -95,6 +95,7 @@ const Projects = ({ _categories }: Props) => {
                 <Container>
                     <Header />
                 </Container>
+
                 <Container className='space-y-12 flex flex-col !px-0'>
                     <h1 className='bg-gradient-to-r from-slate-700 to-slate-600  dark:from-blue-600 dark:via-blue-400 dark:to-blue-500 bg-clip-text text-fill-color-transparent  text-6xl lg:text-8xl p-2 text-center'>{selectedCategory ? selectedCategory.name + " Projects" : "..............."} </h1>
 
@@ -124,6 +125,7 @@ const Projects = ({ _categories }: Props) => {
                                                     </div>
                                                 )
                                             }
+                                            if (category.projects.length === 0) return null
                                             return (
                                                 <SmallProjectCardSection
                                                     key={category._id}

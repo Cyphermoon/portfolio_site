@@ -5,11 +5,13 @@ import { techStackDisplayType } from '../../types'
 import SkillCard from '../SkillCard'
 import { FaGithub } from 'react-icons/fa6'
 import Link from 'next/link'
+import { useTheme } from '../../context/ThemeProvider'
 
 const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) => {
 
     const t1 = useRef<GSAPTimeline>()
     const e1 = useRef<HTMLElement>(null)
+    const { isDark } = useTheme()
 
     // useEffect(() => {
     //     const ctx = gsap.context(() => {
@@ -63,6 +65,7 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
                                         height='h-28'
                                         imageURL={stack.icon_url}
                                         title={stack.name}
+                                        isDark={isDark}
                                         altContent={stack.altText} />
                                 })}
 
@@ -81,6 +84,7 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
                                             key={idx}
                                             width='w-28'
                                             height='h-28'
+                                            isDark={isDark}
                                             imageURL={stack.icon_url}
                                             title={stack.name}
                                             altContent={stack.altText} />
@@ -100,6 +104,7 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
                                 tech_stacks?.others?.map((stack, idx) => {
                                     return <SkillCard
                                         key={idx}
+                                        isDark={isDark}
                                         width='w-28'
                                         height='h-28'
                                         imageURL={stack.icon_url}
