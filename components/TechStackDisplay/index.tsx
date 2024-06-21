@@ -3,43 +3,53 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import React, { useEffect, useRef } from 'react'
 import { techStackDisplayType } from '../../types'
 import SkillCard from '../SkillCard'
+import { FaGithub } from 'react-icons/fa6'
+import Link from 'next/link'
 
-const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
+const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) => {
 
     const t1 = useRef<GSAPTimeline>()
     const e1 = useRef<HTMLElement>(null)
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.registerPlugin(ScrollTrigger)
-            const stacksAnimation = {
-                translateY: +100,
-                opacity: 0,
-                rotateY: 180,
-                stagger: .5,
-            }
+    // useEffect(() => {
+    //     const ctx = gsap.context(() => {
+    //         gsap.registerPlugin(ScrollTrigger)
+    //         const stacksAnimation = {
+    //             translateY: +100,
+    //             opacity: 0,
+    //             rotateY: 180,
+    //             stagger: .5,
+    //         }
 
-            t1.current = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".tech_stacks_container",
-                    start: "top bottom",
-                }
-            })
-                .from(".frontend_stacks > *", stacksAnimation)
-                .from(".backend_stacks > *", stacksAnimation, "-=1")
-                .from(".other_stacks > *", stacksAnimation, "-=0.5")
-        }, [e1])
+    //         t1.current = gsap.timeline({
+    //             scrollTrigger: {
+    //                 trigger: ".tech_stacks_container",
+    //                 start: "top bottom",
+    //             }
+    //         })
+    //             .from(".frontend_stacks > *", stacksAnimation)
+    //             .from(".backend_stacks > *", stacksAnimation, "-=1")
+    //             .from(".other_stacks > *", stacksAnimation, "-=0.5")
+    //     }, [e1])
 
 
-        return () => {
-            ctx.revert()
-        }
-    }, [])
+    //     return () => {
+    //         ctx.revert()
+    //     }
+    // }, [])
 
     return (
-        <section ref={e1} className='bg-slate-200  dark:bg-slate-700 p-8 space-y-12'>
-            <h2 className='dark:text-slate-300'>Tech Stacks</h2>
-            <div className='tech_stacks_container space-y-32'>
+        <section ref={e1} className='bg-slate-200  dark:bg-slate-700 relative p-8'>
+            <h2 className='dark:text-slate-300 mb-12'>Tech Stacks</h2>
+            {github_link &&
+                <Link href={github_link} passHref>
+                    <a target="_blank" title='View Code' rel="noopener noreferrer" className='absolute top-8 right-8 mt-0'>
+                        <FaGithub className='text-slate-600 dark:text-slate-300 text-5xl' />
+                    </a>
+
+                </Link>
+            }
+            <div className='tech_stacks_container relative space-y-32'>
                 {
                     tech_stacks.frontend?.length > 0 ?
                         <div className="space-y-4 dark:text-slate-400">

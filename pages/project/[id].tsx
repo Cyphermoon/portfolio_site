@@ -81,7 +81,7 @@ const Project = ({ project, otherProjects }: projectPageType) => {
 
                 </Header>
 
-                <TechStackDisplay tech_stacks={project.tech_stack} />
+                <TechStackDisplay tech_stacks={project.tech_stack} github_link={project.github_link} />
 
                 <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
                     {
@@ -123,7 +123,8 @@ export async function getStaticProps({ params }: GetStaticPropsContext<ParamProp
           "others":tech_stack.others[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text}
            } ,
         "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text},
-        "video_id": video_id
+        "video_id": video_id,
+        github_link
         }
         `)
 

@@ -174,6 +174,7 @@ type techStack = {
 
 export type techStackDisplayType = {
     tech_stacks: techStack
+    github_link: string | null
 }
 
 export type projectPageType = {
@@ -191,7 +192,8 @@ export type projectPageType = {
 
         title: string,
         description: string
-        link: sanityLink
+        link: sanityLink,
+        github_link: string | null
     },
 
     otherProjects: otherProjectType
