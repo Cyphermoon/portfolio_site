@@ -30,7 +30,6 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
                 scrollTrigger: {
                     trigger: ".tech_stacks_container",
                     start: "top bottom",
-                    markers: true
                 }
             })
                 .from(".frontend_stacks > *", stacksAnimation)
