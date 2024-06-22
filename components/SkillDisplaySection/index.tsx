@@ -32,7 +32,7 @@ const SkillDisplaySection = ({ skill_list, addAnimation }: skillDisplaySectionTy
       stagger: .2
     })
 
-    addAnimation(skillDisplayAnimation, ">")
+    addAnimation(skillDisplayAnimation, ">.6")
 
     return () => {
       skillDisplayAnimation.revert()

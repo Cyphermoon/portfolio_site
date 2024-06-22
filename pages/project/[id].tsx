@@ -20,20 +20,18 @@ interface ParamProps extends ParsedUrlQuery {
     id: string
 }
 
+// GSAP ScrollTrigger Plugin Initialization
+gsap.registerPlugin(ScrollTrigger)
+
+// Set Default ScrollTrigger Actions
+ScrollTrigger.defaults({
+    toggleActions: "restart pause resume pause"
+})
+
 const Project = ({ project, otherProjects }: projectPageType) => {
     const carouselItems: {
         imageURL: string
     }[] = project.slideshow_images
-
-
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
-
-        ScrollTrigger.defaults({
-            toggleActions: "restart pause resume pause"
-        })
-
-    }, [])
 
     return (
         <Background>

@@ -13,32 +13,39 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
     const e1 = useRef<HTMLElement>(null)
     const { isDark } = useTheme()
 
-    // useEffect(() => {
-    //     const ctx = gsap.context(() => {
-    //         gsap.registerPlugin(ScrollTrigger)
-    //         const stacksAnimation = {
-    //             translateY: +100,
-    //             opacity: 0,
-    //             rotateY: 180,
-    //             stagger: .5,
-    //         }
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const stacksAnimation = {
+                translateY: +100,
+                opacity: 0,
+                rotateY: 180,
+                stagger: .5,
+            }
 
-    //         t1.current = gsap.timeline({
-    //             scrollTrigger: {
-    //                 trigger: ".tech_stacks_container",
-    //                 start: "top bottom",
-    //             }
-    //         })
-    //             .from(".frontend_stacks > *", stacksAnimation)
-    //             .from(".backend_stacks > *", stacksAnimation, "-=1")
-    //             .from(".other_stacks > *", stacksAnimation, "-=0.5")
-    //     }, [e1])
+            t1.current = gsap.timeline({
+                defaults: {
+                    duration: 1,
+                    ease: "power4.out"
+                },
+                scrollTrigger: {
+                    trigger: ".tech_stacks_container",
+                    start: "top bottom",
+                    markers: true
+                }
+            })
+                .from(".frontend_stacks > *", stacksAnimation)
+                .from(".backend_stacks > *", stacksAnimation, ">-1")
+
+            // only add the 'other stacks' animation if the parent element exists
+            tech_stacks.others?.length > 0 && t1.current
+                .add(gsap.from(".other_stacks > *", stacksAnimation), ">-1")
+        }, [e1])
 
 
-    //     return () => {
-    //         ctx.revert()
-    //     }
-    // }, [])
+        return () => {
+            ctx.revert()
+        }
+    }, [tech_stacks.others?.length])
 
     return (
         <section ref={e1} className='bg-slate-200  dark:bg-slate-700 relative p-8'>
