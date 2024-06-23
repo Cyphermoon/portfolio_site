@@ -1,11 +1,10 @@
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { IMAGE_DARK_FILTER, IMAGE_LIGHT_FILTER } from '../../constants'
 import { useTheme } from '../../context/ThemeProvider'
 import { socialCardType, socialMediaDisplayType } from '../../types'
-import { IMAGE_DARK_FILTER, IMAGE_LIGHT_FILTER } from '../../constants'
 
 const SocialCard = ({ title, imageURL, href, isDark }: socialCardType) => {
 
@@ -32,8 +31,6 @@ const SocialMediaDisplay = ({ social_medias, addAnimation }: socialMediaDisplayT
     const { isDark } = useTheme()
 
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
-
         const socialMediaDisplayAnimation = gsap.from(".social_display", {
             scrollTrigger: {
                 trigger: ".social_display",

@@ -4,31 +4,31 @@ import { aboutSectionType } from '../../types'
 import Image from 'next/image';
 import Link from 'next/link';
 
-const AboutSection = ({ about_data, addAnimation }: aboutSectionType) => {
+const AboutSection = ({ about_data }: aboutSectionType) => {
 
     let texts: string[] = about_data.texts;
     const animationApplied = useRef(false); // Ref to store the animation state
 
     useEffect(() => {
-        // Only apply the animation if it hasn't been applied before
-        if (animationApplied.current) return;
 
-        const aboutAnimation = gsap.from(".gsap_about", {
-            scale: .85,
+        const schoolHistoryAnimation = gsap.from(".gsap_about > *", {
+            scrollTrigger: {
+                trigger: ".gsap_about",
+                toggleActions: "restart pause resume pause",
+                id: "about_section"
+            },
+            stagger: .3,
             translateY: +50,
-            opacity: 0,
+            duration: .75,
         })
 
-        addAnimation(aboutAnimation,)
-
-        // Mark the animation as applied
-        animationApplied.current = true;
 
         return () => {
-            aboutAnimation.revert()
+            schoolHistoryAnimation.revert()
         }
 
-    }, [addAnimation])
+
+    }, [])
 
     return (
         <section className='gsap_about space-y-6 pt-20 lg:pt-0'>

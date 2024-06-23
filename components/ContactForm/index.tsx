@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
 import emailjs from "@emailjs/browser"
-import Input from '../Input'
-import { usePromptModal } from '../../hooks/index.util'
-import SuccessModal from '../SucessModal'
-import { contactFormPropType } from '../../types'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import React, { useEffect, useRef, useState } from 'react'
+import { usePromptModal } from '../../hooks/index.util'
+import { contactFormPropType } from '../../types'
+import Input from '../Input'
+import SuccessModal from '../SucessModal'
 
 const ContactForm = ({ addAnimation }: contactFormPropType) => {
     const formRef = useRef<HTMLFormElement>(null)
@@ -32,7 +31,6 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
         setEmailField("")
     }
 
-    gsap.registerPlugin(ScrollTrigger)
 
     useEffect(() => {
         const projectDisplayAnimation = gsap.from(".contact_form", {
@@ -41,7 +39,7 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
             },
             translateX: -100,
             duration: 1,
-            rotate: -10,
+            rotate: 10,
             opacity: 0,
         })
 

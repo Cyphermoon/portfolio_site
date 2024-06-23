@@ -22,6 +22,12 @@ import SchoolHistorySection from '../components/SchoolHistorySection'
 // Registering the ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger)
 
+// Setting default properties for ScrollTrigger
+ScrollTrigger.defaults({
+  toggleActions: "play pause resume none"
+})
+
+
 const Home: NextPage<homePageType> = (
   { landing_section, about_data, social_medias, skill_list, projects, school_history }
 ) => {
@@ -40,10 +46,6 @@ const Home: NextPage<homePageType> = (
   const { animationLoading, setAnimationLoading } = useLoaderAnimation()
 
   useEffect(() => {
-    // Setting default properties for ScrollTrigger
-    ScrollTrigger.defaults({
-      toggleActions: "restart pause resume pause"
-    })
 
     // Create animation to reveal the container
     // Creating an animation for the container with id 'reveal_container'
@@ -68,7 +70,7 @@ const Home: NextPage<homePageType> = (
     })
 
     // Adding the created animation to a queue with a delay of 1.5 seconds
-    addAnimation(headerAnimation, 1.5)
+    addAnimation(headerAnimation, animationLoading ? 1.5 : .3)
 
     // Returning a cleanup function that will be called when the component unmounts
     // This function reverts the animation to its original state
@@ -76,7 +78,7 @@ const Home: NextPage<homePageType> = (
       headerAnimation.revert()
       revealAnimation.revert()
     }
-  }, [addAnimation, timeline]) // The effect depends on the 'addAnimation' function and 'timeline' variable
+  }, [addAnimation, animationLoading, timeline]) // The effect depends on the 'addAnimation' function and 'timeline' variable
 
   return (
     <Background addAnimation={addAnimation} showInteractions>

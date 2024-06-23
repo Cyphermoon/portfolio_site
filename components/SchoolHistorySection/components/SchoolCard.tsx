@@ -15,11 +15,12 @@ export interface SchoolCardProps {
     slug: string
     abbr: string
     certificate: string
+    idx: number
 }
 
-const SchoolCard = ({ grade, schoolLogo, schoolName, courseName, startDate, endDate, abbr, slug, certificate }: SchoolCardProps) => {
+const SchoolCard = ({ grade, schoolLogo, schoolName, courseName, startDate, endDate, abbr, slug, certificate, idx }: SchoolCardProps) => {
     return (
-        <div className="w-full lg:w-1/2 relative rounded-xl bg-slate-200 dark:bg-slate-800 p-3 space-y-2">
+        <div className={`${idx > 0 ? "stack_animation" : ""} w-full lg:w-1/2 relative rounded-xl bg-slate-200 dark:bg-slate-800 p-3 space-y-2`}>
             <span className="absolute top-3 right-3 inline-block px-3 py-0.5 rounded-lg bg-slate-300 dark:bg-slate-700 text-sm">
                 {slug.toLowerCase() === "usw" ? "TBD" : grade.toFixed(2) + " · GPA"}
             </span>

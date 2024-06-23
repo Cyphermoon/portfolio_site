@@ -26,7 +26,6 @@ const FeatureContent = ({ children, reversed }: featureContentType) => {
   const e1 = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
     const ctx = gsap.context(() => {
 
       t1.current = gsap.timeline({

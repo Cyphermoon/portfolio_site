@@ -1,13 +1,11 @@
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { projectDisplaySectionType } from '../../types'
+import { truncate } from '../../utils/index.util'
 import ProjectCard from '../ProjectCard'
 import SeeMoreLink from './components/SeeMoreLink'
-import { truncate } from '../../utils/index.util'
 
 const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySectionType) => {
-    gsap.registerPlugin(ScrollTrigger)
     useEffect(() => {
         const projectDisplayAnimation = gsap.from(".project_display_section > * > *", {
             scrollTrigger: {

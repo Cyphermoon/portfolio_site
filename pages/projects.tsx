@@ -74,7 +74,6 @@ const Projects = ({ _categories }: Props) => {
 
     useEffect(() => {
         // animate the projects when they are displayed
-        if (projectsLoading) return
         if (categoryProjects.length === 0) return
 
         const otherProjectsDisplayAnimation = gsap.from("[data-animate='shuffle-in'] > * ", {
@@ -88,7 +87,7 @@ const Projects = ({ _categories }: Props) => {
         return () => {
             otherProjectsDisplayAnimation.revert()
         }
-    }, [])
+    }, [categoryProjects.length])
 
 
     return (

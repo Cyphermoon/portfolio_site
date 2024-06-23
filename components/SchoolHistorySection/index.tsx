@@ -1,4 +1,5 @@
-import React from 'react'
+import gsap from 'gsap';
+import React, { useEffect } from 'react'
 import SchoolCard, { SchoolCardProps } from './components/SchoolCard';
 
 interface Props {
@@ -7,14 +8,34 @@ interface Props {
 
 const SchoolHistorySection = ({ history }: Props) => {
 
+    useEffect(() => {
+        const schoolHistoryAnimation = gsap.from(".stack_animation", {
+            scrollTrigger: {
+                trigger: ".school_card_list",
+                scrub: true,
+                toggleActions: "restart pause resume pause",
+                pin: true,
+            },
+            // stagger: 8,
+            translateY: +300,
+            duration: 4,
+        })
+
+
+        return () => {
+            schoolHistoryAnimation.revert()
+        }
+    }, [])
+
 
     return (
-        <section className='space-y-6'>
+        <section id='school_history' className='space-y-6'>
             <h2 className='dark:text-slate-300'>School History</h2>
-            <div className='flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-start justify-between'>
-                {history.map((school) => {
+            <div className='school_card_list flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-start justify-between'>
+                {history.map((school, idx) => {
                     return <SchoolCard
-                        key={school.schoolName}
+                        key={school.slug}
+                        idx={idx}
                         schoolName={school.schoolName}
                         grade={school.grade}
                         courseName={school.courseName}

@@ -25,8 +25,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Set Default ScrollTrigger Actions
 ScrollTrigger.defaults({
-    toggleActions: "restart pause resume pause"
+    toggleActions: "play pause resume none"
 })
+
 
 const Project = ({ project, otherProjects }: projectPageType) => {
     const carouselItems: {
