@@ -116,7 +116,7 @@ export const otherProjectsQuery = (currentProjectId: string) => `
 `;
 
 export const SchoolHistoryQuery = `
-  *[_type=='school_history'] | order(start_date asc){
+  *[_type=='school_history'] | order(start_date desc){
       'grade':grade,
     'schoolLogo':{
       'url': school_image -> image.asset -> url,
