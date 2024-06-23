@@ -32,6 +32,8 @@ ListBoxItem.displayName = "ListBoxItem"
 
 
 const CategorySelector = ({ handleCategoryChanged, categories, selectedCategory }: Props) => {
+    if (!selectedCategory) return null;
+
     return (
         <Listbox value={selectedCategory} onChange={handleCategoryChanged}>
             <div className='relative w-fit self-end'>

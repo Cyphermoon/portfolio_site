@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app'
 import LoaderAnimationContext from '../context/LoaderAnimationContext'
+import { NavProvider } from '../context/NavProvider'
 import ThemeProvider from '../context/ThemeProvider'
 import '../styles/globals.css'
-import { NavProvider } from '../context/NavProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -18,5 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   )
 }
+
 
 export default MyApp

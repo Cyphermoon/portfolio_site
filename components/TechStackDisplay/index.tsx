@@ -33,7 +33,10 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
                 }
             })
                 .from(".frontend_stacks > *", stacksAnimation)
-                .from(".backend_stacks > *", stacksAnimation, ">-1")
+
+            // only add the 'backend stacks' animation if the parent element exists
+            tech_stacks.backend?.length > 0 && t1.current
+                .add(gsap.from(".backend_stacks > *", stacksAnimation), ">-1")
 
             // only add the 'other stacks' animation if the parent element exists
             tech_stacks.others?.length > 0 && t1.current
@@ -44,7 +47,7 @@ const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) =>
         return () => {
             ctx.revert()
         }
-    }, [tech_stacks.others?.length])
+    }, [tech_stacks.backend?.length, tech_stacks.others?.length])
 
     return (
         <section ref={e1} className='bg-slate-200  dark:bg-slate-700 relative p-8'>
