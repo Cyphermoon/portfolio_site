@@ -28,6 +28,7 @@ export const getCategoryProjectsQuery = (id: string) => {
     *[_type=='project_category']{
       _id,
       name, 
+      "isGhost": is_ghost,
       "projects": *[_type=="project" && references(^._id)]{
       _id,
       title,
@@ -43,6 +44,7 @@ export const getCategoryProjectsQuery = (id: string) => {
     *[_type=='project_category' && _id=='${id}']{
       _id,
       name, 
+      "isGhost": is_ghost,
       "projects": *[_type=="project" && references(^._id)]{
       _id,
       title,

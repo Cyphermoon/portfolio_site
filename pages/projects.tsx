@@ -127,6 +127,7 @@ const Projects = ({ _categories }: Props) => {
                                                     </div>
                                                 )
                                             }
+                                            if (category.isGhost && arr.length > 1) return null
                                             if (category.projects.length === 0) return null
                                             return (
                                                 <SmallProjectCardSection
