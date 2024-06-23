@@ -3,18 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import "swiper/css/navigation";
-import "swiper/css/effect-fade"
+import "swiper/css/pagination";
 
 
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper";
-import { carouselType } from "../../types";
 import Image from "next/image";
-import { useEffect } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { CiBatteryEmpty } from "react-icons/ci";
+import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
+import { carouselType } from "../../types";
 
 const Carousel = ({ carouselItems }: carouselType) => {
 

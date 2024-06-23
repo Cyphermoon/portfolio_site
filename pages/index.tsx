@@ -79,7 +79,7 @@ const Home: NextPage<homePageType> = (
   }, [addAnimation, timeline]) // The effect depends on the 'addAnimation' function and 'timeline' variable
 
   return (
-    <Background addAnimation={addAnimation}>
+    <Background addAnimation={addAnimation} showInteractions>
       <PageHead title={`Kelvin's Portfolio`} />
       {!isDevMode && animationLoading && <LoadingScreen setLoading={setAnimationLoading} />}
 

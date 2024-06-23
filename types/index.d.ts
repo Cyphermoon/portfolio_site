@@ -36,7 +36,8 @@ export type cursorTrackerPropType = {
 
 export type backgroundType = {
     children: React.ReactNode,
-    addAnimation?: function
+    addAnimation?: function,
+    showInteractions?: boolean
 }
 
 export type projectCardType = {

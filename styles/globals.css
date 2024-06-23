@@ -85,6 +85,11 @@
     .clip-moon{
         clip-path: ellipse(35% 38% at 42% 50%);
     }  
+    .disable_scrolling{
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden
+    }
 }
 
 
