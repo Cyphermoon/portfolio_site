@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { useTiltEffect } from '../../../hooks/index.util'
 import { IoMdEye } from 'react-icons/io'
+import { useTiltEffect } from '../../../hooks/index.util'
 
 const SeeMoreLink = () => {
     const { tiltCard, removeTiltEffect } = useTiltEffect()
@@ -10,7 +8,7 @@ const SeeMoreLink = () => {
     return (
         <Link href="/projects">
             <div
-                className='min-h-[490px] w-full sm:w-72 sm:min-h-[384px] md:min-h-[512px] md:w-[365px] lg:w-96 grid place-items-center cursor-pointer bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600 dark:from-sky-500  dark:to-sky-600'
+                className='min-h-[490px] w-full sm:min-h-[384px] md:min-h-[512px] grid place-items-center cursor-pointer bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600 dark:from-sky-500  dark:to-sky-600'
                 onMouseMove={tiltCard}
                 onMouseOut={removeTiltEffect}>
 
