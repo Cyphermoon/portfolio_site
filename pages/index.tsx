@@ -16,7 +16,7 @@ import { useLoaderAnimation } from '../context/LoaderAnimationContext'
 import { AboutMeQuery, BestProjectQuery, LandingPageQuery, ProgrammingLanguageQuery, SchoolHistoryQuery, SocialContactQuery } from '../sanity-queries/project.query'
 import { homePageType } from '../types'
 import { sanityClient } from "../utils/sanity_config"
-import { isDevMode } from '../utils/index.util'
+import { formateDate, isDevMode } from '../utils/index.util'
 import SchoolHistorySection from '../components/SchoolHistorySection'
 
 // Registering the ScrollTrigger plugin with GSAP
@@ -129,6 +129,9 @@ const Home: NextPage<homePageType> = (
         <AboutSection addAnimation={addAnimation} about_data={about_data} />
         <ProjectDisplaySection addAnimation={addAnimation} projects={projects} />
         <ContactSection addAnimation={addAnimation} social_medias={social_medias} />
+        <p className='text-sm text-slate-500 dark:text-slate-300 text-center'>
+          <span className='font-bold'>Status @{formateDate(new Date())}</span>: {landing_section.status}
+        </p>
       </Container>
     </Background>
   )

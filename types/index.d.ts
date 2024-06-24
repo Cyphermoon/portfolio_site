@@ -221,7 +221,8 @@ export type homePageType = {
         role: string,
         elongated_text: string,
         contact_btn: sanityLink,
-        get_resume_btn: sanityLink
+        get_resume_btn: sanityLink,
+        status: string
     },
     about_data: any,
     social_medias: socialMedia,

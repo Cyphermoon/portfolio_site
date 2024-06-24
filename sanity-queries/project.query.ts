@@ -62,7 +62,8 @@ export const LandingPageQuery = `
     elongated_text, 
     introductory_text, 
     contact_btn, 
-    get_resume_btn
+    get_resume_btn,
+    status,
   }
 `
 
