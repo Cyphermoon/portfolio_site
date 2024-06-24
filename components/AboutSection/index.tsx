@@ -37,7 +37,12 @@ const AboutSection = ({ about_data }: aboutSectionType) => {
                 <div className='lg:w-5/12 flex flex-col items-center justify-between space-y-8 relative'>
                     <div className='flex flex-col items-center justify-between absolute -top-[100px] lg:top-0 lg:relative w-[220px] h-[220px] lg:w-[290px] lg:h-[290px] rounded-full bg-slate-200 dark:bg-slate-800 lg:bg-transparent'>
                         <figure className='absolute top-[50%] -translate-y-1/2 lg:translate-y-0 lg:top-0 lg:relative w-[200px] h-[200px] lg:w-[290px] lg:h-[290px] rounded-full overflow-hidden'>
-                            <Image src={about_data.profilePhoto.url} layout='fill' alt={about_data.profilePhoto.alt} objectFit='cover' />
+                            <Image
+                                src={about_data.profilePhoto.url}
+                                className='pointer-events-none'
+                                layout='fill'
+                                alt={about_data.profilePhoto.alt}
+                                objectFit='cover' />
                         </figure>
                     </div>
 
