@@ -24,7 +24,7 @@ const SchoolCard = ({ grade, schoolLogo, schoolName, courseName, startDate, endD
         <div className={`${idx > 0 ? "stack_animation" : ""} w-full lg:w-1/2 relative rounded-xl bg-slate-200 dark:bg-slate-800 p-3 space-y-2 min-h-[400px] flex flex-col justify-between`}>
             {
                 slug.toLowerCase() === "usw" ?
-                    <span className="text-slate-500 dark:text-slate-300 bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 rounded-lg text-sm px-2 py-1.5 text-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 uppercase absolute top-3 right-3 inline-block">First Class Honours</span> :
+                    <span className="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/80 focus:ring-4 focus:outline-none rounded-2xl text-xs px-2 py-1.5 text-center dark:focus:ring-[#FF9119]/40 uppercase absolute top-3 right-3 inline-block font-semibold">First Class Honours</span> :
                     <span className="absolute top-3 right-3 inline-block px-3 py-0.5 rounded-lg bg-slate-300 dark:bg-slate-700 text-sm">
                         {grade.toFixed(2) + " · GPA"}
                     </span>
