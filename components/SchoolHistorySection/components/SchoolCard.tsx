@@ -16,36 +16,46 @@ export interface SchoolCardProps {
     abbr: string
     certificate: string
     idx: number
+    location: string
 }
 
-const SchoolCard = ({ grade, schoolLogo, schoolName, courseName, startDate, endDate, abbr, slug, certificate, idx }: SchoolCardProps) => {
+const SchoolCard = ({ grade, schoolLogo, schoolName, courseName, startDate, endDate, abbr, slug, certificate, idx, location }: SchoolCardProps) => {
     return (
         <div className={`${idx > 0 ? "stack_animation" : ""} w-full lg:w-1/2 relative rounded-xl bg-slate-200 dark:bg-slate-800 p-3 space-y-2 min-h-[400px] flex flex-col justify-between`}>
-            <span className="absolute top-3 right-3 inline-block px-3 py-0.5 rounded-lg bg-slate-300 dark:bg-slate-700 text-sm">
-                {slug.toLowerCase() === "usw" ? "TBD" : grade.toFixed(2) + " · GPA"}
-            </span>
+            {
+                slug.toLowerCase() === "usw" ?
+                    <span className="text-slate-500 dark:text-slate-300 bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 rounded-lg text-sm px-2 py-1.5 text-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 uppercase absolute top-3 right-3 inline-block">First Class Honours</span> :
+                    <span className="absolute top-3 right-3 inline-block px-3 py-0.5 rounded-lg bg-slate-300 dark:bg-slate-700 text-sm">
+                        {grade.toFixed(2) + " · GPA"}
+                    </span>
+            }
 
             {/* School Logo */}
-            <figure className="mb-4">
+            <figure className="mb-5">
                 <Image src={schoolLogo.url} alt={schoolLogo.alt} width={100} height={100} />
                 <h3>{schoolName} ({abbr.toUpperCase()})</h3>
             </figure>
 
             {/* Course Information */}
-            <div className="space-y-1 grow flex flex-col">
+            <div className="space-y-2.5 grow flex flex-col">
+                <div>
+                    <h5 className="font-bold">Country</h5>
+                    <p className="text-sm font-sans">{location}</p>
+                </div>
+
                 <div>
                     <h5 className="font-bold">Course Name</h5>
                     <p className="text-sm font-sans">{courseName}</p>
                 </div>
 
                 <div>
-                    <h5 className="font-bold">Duration</h5>
+                    <h5 className="font-bold">Date of Graduation</h5>
                     <p className="text-sm font-sans">
-                        <span>{formateDate(startDate)}</span> - <span>{formateDate(endDate)}</span>
+                        {/* <span>{formateDate(startDate)}</span> - */} <span>{formateDate(endDate)}</span>
                     </p>
                 </div>
                 <div>
-                    <h5 className="font-bold">Degree</h5>
+                    <h5 className="font-bold">Certification</h5>
                     <p className="text-sm font-sans">
                         {certificate}
                     </p>

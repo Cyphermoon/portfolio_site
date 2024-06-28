@@ -131,6 +131,7 @@ export const SchoolHistoryQuery = `
     'endDate': end_date,
     'abbr': school_abbr,
     'slug': slug.current,
-    'certificate': certificate
+    'certificate': certificate,
+    'location': location,
 }
 `

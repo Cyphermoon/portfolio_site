@@ -45,6 +45,7 @@ const SchoolHistorySection = ({ history }: Props) => {
                         abbr={school.abbr}
                         slug={school.slug}
                         certificate={school.certificate}
+                        location={school.location}
                     />
                 })}
             </div>
