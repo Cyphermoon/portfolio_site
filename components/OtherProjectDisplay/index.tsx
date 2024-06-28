@@ -1,8 +1,7 @@
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTiltEffect } from '../../hooks/index.util'
 import { otherProjectDisplayType, OtherProjectType } from '../../types'
 import { truncate } from '../../utils/index.util'
@@ -34,7 +33,6 @@ const OtherProject = ({ imageURL, altContent, projectName, description, id }: Ot
 const OtherProjectDisplay = ({ other_projects }: otherProjectDisplayType) => {
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
     const otherProjectsDisplayAnimation = gsap.from(".other_project_display > * ", {
       scrollTrigger: {
         trigger: ".other_project_display"

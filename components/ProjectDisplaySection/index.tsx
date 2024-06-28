@@ -1,13 +1,11 @@
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { projectDisplaySectionType } from '../../types'
+import { truncate } from '../../utils/index.util'
 import ProjectCard from '../ProjectCard'
 import SeeMoreLink from './components/SeeMoreLink'
-import { truncate } from '../../utils/index.util'
 
 const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySectionType) => {
-    gsap.registerPlugin(ScrollTrigger)
     useEffect(() => {
         const projectDisplayAnimation = gsap.from(".project_display_section > * > *", {
             scrollTrigger: {
@@ -23,13 +21,13 @@ const ProjectDisplaySection = ({ projects, addAnimation }: projectDisplaySection
         return () => {
             projectDisplayAnimation.revert()
         }
-    }, [addAnimation])
+    }, [])
 
 
     return (
-        <section id='projects_section' className='project_display_section space-y-8'>
+        <section id='projects_section' className='project_display_section space-y-6'>
             {projects.length > 0 && <h2 className='dark:text-slate-300'>Projects</h2>}
-            <div className='w-full md:w-max grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 justify-items-center md:justify-items-start gap-y-9 sm:gap-5'
+            <div className='w-full grid grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-dynamic justify-items-center md:justify-items-start gap-4 sm:gap-5'
                 style={{ perspective: "1000px" }}>
 
                 {projects.map((project, idx) => {

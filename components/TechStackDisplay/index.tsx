@@ -3,15 +3,18 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import React, { useEffect, useRef } from 'react'
 import { techStackDisplayType } from '../../types'
 import SkillCard from '../SkillCard'
+import { FaGithub } from 'react-icons/fa6'
+import Link from 'next/link'
+import { useTheme } from '../../context/ThemeProvider'
 
-const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
+const TechStackDisplay = ({ tech_stacks, github_link }: techStackDisplayType) => {
 
     const t1 = useRef<GSAPTimeline>()
     const e1 = useRef<HTMLElement>(null)
+    const { isDark } = useTheme()
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.registerPlugin(ScrollTrigger)
             const stacksAnimation = {
                 translateY: +100,
                 opacity: 0,
@@ -20,26 +23,44 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
             }
 
             t1.current = gsap.timeline({
+                defaults: {
+                    duration: 1,
+                    ease: "power4.out"
+                },
                 scrollTrigger: {
                     trigger: ".tech_stacks_container",
                     start: "top bottom",
                 }
             })
                 .from(".frontend_stacks > *", stacksAnimation)
-                .from(".backend_stacks > *", stacksAnimation, "-=1")
-                .from(".other_stacks > *", stacksAnimation, "-=0.5")
+
+            // only add the 'backend stacks' animation if the parent element exists
+            tech_stacks.backend?.length > 0 && t1.current
+                .add(gsap.from(".backend_stacks > *", stacksAnimation), ">-1")
+
+            // only add the 'other stacks' animation if the parent element exists
+            tech_stacks.others?.length > 0 && t1.current
+                .add(gsap.from(".other_stacks > *", stacksAnimation), ">-1")
         }, [e1])
 
 
         return () => {
             ctx.revert()
         }
-    }, [])
+    }, [tech_stacks.backend?.length, tech_stacks.others?.length])
 
     return (
-        <section ref={e1} className='bg-slate-200  dark:bg-slate-700 p-8 space-y-12'>
-            <h2 className='dark:text-slate-300'>Tech Stacks</h2>
-            <div className='tech_stacks_container space-y-32'>
+        <section ref={e1} className='bg-slate-200  dark:bg-slate-700 relative p-8'>
+            <h2 className='dark:text-slate-300 mb-12'>Tech Stacks</h2>
+            {github_link &&
+                <Link href={github_link} passHref>
+                    <a target="_blank" title='View Code' rel="noopener noreferrer" className='absolute top-8 right-8 mt-0'>
+                        <FaGithub className='text-slate-600 dark:text-slate-300 text-5xl' />
+                    </a>
+
+                </Link>
+            }
+            <div className='tech_stacks_container relative space-y-32'>
                 {
                     tech_stacks.frontend?.length > 0 ?
                         <div className="space-y-4 dark:text-slate-400">
@@ -53,6 +74,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
                                         height='h-28'
                                         imageURL={stack.icon_url}
                                         title={stack.name}
+                                        isDark={isDark}
                                         altContent={stack.altText} />
                                 })}
 
@@ -71,6 +93,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
                                             key={idx}
                                             width='w-28'
                                             height='h-28'
+                                            isDark={isDark}
                                             imageURL={stack.icon_url}
                                             title={stack.name}
                                             altContent={stack.altText} />
@@ -90,6 +113,7 @@ const TechStackDisplay = ({ tech_stacks }: techStackDisplayType) => {
                                 tech_stacks?.others?.map((stack, idx) => {
                                     return <SkillCard
                                         key={idx}
+                                        isDark={isDark}
                                         width='w-28'
                                         height='h-28'
                                         imageURL={stack.icon_url}

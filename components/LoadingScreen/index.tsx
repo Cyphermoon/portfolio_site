@@ -3,9 +3,33 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import MoonBody from './MoonBody'
 import MoonCrescent from './MoonCrescent'
 import SplitScreen from './SplitScreen'
+import { useRouter } from 'next/router'
 
 type loadingScreenPropType = {
     setLoading?: Function
+}
+
+const animationProps = {
+    // Properties to control the loading animation
+    moon: {
+        start: "210px",
+        end: "300px",
+        endDuration: 1.3
+    },
+    container: {
+        rotate: "180",
+        duration: .8,
+    },
+    split_screen: {
+        travelDistance: "100%",
+        duration: 1.5
+    },
+
+    crescentFade: {
+        opacity: "0",
+        duration: 1
+    }
+
 }
 
 const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
@@ -18,29 +42,9 @@ const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
         }
     }, [setLoading])
 
+
+
     useEffect(() => {
-        const animationProps = {
-            moon: {
-                start: "210px",
-                end: "300px",
-                endDuration: 1.3
-            },
-            container: {
-                rotate: "180",
-                duration: .8,
-            },
-            split_screen: {
-                travelDistance: "100%",
-                duration: 1.5
-            },
-
-            crescentFade: {
-                opacity: "0",
-                duration: 1
-            }
-
-        }
-
         const ctx = gsap.context(() => {
             t1.current = gsap.timeline({
                 defaults: {
@@ -61,7 +65,7 @@ const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
                 .to("#moon_crescent", {     // pull crescent to the left
                     translateX: `-${animationProps.moon.end}`,
                     duration: animationProps.moon.endDuration,
-                }, "<.55")
+                }, "<.5")
                 .to("#moon_body", {         // pull body to the right
                     translateX: `${animationProps.moon.end}`,
                     duration: animationProps.moon.endDuration,
@@ -93,7 +97,7 @@ const LoadingScreen = ({ setLoading }: loadingScreenPropType) => {
 
             <div id='moon_container' className='
                     absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                    grid grid-cols-2 justify-items-center items-center p-4 w-8/12'>
+                    flex justify-around items-center w-8/12'>
                 <MoonCrescent />
                 <MoonBody />
             </div>

@@ -23,11 +23,12 @@ export const CategoriesQuery = `
 export const getCategoryProjectsQuery = (id: string) => {
   const isAllCategory = id === "all"
 
-  if(isAllCategory){
+  if (isAllCategory) {
     return `
     *[_type=='project_category']{
       _id,
       name, 
+      "isGhost": is_ghost,
       "projects": *[_type=="project" && references(^._id)]{
       _id,
       title,
@@ -43,6 +44,7 @@ export const getCategoryProjectsQuery = (id: string) => {
     *[_type=='project_category' && _id=='${id}']{
       _id,
       name, 
+      "isGhost": is_ghost,
       "projects": *[_type=="project" && references(^._id)]{
       _id,
       title,
@@ -60,14 +62,20 @@ export const LandingPageQuery = `
     elongated_text, 
     introductory_text, 
     contact_btn, 
-    get_resume_btn
+    get_resume_btn,
+    status,
   }
 `
 
 
 export const AboutMeQuery = `
-*[_type=='about_me' && _id=='0ccfd969-350e-4fe0-ab13-e3ef1770ebbc']{
-    'texts': content[].children[].text
+  *[_type=='about_me' && _id=='0ccfd969-350e-4fe0-ab13-e3ef1770ebbc']{
+    'texts': content[].children[].text,
+  'profilePhoto':{
+    'url': profile_photo -> image.asset -> url,
+    'alt': profile_photo -> alt_text
+  }
+
   }
 `;
 
@@ -92,10 +100,11 @@ export const SocialContactQuery = `
 
 export const ProgrammingLanguageQuery = `
 *[_type=='programming_language' && isVisible == true]{
-    'altText':icon->alt_text,
-    'name':name,
-    'url':icon->image.asset->url
-  }
+  'altText':icon->alt_text,
+  'name':name,
+  'url':icon->image.asset->url,
+  'category': category -> field
+}
 `;
 
 
@@ -108,3 +117,21 @@ export const otherProjectsQuery = (currentProjectId: string) => `
     'cover_image':cover_image->image.asset->url
   }
 `;
+
+export const SchoolHistoryQuery = `
+  *[_type=='school_history'] | order(start_date desc){
+      'grade':grade,
+    'schoolLogo':{
+      'url': school_image -> image.asset -> url,
+      'alt': school_image -> alt_text
+    },
+    'schoolName': school_name,
+    'courseName': course_name,
+    'startDate': start_date,
+    'endDate': end_date,
+    'abbr': school_abbr,
+    'slug': slug.current,
+    'certificate': certificate,
+    'location': location,
+}
+`

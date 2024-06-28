@@ -77,9 +77,12 @@ module.exports = {
         title_sm: ["1.125rem", "1.5"]
       },
       gridTemplateColumns: {
-        'dynamic': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'dynamic': 'repeat(auto-fill, minmax(288px, 1fr))',
       }
 
     },
   },
+  plugins: [
+    require("tailwindcss-animate"),
+  ]
 }

@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
 import emailjs from "@emailjs/browser"
-import Input from '../Input'
-import { usePromptModal } from '../../hooks/index.util'
-import SuccessModal from '../SucessModal'
-import { contactFormPropType } from '../../types'
 import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import React, { useEffect, useRef, useState } from 'react'
+import { usePromptModal } from '../../hooks/index.util'
+import { contactFormPropType } from '../../types'
+import Input from '../Input'
+import SuccessModal from '../SucessModal'
 
 const ContactForm = ({ addAnimation }: contactFormPropType) => {
     const formRef = useRef<HTMLFormElement>(null)
@@ -19,10 +18,12 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
     const sendMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (nameField || emailField || messageField) {
+        if (nameField.trim() || emailField.trim() || messageField.trim()) {
             emailjs.sendForm(process.env["NEXT_PUBLIC_SERVICE_ID"] ?? "", process.env["NEXT_PUBLIC_TEMPLATE_ID"] ?? "", formRef.current ?? "#contactForm", process.env["NEXT_PUBLIC_PUBLIC_KEY"])
                 .then((res) => openPromptModal())
                 .catch((err) => console.error("Something went wrong, the message is  ", err.message))
+        } else {
+            console.error("Please fill out the form")
         }
 
         setNameField("")
@@ -30,7 +31,6 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
         setEmailField("")
     }
 
-    gsap.registerPlugin(ScrollTrigger)
 
     useEffect(() => {
         const projectDisplayAnimation = gsap.from(".contact_form", {
@@ -39,7 +39,7 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
             },
             translateX: -100,
             duration: 1,
-            rotate: -10,
+            rotate: 10,
             opacity: 0,
         })
 
@@ -47,11 +47,12 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
         return () => {
             projectDisplayAnimation.revert()
         }
-    }, [addAnimation])
+    }, [])
 
     return (
-        <>
-            <form ref={formRef} id="contactForm" onSubmit={(e) => sendMessage(e)} className='contact_form w-full md:w-9/12 mb-12 md:mb-auto lg:max-w-md bg-slate-100 dark:bg-slate-800 rounded-2xl p-4 drop-shadow-lg space-y-8'>
+        <div className='w-full lg:w-1/2'>
+            <h5 className='dark:text-slate-400 mb-5 text-center lg:text-left'>Shoot me an e-mail</h5>
+            <form ref={formRef} id="contactForm" onSubmit={(e) => sendMessage(e)} className='contact_form w-full mb-12 bg-slate-100 dark:bg-slate-800 rounded-2xl p-4 drop-shadow-lg space-y-8'>
                 <Input
                     inputType='text'
                     labelText='Name'
@@ -70,11 +71,12 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
                     <label className='text-title_md font-medium text-slate-700 dark:text-slate-400 block'>Message</label>
                     <textarea
                         className='w-full h-36 min-h-max border outline-none focus:border-2  focus:border-slate-500 border-slate-800 text-base py-3 px-4 rounded-lg
-                         bg-slate-200 dark:bg-slate-700'
+                         bg-slate-200 dark:bg-slate-700 resize-none'
                         value={messageField}
                         name="client_message"
+
                         required={true}
-                        onChange={(e) => setMessageField(e.target.value)} ></textarea>
+                        onChange={(e) => setMessageField(e.target.value)} />
                 </div>
 
                 <button className='w-full relative group px-2 py-4 bg-blue-500 dark:bg-blue-400 rounded-2xl text-gray-100 dark:text-slate-200' type="submit">
@@ -90,7 +92,7 @@ const ContactForm = ({ addAnimation }: contactFormPropType) => {
                     message='Thanks for reaching out'
                     icon_url='/icons/done.svg'
                     onClose={closeModal} />}
-        </>
+        </div>
 
     )
 }

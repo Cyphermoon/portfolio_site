@@ -20,20 +20,19 @@ interface ParamProps extends ParsedUrlQuery {
     id: string
 }
 
+// GSAP ScrollTrigger Plugin Initialization
+gsap.registerPlugin(ScrollTrigger)
+
+// Set Default ScrollTrigger Actions
+ScrollTrigger.defaults({
+    toggleActions: "play pause resume none"
+})
+
+
 const Project = ({ project, otherProjects }: projectPageType) => {
     const carouselItems: {
         imageURL: string
     }[] = project.slideshow_images
-
-
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
-
-        ScrollTrigger.defaults({
-            toggleActions: "restart pause resume pause"
-        })
-
-    }, [])
 
     return (
         <Background>
@@ -61,13 +60,27 @@ const Project = ({ project, otherProjects }: projectPageType) => {
                         </div>
 
                         <figure className='w-full h-[379px] md:h-[500px] lg:h-[800px] bg-slate-100 dark:bg-slate-900 round-md'>
-                            <Carousel carouselItems={carouselItems} />
+                            {
+                                project.video_id ?
+                                    <iframe
+                                        className='w-full h-full'
+                                        src={`https://www.youtube.com/embed/${project.video_id}`}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        loading="lazy" // Add this attribute for lazy loading
+                                    >
+                                        I Frame is not supported in this browser
+                                    </iframe>
+                                    : <Carousel carouselItems={carouselItems} />
+                            }
                         </figure>
                     </div>
 
                 </Header>
 
-                <TechStackDisplay tech_stacks={project.tech_stack} />
+                <TechStackDisplay tech_stacks={project.tech_stack} github_link={project.github_link} />
 
                 <div className="space-y-40 lg:space-y-56 container px-4 md:px-2 lg:px-0">
                     {
@@ -108,8 +121,11 @@ export async function getStaticProps({ params }: GetStaticPropsContext<ParamProp
            "frontend":tech_stack.frontend[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text},
           "others":tech_stack.others[]->{"name":name, "icon_url":icon->image.asset->url, "altText":icon->alt_text}
            } ,
-        "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text}
-        }`)
+        "functionality":functionalities[]{"description":description, "header":header, "image_url":image->image.asset->url, "altText":image->alt_text},
+        "video_id": video_id,
+        github_link
+        }
+        `)
 
     const otherProjects = await sanityClient.fetch(otherProjectsQuery(params?.id ?? ""))
 
